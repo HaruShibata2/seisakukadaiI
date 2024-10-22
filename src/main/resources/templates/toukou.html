@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿ページ</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // 投稿を追加する関数
+        function addPost() {
+            const postContent = document.getElementById('postContent').value;
+
+            if(postContent) {
+                const postList = document.getElementById('postList');
+                
+                // 新しい投稿を作成
+                const newPost = document.createElement('div');
+                newPost.textContent = postContent;
+                
+                // リストに追加
+                postList.appendChild(newPost);
+
+                // 入力欄をクリア
+                document.getElementById('postContent').value = '';
+            } else {
+                alert('投稿内容を入力してください');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>投稿</h1>
+
+    <textarea id="postContent" placeholder="投稿内容を入力してください" rows="4" cols="50"></textarea><br>
+    <button onclick="addPost()">投稿する</button>
+
+    <h2>投稿一覧</h2>
+    <div id="postList">
+        <!-- 投稿された内容がここに表示される -->
+    </div>
+
+    <p><a href="index.html">管理メニューに戻る</a></p>
+</body>
+</html>

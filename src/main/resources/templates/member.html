@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンバー管理ページ</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // メンバー編集ボタンが押されたとき
+        function editMember(button) {
+            const memberRow = button.parentNode.parentNode;
+            const nameCell = memberRow.querySelector('td.name');
+            const newName = prompt('新しい名前を入力してください', nameCell.textContent);
+
+            if (newName) {
+                nameCell.textContent = newName;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>メンバー管理</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>メンバー名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="name">田中 太郎</td>
+                <td><button onclick="editMember(this)">編集</button></td>
+            </tr>
+            <tr>
+                <td class="name">佐藤 花子</td>
+                <td><button onclick="editMember(this)">編集</button></td>
+            </tr>
+            <!-- 他のメンバーをここに追加できます -->
+        </tbody>
+    </table>
+
+    <p><a href="index.html">管理メニューに戻る</a></p>
+</body>
+</html>

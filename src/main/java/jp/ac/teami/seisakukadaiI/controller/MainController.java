@@ -12,4 +12,9 @@ public class MainController {
 	    model.addAttribute("message", "こんにちは");
 	    return "top";
 	    }
+	@GetMapping("/admin/")
+	public String  index2(Model model) {
+		
+	}
 }
+

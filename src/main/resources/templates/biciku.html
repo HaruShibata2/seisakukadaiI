@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>備蓄管理ページ</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // 備蓄を追加する関数
+        function addItem() {
+            const itemName = document.getElementById('itemName').value;
+            const itemQuantity = document.getElementById('itemQuantity').value;
+            
+            if(itemName && itemQuantity) {
+                const list = document.getElementById('itemList');
+                
+                // 新しいアイテムの行を作成
+                const newItem = document.createElement('tr');
+                newItem.innerHTML = `
+                    <td>${itemName}</td>
+                    <td>
+                        <button onclick="changeQuantity(this, -1)">－</button>
+                        <span>${itemQuantity}</span>
+                        <button onclick="changeQuantity(this, 1)">＋</button>
+                    </td>
+                `;
+                
+                // リストに追加
+                list.appendChild(newItem);
+
+                // 入力欄をリセット
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemQuantity').value = 1;
+            } else {
+                alert('アイテム名と個数を入力してください');
+            }
+        }
+
+        // 個数を変更する関数
+        function changeQuantity(button, change) {
+            const quantitySpan = button.parentNode.querySelector('span');
+            let quantity = parseInt(quantitySpan.textContent);
+            quantity = Math.max(0, quantity + change); // 0以下にはならないように
+            quantitySpan.textContent = quantity;
+        }
+    </script>
+</head>
+<body>
+    <h1>備蓄管理</h1>
+
+    <p>アイテム名と個数を入力して、備蓄を追加してください。</p>
+    
+    <input type="text" id="itemName" placeholder="アイテム名" required>
+    <input type="number" id="itemQuantity" value="1" min="1" required>
+    <button onclick="addItem()">備蓄を追加</button>
+
+    <h2>備蓄リスト</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>アイテム名</th>
+                <th>個数</th>
+            </tr>
+        </thead>
+        <tbody id="itemList">
+            <!-- ここに追加される -->
+        </tbody>
+    </table>
+
+    <p><a href="index.html">管理メニューに戻る</a></p>
+</body>
+</html>
