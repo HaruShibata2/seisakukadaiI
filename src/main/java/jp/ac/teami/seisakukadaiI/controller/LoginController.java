@@ -16,7 +16,7 @@ public class LoginController {
 
     @GetMapping("/kojin")
     public String index(Model model2) {
-    	return "kojin";
+    	return "kojintouroku";
     }
     
 
