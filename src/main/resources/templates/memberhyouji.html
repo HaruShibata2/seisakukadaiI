@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>メンバー表示</title>
+    <style>
+        /* bodyをフレックスコンテナにして中央揃え */
+        body {
+            display: flex;
+            flex-direction: column; /* 要素を縦に並べる */
+            justify-content: center; /* 垂直方向の中央揃え */
+            align-items: center; /* 水平方向の中央揃え */
+            height: 100vh; /* ビューポートの高さを100%に */
+            margin: 0; /* 余白をリセット */
+            text-align: center; /* テキストを中央揃え */
+            font-family: Arial, sans-serif; /* フォントを設定 */
+        }
+
+        /* ボタンのスタイル */
+        buttonのところを
+button {
+            cursor: pointer; /* ボタンにマウスオーバー時のポインターを表示 */
+            background-color: #f5f5f5; /* ボタンの背景色 */
+            color: white; /* ボタンの文字色 */
+            border: none; /* ボタンの境界線を無くす */
+            border-radius: 5px; /* 角を少し丸くする */
+            padding: 10px 20px; /* ボタンの内側余白 */
+            font-size: 16px;
+            margin-top: 10px; /* 上部に余白を追加 */
+        }
+
+        button:hover {
+            background-color: #45a049; /* ホバー時の色 */
+        }
+
+        /* 区切り線を中央に表示 */
+        .separator {
+            width: 80%; /* 区切り線の幅 */
+            border-top: 1px solid #000; /* 区切り線のスタイル */
+            margin: 20px 0; /* 上下の余白 */
+        }
+    </style>
 </head>
 <body>
+
+    <h1>メンバー表示</h1>
+
+    <!-- 区切り線 -->
+    <div class="separator"></div>
+
+    <!-- メンバーのリスト -->
+    <div>
+        <p>メンバー表示</p>
+        <p>メンバー表示</p>
+        <p>メンバー表示</p>
+        <p>メンバー表示</p>
+        <p>メンバー表示</p>
+        <p>メンバー表示</p>
+    </div>
+
+    <!-- 区切り線 -->
+    <div class="separator"></div>
+
+    <!-- チャットボタン -->
+    <button type="button">チャット</button>
 
 </body>
 </html>
