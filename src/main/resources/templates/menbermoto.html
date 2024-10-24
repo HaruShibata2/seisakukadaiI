@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンバー画面</title>
+</head>
+<body>
+
+    <header>
+        <h1>防災情報アプリ</h1>
+        <h1>メンバー画面</h1>
+    </header>
+
+    <main>
+        <div>
+            <button onclick="confirmation()">安否確認</button><br><br>
+            <a href="menber.html">
+            <button onclick="menber()">メンバー表示</button><br><br>
+            </a>
+            <button onclick="gotoChat()">チャット</button><br><br>
+            <button onclick="position()">位置情報</button>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <button onclick="goToHome()">ホーム</button>
+            <button onclick="goToMenber()">メンバー</button>
+            <button onclick="goToGroup()">グループ</button>
+            <button onclick="goToSetting()">設定</button>
+            <button onclick="goTobousai()">防災情報</button>
+            <button onclick="gotoChat()">チャット</button>
+        </div>
+    </footer>
+
+    <script>
+        function confirmation() {
+            alert('安否確認のページに遷移します');
+        }
+
+        function menber() {
+            alert('メンバー表示のページに遷移します');
+        }
+
+        function gotoChat() {
+            alert('チャットのページに遷移します');
+        }
+
+        function position() {
+            alert('メンバーの位置情報のページに遷移します');
+        }
+        function goToHome() {
+            alert('ホームのページに遷移します');
+        }
+
+        function goToMenber() {
+            alert('メンバーのページに遷移します');
+        }
+
+        function goToGroup() {
+            alert('グループのページに遷移します');
+        }
+
+        function goToSetting() {
+            alert('設定のページに遷移します');
+        }
+
+        function goTobousai() {
+            alert('防災情報のページに遷移します');
+        }
+
+        function goToChat() {
+            alert('チャットのページに遷移します');
+        }
+    </script>
+
+</body>
+</html>

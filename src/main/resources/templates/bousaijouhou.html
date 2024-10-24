@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防災情報タイムライン</title>
+</head>
+<body>
+
+    <header>
+        <h1>防災情報タイムライン</h1>
+    </header>
+
+    <main>
+        <article>
+            <h2>地震速報</h2>
+            <p>震源地: 東京都</p>
+            <p>震度: 5強</p>
+            <p>発生日時: 2024年10月21日 14:30</p>
+            <p>余震に注意してください。</p>
+        </article>
+        <hr>
+
+        <article>
+            <h2>津波警報</h2>
+            <p>発表地域: 沖縄県</p>
+            <p>予想される高さ: 2メートル</p>
+            <p>避難指示: 高台への避難を強く推奨します。</p>
+        </article>
+        <hr>
+
+        <article>
+            <h2>台風接近情報</h2>
+            <p>台風名: タイフーン2024</p>
+            <p>予想進路: 日本列島に向かって北上中</p>
+            <p>大雨や強風に警戒してください。</p>
+        </article>
+        <hr>
+
+        <article>
+            <h2>避難所情報</h2>
+            <p>開設場所: 新宿区役所前</p>
+            <p>開設時間: 24時間対応</p>
+            <p>必要物資: 飲料水、毛布</p>
+        </article>
+        <hr>
+
+        <article>
+            <h2>停電情報</h2>
+            <p>地域: 東京都23区</p>
+            <p>復旧見込み時間: 2024年10月21日 18:00</p>
+            <p>備え: 懐中電灯やラジオを準備してください。</p>
+        </article>
+    </main>
+
+    <footer>
+        <div>
+            <button onclick="goToHome()">ホーム</button>
+            <button onclick="goToMenber()">メンバー</button>
+            <button onclick="goToGroup()">グループ</button>
+            <button onclick="goToSetting()">設定</button>
+            <a href="bousaigamen.html">
+            <button onclick="goTobousai()">防災情報</button>
+            </a>
+            <button onclick="goToChat()">チャット</button>
+        </div>
+    </footer>
+
+    <script>
+        function goToHome() {
+            alert('ホームのページに遷移します');
+        }
+
+        function goToMenber() {
+            alert('メンバーのページに遷移します');
+        }
+
+        function goToGroup() {
+            alert('グループのページに遷移します');
+        }
+
+        function goToSetting() {
+            alert('設定のページに遷移します');
+        }
+        
+        function goTobousai() {
+            alert('防災情報のページに遷移します');
+        }
+
+        function goToChat() {
+            alert('チャットのページに遷移します');
+        }
+    </script>
+</body>
+</html>
