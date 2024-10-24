@@ -11,12 +11,12 @@ public class LoginController {
     @GetMapping("/syokigamen")
     public String getLogin(Model model) {
         
-        return "syokigamen";
+        return "login/syokigamen";
     }
 
-    @GetMapping("/kojin")
+    @GetMapping("/kojintouroku")
     public String index(Model model2) {
-    	return "kojin";
+    	return "login/kojintouroku";
     }
     
 
