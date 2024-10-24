@@ -10,7 +10,7 @@ public class LoginController {
     //GETメソッド
     @GetMapping("/syokigamen")
     public String getLogin(Model model) {
-        //login.htmlに画面遷移
+        
         return "syokigamen";
     }
 
@@ -18,5 +18,8 @@ public class LoginController {
     public String index(Model model2) {
     	return "kojin";
     }
+    
+
+    
 }
 
