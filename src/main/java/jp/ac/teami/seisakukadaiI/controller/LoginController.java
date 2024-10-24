@@ -8,18 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
 
     //GETメソッド
-    @GetMapping("/syokigamen")
+    @GetMapping("/login/syokigamen")
     public String getLogin(Model model) {
         
-        return "syokigamen";
+        return "login/syokigamen";
     }
 
-    @GetMapping("/kojin")
+    @GetMapping("/login/kojintouroku")
     public String index(Model model2) {
-    	return "kojintouroku";
+        return "login/kojintouroku";
     }
     
 
     
 }
-
