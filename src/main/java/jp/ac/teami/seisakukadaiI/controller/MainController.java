@@ -12,7 +12,7 @@ public class MainController {
 	    model.addAttribute("message", "こんにちは");
 	    return "main/home";
 	    }
-	@GetMapping("/admin")
+	@GetMapping("/main/admin")
 		public String  index2(Model model) {
 		return "main/admin";
 	}
