@@ -8,17 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-
 	
 	//GETメソッド
 	@GetMapping("/login/syokigamen")
-	public String getSyoki(Model model) {
+	public String getLogin(Model model) {
+		
 		return "login/syokigamen";
-	}
-	
-	@GetMapping("/login/sinki")
-	public String getSinki(Model model) {
-		return "login/sinki";
 	}
 	
 	@GetMapping("/login/kojintouroku")
@@ -26,15 +21,24 @@ public class LoginController {
 		return "login/kojintouroku";
 	}
 	
-	
-	@GetMapping("/login/kaishatouroku")
-	public String getKaisha(Model model) {
-		return "login/kaishatouroku";
-	}	
-	
 	@GetMapping("/login/login")
 	public String index2(Model model) {
 		return "login/login";
 	}
-
+	
+	@GetMapping("/login/lng")
+	public String lngs(Model model) {
+		return "login/lng";
+	}
+	
+	@GetMapping("/login/codenyuryoku")
+	public String codeadd(Model model) {
+		return "login/codenyuryoku";
+	}
+	
+	@GetMapping("/login/emailadd")
+	public String emailadd(Model model) {
+		return "login/emailadd";
+	}
+	
 }
