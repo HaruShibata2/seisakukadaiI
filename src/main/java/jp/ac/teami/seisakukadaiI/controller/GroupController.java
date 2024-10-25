@@ -10,7 +10,7 @@ public class GroupController {
 
 	
 	//GETメソッド
-	@GetMapping("/main/group/group")
+	@GetMapping("/group")
 	public String index(Model model) {
 		
 		return "main/group/group";

@@ -6,6 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>気象情報タイムライン</title>
 </head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .member-list {
+        margin: 20px;
+    }
+    .footer-icons {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+    }
+    .footer-icons img {
+        width: 30px;
+        height: 30px;
+    }
+    .post-box {
+        margin: 20px;
+        font-style: italic;
+    }
+</style>
+</head>
 <body>
 
     <header>
@@ -51,16 +75,15 @@
         </article>
     </main>
 
-    <footer>
-        <div>
-            <button onclick="location.href='/home'">ホーム</button>
-            <button onclick="location.href='/menbermoto'">メンバー</button>
-            <button onclick="location.href='/main/group/group'">グループ</button>
-            <button onclick="location.href='/setting'">設定</button>
-            <button onclick="location.href='/bousaigamen'">防災情報</button>
-            <button onclick="location.href='/'">チャット</button>
-        </div>
-    </footer>
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href=''">チャット</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
+</body>
 
 
     

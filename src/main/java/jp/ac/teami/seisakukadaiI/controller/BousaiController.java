@@ -2,6 +2,8 @@ package jp.ac.teami.seisakukadaiI.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 
@@ -21,4 +23,9 @@ public class BousaiController {
     public String bousaiMap() {
         return "main/bousai/bousaiMap";
     }
+    @GetMapping("/kishoujouhou")
+    public String kishoujouhou() {
+        return "main/bousai/kishoujouhou";
+    }
+    
 }
