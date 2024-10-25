@@ -1,6 +1,7 @@
 package jp.ac.teami.seisakukadaiI.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -11,11 +12,11 @@ public class SettingController {
         return "setting";
     }
     @GetMapping("/toiawase")
-    public String inquiry() {
+    public String inquiry(Model model) {
         return "toiawase";
     }
     @GetMapping("/oshirase")
-    public String notice() {
+    public String notice(Model model) {
         return "oshirase";
     }
 }
