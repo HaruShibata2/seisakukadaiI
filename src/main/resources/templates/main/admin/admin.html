@@ -4,30 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        button {
-            font-size: 16px;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .member-list {
+            margin: 20px;
         }
-        button:hover {
-            background-color: #45a049;
+        .footer-icons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+        .footer-icons img {
+            width: 30px;
+            height: 30px;
+        }
+        .post-box {
+            margin: 20px;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <h1>管理メニュー</h1>
-    
+ 
 
-    <!-- ボタンをリンクとして設定 -->
-    <button type="button" onclick="location.href='bousai'">防災用品</button>
-    <button type="button" onclick="location.href='biciku'">備蓄管理</button>
-    <button type="button" onclick="location.href='member'">メンバー管理</button>
-    <button type="button" onclick="location.href='toukou'">投稿</button>
+ 
+	
+</div>
+ 
+<!-- フッターアイコン -->
+<div class="footer-icons">
+    <button onclick="location.href='biciku'">備蓄管理</button>
+    <button onclick="location.href='bousai'">防災用品</button>
+    <button onclick="location.href='member'">メンバー管理</button>
+    <button onclick="location.href='toukou'">投稿</button>
+</div>
+ 
+ 
+ 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

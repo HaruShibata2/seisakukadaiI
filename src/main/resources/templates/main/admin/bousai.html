@@ -10,7 +10,29 @@
             margin: 20px 0;
         }
     </style>
-    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            .member-list {
+                margin: 20px;
+            }
+            .footer-icons {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                background-color: #f8f9fa;
+                padding: 10px 0;
+            }
+            .footer-icons img {
+                width: 30px;
+                height: 30px;
+            }
+            .post-box {
+                margin: 20px;
+                font-style: italic;
+            }
+        </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .member-list {
@@ -42,8 +64,13 @@
     
     <p><a href="https://www.amazon.co.jp/%E4%B8%89%E7%AB%8B-%E7%BC%B6%E5%85%A5%E3%82%AB%E3%83%B3%E3%83%91%E3%83%B3-100g/dp/B000VZ2KCA?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&ref_=fplfs&psc=1&smid=A20RTPH1713W9U" target="_blank">カンパン</a></p>
 
-    <!-- メニューに戻るリンク -->
-    <p><a href="admin">管理メニューに戻る</a></p>
+<!-- フッターアイコン -->
+<div class="footer-icons">
+    <button onclick="location.href='biciku'">備蓄管理</button>
+    <button onclick="location.href='bousai'">防災用品</button>
+    <button onclick="location.href='member'">メンバー管理</button>
+    <button onclick="location.href='toukou'">投稿</button>
+</div>
     
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
