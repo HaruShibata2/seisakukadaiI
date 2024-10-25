@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
+
 	
 	//GETメソッド
 	@GetMapping("/login/syokigamen")
@@ -35,6 +36,5 @@ public class LoginController {
 	public String index2(Model model) {
 		return "login/login";
 	}
-		
 
 }
