@@ -12,9 +12,5 @@ public class MainController {
 	    model.addAttribute("message", "こんにちは");
 	    return "main/home/home";
 	    }
-	@GetMapping("/admin")
-		public String  adminIndex(Model model) {
-		return "main/admin/admin";
-	}
 }
 
