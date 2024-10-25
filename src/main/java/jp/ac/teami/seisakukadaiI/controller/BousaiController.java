@@ -9,16 +9,16 @@ public class BousaiController {
     
     @GetMapping("/bousaigamen")
     public String bousaigamen() {
-        return "bousaigamen";
+        return "main/bousai/bousaigamen";
     }
 
     @GetMapping("/bousaijouhou")
     public String bousaijouhou() {
-        return "bousaijouhou";
+        return "main/bousai/bousaijouhou";
     }
 
     @GetMapping("/bousaiMap")
     public String bousaiMap() {
-        return "bousaiMap";
+        return "main/bousai/bousaiMap";
     }
 }
