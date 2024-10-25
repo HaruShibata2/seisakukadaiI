@@ -10,7 +10,7 @@ public class MainController {
 	@GetMapping("/")
 	  public String index(Model model) {
 	    model.addAttribute("message", "こんにちは");
-	    return "main/home/home";
+	    return "main/home";
 	    }
 	@GetMapping("/admin")
 		public String  adminIndex(Model model) {
