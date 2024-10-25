@@ -11,7 +11,7 @@ public class SettingController {
         return "main/setting/setting";
     }
 
-
+    @GetMapping("/toiawase")
     public String inquiry() {
         return "main/setting/toiawase";
     }
