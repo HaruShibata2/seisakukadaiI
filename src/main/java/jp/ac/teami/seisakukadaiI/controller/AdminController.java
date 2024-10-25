@@ -19,4 +19,12 @@ public class AdminController {
         public String  bicikuIndex(Model model) {
         return "main/admin/biciku";
     }
+    @GetMapping("/member")
+        public String  memberIndex(Model model) {
+        return "main/admin/member";
+    }
+    @GetMapping("/toukou")
+        public String  toukouIndex(Model model) {
+        return "main/admin/toukou";
+    }
 }
