@@ -8,6 +8,29 @@ height: 10em;
 }
 
 </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .member-list {
+            margin: 20px;
+        }
+        .footer-icons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+        .footer-icons img {
+            width: 30px;
+            height: 30px;
+        }
+        .post-box {
+            margin: 20px;
+            font-style: italic;
+        }
+    </style>
 
 </head>
 <body>
@@ -21,53 +44,16 @@ height: 10em;
 
 </body>
 <footer>
-    <div>
-        <button onclick="goToHome()">ホーム</button>
-        <button onclick="goToMenber()">メンバー</button>
-        <button onclick="goToGroup()">グループ</button>
-        <a href="setting.html">
-        <button onclick="goToSetting()">設定</button>
-        </a>
-        <button onclick="goTobousai()">防災情報</button>
-        <button onclick="gotoChat()">チャット</button>
-    </div>
+    <div class="footer-icons">
+		<button onclick="location.href='/'">ホーム</button>
+		<button onclick="location.href='/memberhyouji'">メンバー</button>
+		<button onclick="location.href='main/group/group'">グループ</button>
+		
+		<button onclick="location.href='/setting'">設定画面</button>
+		</a>
+		<button onclick="location.href='/bousaigamen'">防災画面</button>
+		<button onclick="location.href=''">チャット</button>
+     </div>
 </footer>
 
-<script>
-    function inquiry() {
-        alert('お問い合わせのページに遷移します');
-    }
-
-    function notice() {
-        alert('お知らせのページに遷移します');
-    }
-
-    function language() {
-        alert('言語設定のページに遷移します');
-    }
-
-    function goToHome() {
-        alert('ホームのページに遷移します');
-    }
-
-    function goToMenber() {
-        alert('メンバーのページに遷移します');
-    }
-
-    function goToGroup() {
-        alert('グループのページに遷移します');
-    }
-
-    function goToSetting() {
-        alert('設定のページに遷移します');
-    }
-
-    function goTobousai() {
-        alert('防災情報のページに遷移します');
-    }
-
-    function goToChat() {
-        alert('チャットのページに遷移します');
-    }
-</script>
 </html>

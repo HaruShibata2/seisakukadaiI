@@ -14,66 +14,23 @@
 
     <main>
         <div>
-            <a href="bousaijouhou.html">
-            <button onclick="showDisasterInfo()">防災情報</button><br><br>
-            </a>
-            <a href="bousaiMap.html">
-            <button onclick="showDisasterMap()">防災マップ</button><br><br>
-            </a>
-            <a href="weather.html">
-            <button onclick="showWeatherInfo()">気象情報</button>
-            </a>
+            <button onclick="location.href='/bousaijouhou'">防災情報画面</button>
+            <button onclick="location.href='/bousaiMap'">防災マップ</button>
+            <button onclick="location.href='/weather'">気象情報</button>
         </div>
     </main>
 
     <footer>
         <div>
-            <button onclick="goToHome()">ホーム</button>
-            <button onclick="goToMember()">メンバー</button>
-            <button onclick="goToGroup()">グループ</button>
-            <button onclick="goToSetting()">設定</button>
-            <button onclick="goTobousai()">防災情報</button>
-            <button onclick="goToChat()">チャット</button>
+            <button onclick="location.href='/home'">ホーム</button>
+            <button onclick="location.href='/menbermoto'">メンバー</button>
+            <button onclick="location.href='/main/group/group'">グループ</button>
+            <button onclick="location.href='/setting'">設定</button>
+            <button onclick="location.href='/bousaigamen'">防災情報</button>
+            <button onclick="location.href='/'">チャット</button>
         </div>
     </footer>
 
-    <script>
-        function showDisasterInfo() {
-            alert('防災情報のページに遷移します');
-        }
-
-        function showDisasterMap() {
-            alert('防災マップのページに遷移します');
-        }
-
-        function showWeatherInfo() {
-            alert('気象情報のページに遷移します');
-        }
-
-        function goToHome() {
-            alert('ホームのページに遷移します');
-        }
-
-        function goToMember() {
-            alert('メンバーのページに遷移します');
-        }
-
-        function goToGroup() {
-            alert('グループのページに遷移します');
-        }
-
-        function goToSetting() {
-            alert('設定のページに遷移します');
-        }
-
-        function goTobousai() {
-            alert('防災情報のページに遷移します');
-        }
-
-        function goToChat() {
-            alert('チャットのページに遷移します');
-        }
-    </script>
-
+   
 </body>
 </html>

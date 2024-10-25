@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>備蓄管理ページ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .member-list {
             margin: 20px;
@@ -24,10 +28,6 @@
             font-style: italic;
         }
     </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>備蓄管理ページ</title>
-    <link rel="stylesheet" href="styles.css">
     <script>
         // 備蓄を追加する関数
         function addItem() {
@@ -89,22 +89,14 @@
             <!-- ここに追加される -->
         </tbody>
     </table>
-
-    <p><a href="admin">管理メニューに戻る</a></p>
-    
-    
-   <!-- フッターアイコン -->
+    <!-- フッターアイコン -->
 <div class="footer-icons">
-    <button onclick="location.href='/'">ホーム画面</button>
-    <img src="icon-study.png" alt="b">
-    <img src="icon-history.png" alt="c">
-    <img src="icon-settings.png" alt="d">
+    <button onclick="location.href='biciku'">備蓄管理</button>
+    <button onclick="location.href='bousai'">防災用品</button>
+    <button onclick="location.href='member'">メンバー管理</button>
+    <button onclick="location.href='toukou'">投稿</button>
 </div>
- 
- 
- 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>
