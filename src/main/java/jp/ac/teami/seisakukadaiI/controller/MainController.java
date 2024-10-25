@@ -13,7 +13,7 @@ public class MainController {
 	    return "main/home/home";
 	    }
 	@GetMapping("/admin")
-		public String  index2(Model model) {
+		public String  adminIndex(Model model) {
 		return "main/admin/admin";
 	}
 }
