@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>防災情報アプリ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .member-list {
+            margin: 20px;
+        }
+        .footer-icons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+        .footer-icons img {
+            width: 30px;
+            height: 30px;
+        }
+        .post-box {
+            margin: 20px;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,15 +47,14 @@
     </main>
 
     <footer>
-        <div>
-            <button onclick="goToHome()">ホーム</button>
-            <button onclick="goToMember()">メンバー</button>
-            <button onclick="goToGroup()">グループ</button>
-            <a href="setting.html">
-            <button onclick="goToSetting()">設定</button>
+        <div class="footer-icons">
+            <button onclick="location.href='/'">ホーム</button>
+            <button onclick="location.href='memberhyouji'">メンバー</button>
+            <button onclick="location.href='group'">グループ</button>
+            <button onclick="location.href='setting'">設定画面</button>
             </a>
-            <button onclick="goTobousai()">防災情報</button>
-            <button onclick="gotoChat()">チャット</button>
+            <button onclick="location.href='bousaigamen'">防災画面</button>
+            <button onclick="location.href=''">チャット</button>
         </div>
     </footer>
 
