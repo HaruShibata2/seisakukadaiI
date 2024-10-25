@@ -8,14 +8,14 @@ public class SettingController {
 
     @GetMapping("/setting")
     public String settings() {
-        return "setting";
+        return "main/setting/setting";
     }
     @GetMapping("/toiawase")
     public String inquiry() {
-        return "toiawase";
+        return "main/setting/toiawase";
     }
     @GetMapping("/oshirase")
     public String notice() {
-        return "oshirase";
+        return "main/setting/oshirase";
     }
 }

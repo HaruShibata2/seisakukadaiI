@@ -12,5 +12,6 @@ public class MainController {
 	    model.addAttribute("message", "こんにちは");
 	    return "main/home";
 	    }
+	
 }
 
