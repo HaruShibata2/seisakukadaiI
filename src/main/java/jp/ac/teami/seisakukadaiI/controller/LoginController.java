@@ -12,20 +12,24 @@ public class LoginController {
 	
 	//GETメソッド
 	@GetMapping("/login/syokigamen")
-	public String getLogin(Model model) {
+	public String getSyoki(Model model) {
 		return "login/syokigamen";
+	}
+	
+	@GetMapping("/login/sinki")
+	public String getSinki(Model model) {
+		return "login/sinki";
 	}
 	
 	@GetMapping("/login/kojintouroku")
 	public String index(Model model) {
 		return "login/kojintouroku";
 	}
-
+	
 	
 	@GetMapping("/login/kaishatouroku")
 	public String getKaisha(Model model) {
-		return "login/kais"
-				+ "hatouroku";
+		return "login/kaishatouroku";
 	}	
 	
 	@GetMapping("/login/login")
