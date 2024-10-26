@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>怪我の情報入力フォーム</title>
+<style>
+        .member-list {
+            margin: 20px;
+        }
+        .footer-icons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+        .footer-icons img {
+            width: 30px;
+            height: 30px;
+        }
+        .post-box {
+            margin: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>怪我の情報入力フォーム</h1>
+        <form id="injuryForm">
+            <div class="form-group">
+                <label for="severity">怪我の度合い (1〜5):</label>
+                <select id="severity" name="severity">
+                    <option value="1">1 - 軽い</option>
+                    <option value="2">2 - やや軽い</option>
+                    <option value="3">3 - 中程度</option>
+                    <option value="4">4 - 重い</option>
+                    <option value="5">5 - 非常に重い</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="injuryType">怪我の種類:</label>
+                <select id="injuryType" name="injuryType">
+                    <option value="cut">切り傷</option>
+                    <option value="bruise">打撲</option>
+                    <option value="sprain">捻挫</option>
+                    <option value="fracture">骨折</option>
+                    <option value="burn">やけど</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="locationSharing">現在位置の情報を共有しますか？</label>
+                <select id="locationSharing" name="locationSharing">
+                    <option value="yes">はい</option>
+                    <option value="no">いいえ</option>
+                </select>
+            </div>
+
+            <button type="submit">送信</button>
+        </form>
+    </div>
+
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href=''">チャット</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
+</body>
+</html>

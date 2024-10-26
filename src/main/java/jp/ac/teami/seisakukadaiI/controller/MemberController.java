@@ -16,5 +16,10 @@ public class MemberController {
 	public String  memberhyoujiIndex(Model model) {
 	return "main/member/memberhyouji";
 	}
+	
+	@GetMapping("/kega")
+	public String  kegaIndex(Model model) {
+	return "main/member/kega";
+	}
 
 }
