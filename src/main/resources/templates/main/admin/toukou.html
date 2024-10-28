@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>投稿ページ</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .member-list {
+            margin: 20px;
+        }
+        .footer-icons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+        .footer-icons img {
+            width: 30px;
+            height: 30px;
+        }
+        .post-box {
+            margin: 20px;
+            font-style: italic;
+        }
+    </style>
     <script>
         // 投稿を追加する関数
         function addPost() {
@@ -38,7 +61,12 @@
     <div id="postList">
         <!-- 投稿された内容がここに表示される -->
     </div>
-
-    <p><a href="admin">管理メニューに戻る</a></p>
+<!-- フッターアイコン -->
+<div class="footer-icons">
+    <button onclick="location.href='biciku'">備蓄管理</button>
+    <button onclick="location.href='bousai'">防災用品</button>
+    <button onclick="location.href='member'">メンバー管理</button>
+    <button onclick="location.href='toukou'">投稿</button>
+</div>
 </body>
 </html>

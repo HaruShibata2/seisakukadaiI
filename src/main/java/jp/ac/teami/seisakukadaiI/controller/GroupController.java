@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class GroupController {
-
-	
 	//GETメソッド
-	@GetMapping("/main/group/group")
+	@GetMapping("/group")
 	public String index(Model model) {
 		
 		return "main/group/group";
+	}
+	@GetMapping("/busyocode")
+	public String busyoindex(Model model) {
+		
+		return "main/group/busyocode";
 	}
 }

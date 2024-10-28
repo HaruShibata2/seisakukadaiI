@@ -5,34 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メンバー画面</title>
 </head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .member-list {
+        margin: 20px;
+    }
+    .footer-icons {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        background-color: #f8f9fa;
+        padding: 10px 0;
+    }
+    .footer-icons img {
+        width: 30px;
+        height: 30px;
+    }
+    .post-box {
+        margin: 20px;
+        font-style: italic;
+    }
+</style>
+</head>
 <body>
 
     <header>
         <h1>防災情報アプリ</h1>
-        <h1>メンバー画面</h1>
     </header>
 
     <main>
-        <div>
-            <button onclick="confirmation()">安否確認</button><br><br>
-            <a href="memberhyouji">
-            <button onclick="member()" herf="/memberhyouji">メンバー表示</button><br><br>
-            </a>
-            <button onclick="gotoChat()">チャット</button><br><br>
-            <button onclick="position()">位置情報</button>
-        </div>
+		<div>
+	        <a href="kega">
+	            <button class="button">安否確認</button>
+	        </a><br><br>
+	        <a href="memberhyouji">
+	            <button class="button">メンバー表示</button>
+	        </a><br><br>
+	        <a href="/">
+	            <button class="button">チャット</button>
+	        </a><br><br>
+	        <a href="/">
+	            <button class="button">位置情報</button>
+	        </a>
+    	</div>
     </main>
 
-    <footer>
-        <div>
-            <button onclick="goToHome()">ホーム</button>
-            <button onclick="goToMember()">メンバー</button>
-            <button onclick="goToGroup()">グループ</button>
-            <button onclick="goToSetting()">設定</button>
-            <button onclick="goTobousai()">防災情報</button>
-            <button onclick="gotoChat()">チャット</button>
-        </div>
-    </footer>
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href=''">チャット</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
+</body>
 
    
 </body>
