@@ -1,7 +1,6 @@
 package jp.ac.teami.seisakukadaiI.model;
 
 import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,8 +32,9 @@ public class InquiryModel {
     @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
-    // コンストラクタ
+    // デフォルトコンストラクタ（createdAtを現在の日時で初期化）
     public InquiryModel() {
+        this.createdAt = LocalDateTime.now(); // 現在の日時を設定
     }
 
     // ゲッターとセッター
