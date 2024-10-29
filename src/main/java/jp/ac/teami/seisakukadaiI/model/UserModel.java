@@ -1,8 +1,5 @@
 package jp.ac.teami.seisakukadaiI.model;
 
-
-
-
 import java.sql.Date;
 import java.sql.Timestamp;
 
