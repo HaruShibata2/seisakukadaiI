@@ -5,4 +5,4 @@ CREATE TABLE safety_responses (
     PRIMARY KEY (user_id, earthquake_id)  -- 複合主キー
 );
  
- 
+ a

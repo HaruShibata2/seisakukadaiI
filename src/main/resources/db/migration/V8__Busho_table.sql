@@ -6,4 +6,4 @@ CREATE TABLE busho (
     FOREIGN KEY (user_id) REFERENCES Users(user_id)     -- ユーザーテーブルへの外部キー
 );
  
- 
+ a

@@ -6,3 +6,4 @@ CREATE TABLE inquiries (
     inquiry_description TEXT,            -- 問い合わせに関する説明や補足情報
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 問い合わせが作成された日時
 );
+a

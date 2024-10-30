@@ -3,3 +3,4 @@ CREATE TABLE company (
     name VARCHAR(100),        -- 企業名
     address VARCHAR(255)      -- 住所
 );
+a

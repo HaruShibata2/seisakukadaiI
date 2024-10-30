@@ -4,3 +4,4 @@ CREATE TABLE anpi_confirmation (
     status ENUM('safe', 'in_danger', 'unknown') NOT NULL,  -- 安否状況
     confirmation_time DATETIME NOT NULL      -- 安否確認の日時
 );
+a
