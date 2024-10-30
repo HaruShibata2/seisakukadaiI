@@ -18,4 +18,4 @@ public class GroupController {
 		
 		return "main/group/busyocode";
 	}
-}a
+}

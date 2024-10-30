@@ -8,7 +8,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
- a
+ 
 @Entity
 @Table(name = "Kega")
 public class KegaModel {

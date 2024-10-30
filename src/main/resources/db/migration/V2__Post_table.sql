@@ -6,4 +6,3 @@ CREATE TABLE posts (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 投稿日時
     FOREIGN KEY (user_id) REFERENCES users(user_id) -- 外部キー
 );
-a

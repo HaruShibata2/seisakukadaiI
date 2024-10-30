@@ -27,4 +27,4 @@ public class AdminController {
         public String  toukouIndex(Model model) {
         return "main/admin/toukou";
     }
-}a
+}

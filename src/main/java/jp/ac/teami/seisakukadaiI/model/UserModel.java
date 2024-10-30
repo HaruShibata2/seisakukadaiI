@@ -12,7 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-a
+
 @Entity
 @Table(name = "Users")
 public class UserModel {

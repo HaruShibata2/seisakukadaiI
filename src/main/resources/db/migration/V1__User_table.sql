@@ -9,4 +9,3 @@ CREATE TABLE Users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- レコード更新日時
     department VARCHAR(64)                          -- 部署コード
 );
-a

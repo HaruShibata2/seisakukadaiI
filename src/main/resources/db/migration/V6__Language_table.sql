@@ -8,4 +8,3 @@ CREATE TABLE Language (
     is_default BOOLEAN DEFAULT FALSE,            -- デフォルト言語かどうかのフラグ
     is_active BOOLEAN DEFAULT TRUE               -- 言語がアクティブかどうか（非アクティブにすることで使用を制限）
 );
-a

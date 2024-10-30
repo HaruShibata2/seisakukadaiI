@@ -22,4 +22,4 @@ public class MemberController {
 	return "main/member/kega";
 	}
 
-}a
+}
