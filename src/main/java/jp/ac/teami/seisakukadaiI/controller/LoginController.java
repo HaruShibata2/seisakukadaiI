@@ -12,7 +12,6 @@ public class LoginController {
 	//GETメソッド
 	@GetMapping("/login/syokigamen")
 	public String getLogin(Model model) {
-		
 		return "login/syokigamen";
 	}
 	

@@ -26,13 +26,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/login", "/register").permitAll()
+                        .requestMatchers("/login", "/register","login/syokigamen").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(login -> login
-                        .loginPage("/login")
+                        .loginPage("/login/syokigamen")
                         .permitAll())
                 .logout(logout -> logout
                         .permitAll());
+    
         return http.build();
     }
 
