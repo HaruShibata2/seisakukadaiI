@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "Users")
 public class UserModel {
-
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -47,7 +47,6 @@ public class UserModel {
     @Column(name = "department", length = 64)
     private String department;
 
-    // ゲッターとセッター
 
     public Integer getUserId() {
         return userId;
