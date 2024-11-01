@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+<<<<<<< HEAD
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,5 +84,23 @@
         // ページが読み込まれたときにapplyLanguageを呼び出す
         window.onload = applyLanguage;
     </script>
+=======
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="#" th:action="@{/login}" method="post">
+        <div>
+            <label>Username:</label>
+            <input type="text" name="username" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" />
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <a href="/register">新規</href></a>
+>>>>>>> a21f4b519ace29c022ab2be776de7a5d6e6cc287
 </body>
 </html>
