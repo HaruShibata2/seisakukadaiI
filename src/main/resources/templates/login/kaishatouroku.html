@@ -1,14 +1,113 @@
 <!DOCTYPE html>
-<h1>会社登録</h1>
-<form action="example.php" method="POST" name="contact-form">
-    企業コード<font color="red">＊必須*</font> <p><input type="text" placeholder=""></p>
+<html lang="ja">
 
-    会社名<font color="red">＊必須*</font> <p><input type="text" placeholder=""></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">会社登録</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            margin: 5px 0;
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
 
-    郵便番号<font color="red">＊必須*</font> <p><input type="text" placeholder=""></p>
+<body>
 
-    会社住所<font color="red">＊必須*</font> <p><input type="text" placeholder=""></p>
+    <h1 id="heading">会社登録</h1>
+    <form action="example.php" method="POST" name="contact-form">
+        <label id="companyCodeLabel">企業コード<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="" id="companyCode"></p>
 
-   
-    <button type="button">完了</button>
-</form>
+        <label id="companyNameLabel">会社名<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="" id="companyName"></p>
+
+        <label id="postalCodeLabel">郵便番号<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="" id="postalCode"></p>
+
+        <label id="addressLabel">会社住所<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="" id="address"></p>
+
+        <button type="button" onclick="completeRegistration()">
+            <span id="completeButtonText">完了</span>
+        </button>
+    </form>
+
+    <script>
+        // 各言語に対応するテキストリソース
+        const languageResources = {
+            ja: {
+                title: "会社登録",
+                heading: "会社登録",
+                companyCode: "企業コード＊必須*",
+                companyName: "会社名＊必須*",
+                postalCode: "郵便番号＊必須*",
+                address: "会社住所＊必須*",
+                complete: "完了"
+            },
+            en: {
+                title: "Company Registration",
+                heading: "Company Registration",
+                companyCode: "Company Code (required)",
+                companyName: "Company Name (required)",
+                postalCode: "Postal Code (required)",
+                address: "Company Address (required)",
+                complete: "Complete"
+            },
+            ko: {
+                title: "회사 등록",
+                heading: "회사 등록",
+                companyCode: "기업 코드(필수)",
+                companyName: "회사 이름(필수)",
+                postalCode: "우편 번호(필수)",
+                address: "회사 주소(필수)",
+                complete: "완료"
+            },
+            zh: {
+                title: "公司注册",
+                heading: "公司注册",
+                companyCode: "企业代码（必填）",
+                companyName: "公司名称（必填）",
+                postalCode: "邮政编码（必填）",
+                address: "公司地址（必填）",
+                complete: "完成"
+            }
+        };
+
+        // 言語を適用する関数
+        function applyLanguage() {
+            const lang = localStorage.getItem("selectedLanguage") || "ja"; // デフォルトは日本語
+            const resource = languageResources[lang];
+
+            document.getElementById("pageTitle").innerText = resource.title;
+            document.getElementById("heading").innerText = resource.heading;
+            document.getElementById("companyCodeLabel").innerText = resource.companyCode;
+            document.getElementById("companyNameLabel").innerText = resource.companyName;
+            document.getElementById("postalCodeLabel").innerText = resource.postalCode;
+            document.getElementById("addressLabel").innerText = resource.address;
+            document.getElementById("completeButtonText").innerText = resource.complete;
+        }
+
+        // 登録完了処理（実際の処理を実装する必要があります）
+        function completeRegistration() {
+            alert("登録が完了しました！");
+        }
+
+        // ページが読み込まれたときにapplyLanguageを呼び出す
+        window.onload = applyLanguage;
+    </script>
+
+</body>
+
+</html>

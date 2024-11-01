@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登録ページ</title>
+    <title id="pageTitle">登録ページ</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -12,14 +12,57 @@
 <body class="d-flex justify-content-center align-items-center vh-100 bg-light">
 
     <div class="text-center">
-        <h1 class="mb-4">新規登録ページ</h1>
-        <a href="kojintouroku" class="btn btn-primary btn-lg mb-3 w-100">個人登録</a>
-        <a href="kaishatouroku" class="btn btn-secondary btn-lg w-100">会社登録</a>
+        <h1 class="mb-4" id="heading">新規登録ページ</h1>
+        <a href="kojintouroku" class="btn btn-primary btn-lg mb-3 w-100" id="individualRegisterBtn">個人登録</a>
+        <a href="kaishatouroku" class="btn btn-secondary btn-lg w-100" id="companyRegisterBtn">会社登録</a>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 各言語に対応するテキストリソース
+        const languageResources = {
+            ja: {
+                title: "登録ページ",
+                heading: "新規登録ページ",
+                individualRegister: "個人登録",
+                companyRegister: "会社登録"
+            },
+            en: {
+                title: "Registration Page",
+                heading: "New Registration Page",
+                individualRegister: "Individual Registration",
+                companyRegister: "Company Registration"
+            },
+            ko: {
+                title: "등록 페이지",
+                heading: "새 등록 페이지",
+                individualRegister: "개인 등록",
+                companyRegister: "회사 등록"
+            },
+            zh: {
+                title: "注册页面",
+                heading: "新注册页面",
+                individualRegister: "个人注册",
+                companyRegister: "公司注册"
+            }
+        };
+
+        // 言語を適用する関数
+        function applyLanguage() {
+            const lang = localStorage.getItem("selectedLanguage") || "ja"; // デフォルトは日本語
+            const resource = languageResources[lang];
+
+            document.getElementById("pageTitle").innerText = resource.title;
+            document.getElementById("heading").innerText = resource.heading;
+            document.getElementById("individualRegisterBtn").innerText = resource.individualRegister;
+            document.getElementById("companyRegisterBtn").innerText = resource.companyRegister;
+        }
+
+        // ページが読み込まれたときにapplyLanguageを呼び出す
+        window.onload = applyLanguage;
+    </script>
+
 </body>
 
 </html>
-

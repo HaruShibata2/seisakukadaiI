@@ -1,29 +1,138 @@
 <!DOCTYPE html>
-<h1>初期設定</h1>
-<form action="example.php" method="POST" name="contact-form">
-    郵便番号<font color="red">＊必須*</font> 
-    <p><input type="text" placeholder="*** - ****"></p>
+<html lang="ja">
 
-    住所<font color="red">＊必須*</font> 
-    <p><input type="text" placeholder=""></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">初期設定</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            margin: 5px 0;
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
 
-    マンション、住所<font color="red">＊必須*</font> 
-    <p><input type="text" placeholder=""></p>
+<body>
 
-    氏名<font color="red">＊必須*</font> 
-    <p><input type="text" placeholder=""></p>
+    <h1 id="heading">初期設定</h1>
+    <form action="example.php" method="POST" name="contact-form">
+        <label id="postalCodeLabel">郵便番号<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="*** - ****" id="postalCode"></p>
 
-    携帯番号<font color="red">＊必須*</font> 
-    <p><input type="text" placeholder="   -    -   "></p>
+        <label id="addressLabel">住所<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="" id="address"></p>
 
-    メールアドレス(固定)
-    <p><h4>****@***.com</h4></p>
+        <label id="apartmentLabel">マンション、住所<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="" id="apartment"></p>
 
-    パスワード<font color="red">＊必須*</font> 
-    <p><input type="text" placeholder="8文字以上入力してください"></p>
-    
-    確認用パスワード<font color="red">＊必須*</font> 
-    <p><input type="text" placeholder="8文字以上入力してください"></p>
+        <label id="nameLabel">氏名<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="" id="name"></p>
 
-<button type="button" onclick="location.href='login'">ログイン</button>
-</form>
+        <label id="phoneLabel">携帯番号<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="   -    -   " id="phone"></p>
+
+        <label id="emailLabel">メールアドレス(固定)</label>
+        <p><h4>****@***.com</h4></p>
+
+        <label id="passwordLabel">パスワード<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="8文字以上入力してください" id="password"></p>
+        
+        <label id="confirmPasswordLabel">確認用パスワード<font color="red">＊必須*</font></label>
+        <p><input type="text" placeholder="8文字以上入力してください" id="confirmPassword"></p>
+
+        <button type="button" onclick="location.href='login'">ログイン</button>
+    </form>
+
+    <script>
+        // 各言語に対応するテキストリソース
+        const languageResources = {
+            ja: {
+                title: "初期設定",
+                heading: "初期設定",
+                postalCode: "郵便番号＊必須*",
+                address: "住所＊必須*",
+                apartment: "マンション、住所＊必須*",
+                name: "氏名＊必須*",
+                phone: "携帯番号＊必須*",
+                email: "メールアドレス(固定)",
+                password: "パスワード＊必須*",
+                confirmPassword: "確認用パスワード＊必須*",
+                login: "ログイン"
+            },
+            en: {
+                title: "Initial Settings",
+                heading: "Initial Settings",
+                postalCode: "Postal Code (required)",
+                address: "Address (required)",
+                apartment: "Apartment, Address (required)",
+                name: "Name (required)",
+                phone: "Mobile Number (required)",
+                email: "Email Address (fixed)",
+                password: "Password (required)",
+                confirmPassword: "Confirm Password (required)",
+                login: "Login"
+            },
+            ko: {
+                title: "초기 설정",
+                heading: "초기 설정",
+                postalCode: "우편 번호(필수)",
+                address: "주소(필수)",
+                apartment: "아파트, 주소(필수)",
+                name: "이름(필수)",
+                phone: "휴대폰 번호(필수)",
+                email: "이메일 주소(고정)",
+                password: "비밀번호(필수)",
+                confirmPassword: "비밀번호 확인(필수)",
+                login: "로그인"
+            },
+            zh: {
+                title: "初始设置",
+                heading: "初始设置",
+                postalCode: "邮政编码（必填）",
+                address: "地址（必填）",
+                apartment: "公寓，地址（必填）",
+                name: "姓名（必填）",
+                phone: "手机号码（必填）",
+                email: "电子邮件地址（固定）",
+                password: "密码（必填）",
+                confirmPassword: "确认密码（必填）",
+                login: "登录"
+            }
+        };
+
+        // 言語を適用する関数
+        function applyLanguage() {
+            const lang = localStorage.getItem("selectedLanguage") || "ja"; // デフォルトは日本語
+            const resource = languageResources[lang];
+
+            document.getElementById("pageTitle").innerText = resource.title;
+            document.getElementById("heading").innerText = resource.heading;
+            document.getElementById("postalCodeLabel").innerText = resource.postalCode;
+            document.getElementById("addressLabel").innerText = resource.address;
+            document.getElementById("apartmentLabel").innerText = resource.apartment;
+            document.getElementById("nameLabel").innerText = resource.name;
+            document.getElementById("phoneLabel").innerText = resource.phone;
+            document.getElementById("emailLabel").innerText = resource.email;
+            document.getElementById("passwordLabel").innerText = resource.password;
+            document.getElementById("confirmPasswordLabel").innerText = resource.confirmPassword;
+            document.querySelector("button[type='button']").innerText = resource.login;
+        }
+
+        // ページが読み込まれたときにapplyLanguageを呼び出す
+        window.onload = applyLanguage;
+    </script>
+
+</body>
+
+</html>

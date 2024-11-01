@@ -21,12 +21,17 @@ public class LoginController {
 		return "login/kojintouroku";
 	}
 	
+	@GetMapping("/login/kaishatouroku")
+	public String index4(Model model) {
+		return "login/kaishatouroku";
+	}
+	
 	@GetMapping("/login/login")
 	public String index2(Model model) {
 		return "login/login";
 	}
 	
-	@GetMapping("/login/lng")
+	@GetMapping("/")
 	public String lngs(Model model) {
 		return "login/lng";
 	}
@@ -37,8 +42,12 @@ public class LoginController {
 	}
 	
 	@GetMapping("/login/emailadd")
-	public String emailadd(Model model) {
+	public String index3(Model model) {
 		return "login/emailadd";
 	}
 	
+	@GetMapping("/login/sinki")
+	public String emailadd(Model model) {
+		return "login/sinki";
+	}
 }

@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>セキュリティサンプル</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="pageTitle">セキュリティサンプル</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div
-                class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12">
+            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12">
                 <div class="well">
                     <form method="post" th:action="@{/login}">
                         <fieldset>
-                            <legend> ログイン </legend>
+                            <legend id="loginLegend">ログイン</legend>
                             <div class="form-group">
-                                <label for="userName">名前:</label> <input type="text"
-                                    id="userName" class="form-control" placeholder="名前"
-                                    name="userName">
+                                <label for="userName" id="userNameLabel">名前:</label>
+                                <input type="text" id="userName" class="form-control" placeholder="名前" name="userName">
                             </div>
                             <div class="form-group">
-                                <label for="password">パスワード:</label> <input type="password"
-                                    id="password" class="form-control" placeholder="password"
-                                    name="password">
+                                <label for="password" id="passwordLabel">パスワード:</label>
+                                <input type="password" id="password" class="form-control" placeholder="password" name="password">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">ログイン</button>
+                                <button type="submit" class="btn btn-primary" id="loginButton">ログイン</button>
                             </div>
                         </fieldset>
                     </form>
@@ -35,9 +33,55 @@
         </div>
         <div class="row">
             <div class="text-center">
-                <a href="form.html" th:href="@{/form}">ユーザ登録はこちら</a>
+                <a href="sinki" th:href="@{/login/sinki}" id="registrationLink">ユーザ登録はこちら</a>
             </div>
         </div>
     </div>
+
+    <script>
+        // 各言語に対応するテキストリソース
+        const languageResources = {
+            ja: {
+                login: "ログイン",
+                userName: "名前:",
+                password: "パスワード:",
+                register: "ユーザ登録はこちら"
+            },
+            en: {
+                login: "Login",
+                userName: "Name:",
+                password: "Password:",
+                register: "Register here"
+            },
+            ko: {
+                login: "로그인",
+                userName: "이름:",
+                password: "비밀번호:",
+                register: "여기에 등록"
+            },
+            zh: {
+                login: "登录",
+                userName: "名字:",
+                password: "密码:",
+                register: "在这里注册"
+            }
+        };
+
+        // ページが読み込まれたときに言語を適用
+        function applyLanguage() {
+            const lang = localStorage.getItem("selectedLanguage") || "ja"; // デフォルトは日本語
+            const resource = languageResources[lang];
+
+            document.getElementById("pageTitle").innerText = resource.login;
+            document.getElementById("loginLegend").innerText = resource.login;
+            document.getElementById("userNameLabel").innerText = resource.userName;
+            document.getElementById("passwordLabel").innerText = resource.password;
+            document.getElementById("loginButton").innerText = resource.login;
+            document.getElementById("registrationLink").innerText = resource.register;
+        }
+
+        // ページが読み込まれたときにapplyLanguageを呼び出す
+        window.onload = applyLanguage;
+    </script>
 </body>
 </html>
