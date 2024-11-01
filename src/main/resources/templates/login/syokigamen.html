@@ -13,7 +13,7 @@
 
     <div class="text-center">
         <h1 class="mb-4" id="welcomeMessage">初期画面</h1>
-        <a href="/register" class="btn btn-primary btn-lg mb-3 w-100" id="registerButton">新規登録画面</a>
+        <a href="/sinki" class="btn btn-primary btn-lg mb-3 w-100" id="registerButton">新規登録画面</a>
         <a href="/login" class="btn btn-secondary btn-lg w-100" id="loginButton">ログイン</a>
         
         <div class="mt-4">
@@ -22,6 +22,8 @@
             <button onclick="selectLanguage('en')" class="btn btn-outline-secondary">English</button>
             <button onclick="selectLanguage('ko')" class="btn btn-outline-secondary">한국어</button>
             <button onclick="selectLanguage('zh')" class="btn btn-outline-secondary">中文</button>
+            <button onclick="selectLanguage('vi')" class="btn btn-outline-secondary">Tiếng Việt</button>
+            <button onclick="selectLanguage('tl')" class="btn btn-outline-secondary">Tagalog</button>
         </div>
     </div>
 
@@ -54,6 +56,18 @@
                 register: "新注册",
                 login: "登录",
                 languageSelect: "请选择一种语言:"
+            },
+            vi: {
+                welcome: "Màn hình ban đầu",
+                register: "Đăng ký mới",
+                login: "Đăng nhập",
+                languageSelect: "Vui lòng chọn một ngôn ngữ:"
+            },
+            tl: {
+                welcome: "Pangunahing Screen",
+                register: "Bagong Pagpaparehistro",
+                login: "Mag-login",
+                languageSelect: "Pumili ng isang wika:"
             }
         };
 

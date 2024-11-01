@@ -21,6 +21,21 @@ public class AuthController {
         return "login/login"; // login.html
     }
 
+    @GetMapping("/sinki")
+    public String sinki() {
+        return "login/sinki"; // sinki.html
+    }
+    
+    @GetMapping("/kojintouroku")
+    public String kojintouroku() {
+        return "login/kojintouroku"; // sinki.html
+    }
+   
+    @GetMapping("/kaishatouroku")
+    public String kaishatouroku() {
+        return "login/kaishatouroku"; // sinki.html
+    }
+    
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
