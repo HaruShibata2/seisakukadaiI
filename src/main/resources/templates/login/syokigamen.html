@@ -12,15 +12,17 @@
 <body class="d-flex justify-content-center align-items-center vh-100 bg-light">
 
     <div class="text-center">
-<<<<<<< HEAD
         <h1 class="mb-4" id="welcomeMessage">初期画面</h1>
-        <a href="sinki" class="btn btn-primary btn-lg mb-3 w-100" id="registerButton">新規登録画面</a>
-        <a href="login" class="btn btn-secondary btn-lg w-100" id="loginButton">ログイン</a>
-=======
-        <h1 class="mb-4">初期画面</h1>
-        <a href="/register" class="btn btn-primary btn-lg mb-3 w-100">新規登録画面</a>
-        <a href="/login" class="btn btn-secondary btn-lg w-100">ログイン</a>
->>>>>>> a21f4b519ace29c022ab2be776de7a5d6e6cc287
+        <a href="/register" class="btn btn-primary btn-lg mb-3 w-100" id="registerButton">新規登録画面</a>
+        <a href="/login" class="btn btn-secondary btn-lg w-100" id="loginButton">ログイン</a>
+        
+        <div class="mt-4">
+            <h2 id="languageSelectTitle">言語を選択してください:</h2>
+            <button onclick="selectLanguage('ja')" class="btn btn-outline-secondary">日本語</button>
+            <button onclick="selectLanguage('en')" class="btn btn-outline-secondary">English</button>
+            <button onclick="selectLanguage('ko')" class="btn btn-outline-secondary">한국어</button>
+            <button onclick="selectLanguage('zh')" class="btn btn-outline-secondary">中文</button>
+        </div>
     </div>
 
     <!-- Bootstrap JS -->
@@ -32,22 +34,26 @@
             ja: {
                 welcome: "初期画面",
                 register: "新規登録画面",
-                login: "ログイン"
+                login: "ログイン",
+                languageSelect: "言語を選択してください:"
             },
             en: {
                 welcome: "Initial Screen",
                 register: "New Registration",
-                login: "Login"
+                login: "Login",
+                languageSelect: "Please select a language:"
             },
             ko: {
                 welcome: "초기 화면",
                 register: "신규 등록 화면",
-                login: "로그인"
+                login: "로그인",
+                languageSelect: "언어를 선택하세요:"
             },
             zh: {
                 welcome: "初始屏幕",
                 register: "新注册",
-                login: "登录"
+                login: "登录",
+                languageSelect: "请选择一种语言:"
             }
         };
 
@@ -59,6 +65,13 @@
             document.getElementById("welcomeMessage").innerText = resource.welcome;
             document.getElementById("registerButton").innerText = resource.register;
             document.getElementById("loginButton").innerText = resource.login;
+            document.getElementById("languageSelectTitle").innerText = resource.languageSelect;
+        }
+
+        // 言語選択処理
+        function selectLanguage(lang) {
+            localStorage.setItem("selectedLanguage", lang); // ローカルストレージに保存
+            applyLanguage(); // 言語を適用
         }
 
         // ページが読み込まれたときにapplyLanguageを呼び出す
