@@ -1,60 +1,92 @@
 package jp.ac.teami.seisakukadaiI.config;
 
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import jp.ac.teami.seisakukadaiI.service.UserService;
+import jp.ac.teami.seisakukadaiI.service.UserDetailsServiceImpl;
 
-@Configuration
-@EnableWebSecurity
+@Configuration //設定用のクラスであることをSpringに伝える
+@EnableWebSecurity //Spring Securityを使うための設定
 public class SecurityConfig {
+	@Autowired
+	private DataSource dataSource;
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserDetailsServiceImpl userService;
 
-    @SuppressWarnings({ })
-	@Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/login", "/sinki", "/kojintouroku","/kaishatouroku",   "login/syokigamen").permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(login -> login
-                        .loginPage("/login/syokigamen")
-                        .permitAll())
-                .logout(logout -> logout
-                        .permitAll());
-    
-        return http.build();
-    }
+	// TODO: あとで削除
+//    @Autowired
+//    private Teacherrepository userRepository; // ユーザモデルのRepository
 
     @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	public UserDetailsManager userDetailsManager() {
+		JdbcUserDetailsManager jdbcManager = new JdbcUserDetailsManager(this.dataSource);
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(username -> {
-            var user = userService.findByUsername(username);
-            if (user != null) {
-                return org.springframework.security.core.userdetails.User
-                        .withUsername(user.getUsername())
-                        .password(user.getPassword())
-                        .roles("USER") // 必要に応じてロールを設定
-                        .build();
-            } else {
-                throw new UsernameNotFoundException("User not found");
-            }
-        });
-    }
+		// TODO: あとで削除
+//		this.userRepository.saveAndFlush(this.makeUser("0", "0000", "大原学園", "123"));
+
+		return jdbcManager;
+	}
+
+////	// TODO: あとで削除
+//	private Teacher makeUser(String teacher_id, String password, String name, String schoolCd) {
+//		Teacher record = new Teacher();
+//		record.setTeacherId(teacher_id);
+//		record.setPassword(this.passwordEncoder().encode(password));
+//		record.setName(name);
+//		record.setSchoolCd(schoolCd);
+//
+//		return record;
+//	}
+
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}
+	
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http
+				.httpBasic(
+						(basic) -> basic.disable())
+				.authorizeHttpRequests(request -> {
+					request
+
+							.requestMatchers("/login").permitAll() // ログインページは全許可
+							.requestMatchers("/register").permitAll() // 新規登録ページは全許可
+							.requestMatchers("/webjars/**").permitAll() // webjarsのパスは全許可
+							.requestMatchers("/js/**").permitAll() // JSのstaticファイル
+							.requestMatchers("/css/**").permitAll() // CSSのstaticファイル
+							.requestMatchers("/images/**").permitAll() // 画像のstaticファイル
+							.anyRequest().authenticated(); // それ以外は認証必須
+				})
+				.formLogin(form -> {
+					form
+							.loginPage("/login") // ログインページのURI
+							.loginProcessingUrl("/login2/") // ログインを実施するページのURI
+							.defaultSuccessUrl("/") // ログイン完了後の遷移先
+							.failureUrl("/login/?error=true") // ログインエラーページのURI
+							.usernameParameter("email") // ログインユーザのname属性
+							.passwordParameter("password"); // ログインパスワードのname属性
+				})
+				.userDetailsService(this.userService)
+				.logout(logout -> {
+					logout
+							.logoutUrl("/logout")
+							.logoutSuccessUrl("/login")
+							.deleteCookies("JSESSIONID")
+							.invalidateHttpSession(true);
+				});
+		return http.build();
+	}
 }

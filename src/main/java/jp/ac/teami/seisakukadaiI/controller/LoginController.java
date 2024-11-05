@@ -1,13 +1,25 @@
 
 package jp.ac.teami.seisakukadaiI.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import io.micrometer.common.lang.NonNull;
+import jp.ac.teami.seisakukadaiI.model.UserModel;
+import jp.ac.teami.seisakukadaiI.service.UserService;
 
 @Controller
 public class LoginController {
-
+	
+	@Autowired
+	private UserService userservice;
 	
 	//GETメソッド
 	@GetMapping("/login/syokigamen")
@@ -30,10 +42,10 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	@GetMapping("/")
-	public String lngs(Model model) {
-		return "login/lng";
-	}
+//	@GetMapping("/")
+//	public String lngs(Model model) {
+//		return "login/lng";
+//	}
 	
 	@GetMapping("/login/codenyuryoku")
 	public String codeadd(Model model) {
@@ -49,4 +61,23 @@ public class LoginController {
 	public String emailadd(Model model) {
 		return "login/sinki";
 	}
+	@GetMapping("/register")
+	public ModelAndView register(UserModel usermodel, ModelAndView model) {
+	      model.addObject("register", usermodel); 
+	      model.setViewName("login/register");
+	      return model;
+	}
+	@PostMapping("/register")
+	public String register(@Validated @ModelAttribute @NonNull UserModel usermodel, RedirectAttributes result,
+		RedirectAttributes redirectAttributes) {
+		try {
+			this.userservice.save(usermodel);
+			System.out.print(12);		
+			redirectAttributes.addFlashAttribute("exception", "");
+			} catch (Exception e) {
+				redirectAttributes.addFlashAttribute("exception", e.getMessage());
+				}
+		return "redirect:/";
+		}
+	
 }

@@ -1,91 +1,88 @@
 package jp.ac.teami.seisakukadaiI.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 
-import jakarta.persistence.Column;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
 
-
+@Data
 @Entity
 @Table(name = "Users")
-public class UserModel {
-	
+public class UserModel implements UserDetails {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Integer userId;
+    private long id; // ユーザーID
 
-    @Column(name = "name", length = 50, nullable = false)
-    private String name;
+    private String username; // ユーザー名
+    private String email; // メールアドレス
 
-    @Column(name = "email", length = 100, nullable = false, unique = true)
-    private String email;
+    @Basic(optional = false)
+    private String password; // パスワード
 
-    @Column(name = "password", length = 1026, nullable = false)
-    private String password;
+//    @Enumerated(EnumType.STRING)
+//    private UserRole role; // ユーザーロール
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private UserRole role = UserRole.GENERAL; // デフォルトで'general'
+    private Date entryDate; // 登録日
 
-    @Column(name = "entry_date")
-    private Date entryDate;
+    private String department; // 部署
 
-    @Column(name = "created_at", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Timestamp createdAt;
+    // デフォルトコンストラクタでロールを設定
+//    public UserModel() {
+//        this.role = UserRole.GENERAL; // デフォルトロールを設定
+//    }
 
-    @Column(name = "updated_at", nullable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Timestamp updatedAt;
-
-    @Column(name = "department", length = 64)
-    private String department;
-
-
-    public Integer getUserId() {
-        return userId;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> authorityList = new ArrayList<>();
+//        if (role != null) {
+//            authorityList.add(new SimpleGrantedAuthority("ROLE_" + role.name()));
+//        }
+        return authorityList; // roleがnullの場合は空のリストを返す
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    @Override
+    public String getUsername() {
+        return this.username;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public String getEmail() {
-        return email;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
+    @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
-        this.role = role;
     }
 
     public Date getEntryDate() {
@@ -94,14 +91,6 @@ public class UserModel {
 
     public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
     }
 
     public String getDepartment() {
@@ -113,10 +102,13 @@ public class UserModel {
     }
 
     // Enum for Role field
-    public enum UserRole {
-        ADMIN,     // 管理者
-        LEADER,    // リーダー
-        GENERAL    // 一般ユーザー
-    }
-
+//    public enum UserRole {
+//        ADMIN,     // 管理者
+//        LEADER,    // リーダー
+//        GENERAL;   // 一般ユーザー
+//
+//        public Collection<? extends GrantedAuthority> getAuthorities() {
+//            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.name()));
+//        }
+//    }
 }
