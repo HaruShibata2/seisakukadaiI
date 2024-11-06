@@ -11,9 +11,9 @@ public class SettingController {
         return "main/setting/setting";
     }
 
-    @GetMapping("/inquiry_form")
+    @GetMapping("/toiawase")
     public String inquiry() {
-        return "main/setting/inquiry_form";
+        return "main/setting/toiawase";
     }
     @GetMapping("/oshirase")
     public String notice() {

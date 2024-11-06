@@ -8,7 +8,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -38,16 +37,16 @@ public class LoginController {
 		return "login/kaishatouroku";
 	}
 	
-	// @GetMapping("/login/login")
-	// public String index2(Model model) {
-	// 	return "login/login";
-	// }
+	@GetMapping("/login/login")
+	public String index2(Model model) {
+		return "login/login";
+	}
 	
 //	@GetMapping("/")
 //	public String lngs(Model model) {
 //		return "login/lng";
 //	}
-
+	
 	@GetMapping("/login/codenyuryoku")
 	public String codeadd(Model model) {
 		return "login/codenyuryoku";
