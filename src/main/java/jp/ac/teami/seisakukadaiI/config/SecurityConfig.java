@@ -63,6 +63,7 @@ public class SecurityConfig {
 					request
 
 							.requestMatchers("/login").permitAll() // ログインページは全許可
+							.requestMatchers("/login/syokigamen").permitAll()
 							.requestMatchers("/register").permitAll() // 新規登録ページは全許可
 							.requestMatchers("/webjars/**").permitAll() // webjarsのパスは全許可
 							.requestMatchers("/js/**").permitAll() // JSのstaticファイル
@@ -72,7 +73,7 @@ public class SecurityConfig {
 				})
 				.formLogin(form -> {
 					form
-							.loginPage("/login") // ログインページのURI
+							.loginPage("/login/syokigamen") // ログインページのURI
 							.loginProcessingUrl("/login2/") // ログインを実施するページのURI
 							.defaultSuccessUrl("/") // ログイン完了後の遷移先
 							.failureUrl("/login/?error=true") // ログインエラーページのURI
