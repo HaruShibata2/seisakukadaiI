@@ -34,10 +34,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //    }
 	@Override
 	    
-	    public UserDetails loadUserByUsername(String teacherId) throws UsernameNotFoundException {
-	        System.out.println("serach teacherId : " + teacherId);
-	        UserModel teacher = this.userRepository.findByEmail(teacherId); // emailで検索するので「EmailEquals」としている
+	    public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
+	        System.out.println("serach user_id : " + user_id);
+	        UserModel user = this.userRepository.findByUserId(user_id); // emailで検索するので「EmailEquals」としている
 	        //System.out.println(teacher.toString());
-	        return teacher;
+	        return user;
 	    }
 }

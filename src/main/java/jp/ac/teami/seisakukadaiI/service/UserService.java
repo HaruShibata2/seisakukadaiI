@@ -79,15 +79,15 @@ public class UserService {
         return this.repository.findById(id).orElse(null);
     }
 
-    public UserModel registerUser(String name, String email, String password, String department) {
+    public UserModel registerUser(String name, String user_id, String password, String department) {
         // メールアドレスの重複チェック
-        if (repository.findByEmail(email) != null) {
+        if (repository.findByUserId	(user_id) != null) {
             throw new IllegalArgumentException("Email already in use");
         }
 
         UserModel user = new UserModel();
         user.setUsername(name);
-        user.setEmail(email);
+        user.setUserId(user_id);
         user.setPassword(passwordEncoder.encode(password));
 //        user.setRole(UserModel.UserRole.GENERAL); // デフォルトロールを設定
         user.setEntryDate(new Date(System.currentTimeMillis()));

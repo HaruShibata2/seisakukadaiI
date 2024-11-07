@@ -19,96 +19,103 @@ import lombok.Data;
 @Entity
 @Table(name = "Users")
 public class UserModel implements UserDetails {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id; // ユーザーID
 
     private String username; // ユーザー名
     private String email; // メールアドレス
-
+    private String userId; // ユーザーID（フィールド名が userId）
+    
     @Basic(optional = false)
     private String password; // パスワード
 
-//    @Enumerated(EnumType.STRING)
-//    private UserRole role; // ユーザーロール
+    // @Enumerated(EnumType.STRING) を使用してロール管理を行いたい場合
+    // private UserRole role; // ユーザーロール
 
     private Date entryDate; // 登録日
-
     private String department; // 部署
 
-    // デフォルトコンストラクタでロールを設定
-//    public UserModel() {
-//        this.role = UserRole.GENERAL; // デフォルトロールを設定
-//    }
+    // デフォルトコンストラクタでロールを設定（ロール管理を復活したい場合）
+    // public UserModel() {
+    //    this.role = UserRole.GENERAL; // デフォルトロールを設定
+    // }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorityList = new ArrayList<>();
-//        if (role != null) {
-//            authorityList.add(new SimpleGrantedAuthority("ROLE_" + role.name()));
-//        }
+        // roleがnullでない場合にロールを権限に追加する
+        // if (role != null) {
+        //     authorityList.add(new SimpleGrantedAuthority("ROLE_" + role.name()));
+        // }
         return authorityList; // roleがnullの場合は空のリストを返す
     }
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.username; // ユーザー名としてusernameを返す
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return true; // アカウントが期限切れでないことを示す
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return true; // アカウントがロックされていないことを示す
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return true; // 認証情報が期限切れでないことを示す
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return true; // アカウントが有効であることを示す
     }
 
     @Override
     public String getPassword() {
-        return this.password;
+        return this.password; // パスワードを返す
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    // ユーザーIDを取得
+    // getUseridはUserDetailsインターフェースに存在しないため削除
+    // 必要であれば独自のメソッドとして残すことはできます
+    public String getUserId() {
+        return this.userId; // ユーザーIDを返す
     }
 
-    public Date getEntryDate() {
-        return entryDate;
+    // ユーザーIDを設定
+    public void setUserId(String userId) {
+        this.userId = userId; // ユーザーIDを設定
     }
 
+    // 登録日を設定
     public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
     }
 
+    // 部署を取得
     public String getDepartment() {
         return department;
     }
 
+    // 部署を設定
     public void setDepartment(String department) {
         this.department = department;
     }
 
-    // Enum for Role field
-//    public enum UserRole {
-//        ADMIN,     // 管理者
-//        LEADER,    // リーダー
-//        GENERAL;   // 一般ユーザー
-//
-//        public Collection<? extends GrantedAuthority> getAuthorities() {
-//            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.name()));
-//        }
-//    }
+    // Enum for Role field（ロールを管理したい場合はここを復活）
+    // public enum UserRole {
+    //    ADMIN,     // 管理者
+    //    LEADER,    // リーダー
+    //    GENERAL;   // 一般ユーザー
+    //    public Collection<? extends GrantedAuthority> getAuthorities() {
+    //        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.name()));
+    //    }
+    // }
 }

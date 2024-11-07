@@ -60,10 +60,17 @@
 <div class="container">
     <form class="form py-4 needs-validation h-adr" method="post" th:action="@{/register}" th:object="${register}" novalidate>
         <div class="row">        
-            <label for="username" class="col-4 col-form-label">namae</label>
+            <label for="username" class="col-4 col-form-label">名前</label>
             <div class="col-4">
                 <input type="username" class="form-control" id="username" name="username" th:field="*{username}" th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : 'is-valid'" />
                 <div th:if="${#fields.hasErrors('username')}" class="invalid-feedback" th:errors="*{username}">errors!</div>
+            </div>    
+        </div>
+        <div class="row">        
+            <label for="userId" class="col-4 col-form-label">userId</label>
+            <div class="col-4">
+                <input type="userId" class="form-control" id="userId" name="userId" th:field="*{userId}" th:classappend="${#fields.hasErrors('userId')} ? 'is-invalid' : 'is-valid'" />
+                <div th:if="${#fields.hasErrors('userId')}" class="invalid-feedback" th:errors="*{userId}">errors!</div>
             </div>    
         </div>
         

@@ -11,7 +11,7 @@ public class CompanyModel {
 
     @Id
     @Column(name = "comp_id")
-    private Integer compId;  // 企業ID（主キー）
+    private long id;  // 企業ID（主キー）
 
     @Column(name = "name", length = 100)
     private String name;  // 企業名
@@ -24,18 +24,18 @@ public class CompanyModel {
     }
 
     public CompanyModel(Integer compId, String name, String address) {
-        this.compId = compId;
+        this.id = compId;
         this.name = name;
         this.address = address;
     }
 
     // ゲッターとセッター
-    public Integer getCompId() {
-        return compId;
+    public long getCompId() {
+        return id;
     }
 
     public void setCompId(Integer compId) {
-        this.compId = compId;
+        this.id = compId;
     }
 
     public String getName() {
@@ -57,7 +57,7 @@ public class CompanyModel {
     @Override
     public String toString() {
         return "CompanyModel{" +
-                "compId=" + compId +
+                "compId=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 '}';
