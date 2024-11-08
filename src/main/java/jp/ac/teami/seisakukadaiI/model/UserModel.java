@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,9 +25,14 @@ public class UserModel implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id; // ユーザーID
 
+    @Column
     private String username; // ユーザー名
+    
+    @Column
     private String email; // メールアドレス
-    private String userId; // ユーザーID（フィールド名が userId）
+    
+    @Column(name = "user_id")  // カラム名を明示的に指定
+    private String userId; // ユーザーID（フィールド名を userId に統一）
     
     @Basic(optional = false)
     private String password; // パスワード
@@ -85,12 +91,12 @@ public class UserModel implements UserDetails {
     // ユーザーIDを取得
     // getUseridはUserDetailsインターフェースに存在しないため削除
     // 必要であれば独自のメソッドとして残すことはできます
-    public String getUserId() {
+    public String getUser_id() {
         return this.userId; // ユーザーIDを返す
     }
 
     // ユーザーIDを設定
-    public void setUserId(String userId) {
+    public void setUser_id(String userId) {
         this.userId = userId; // ユーザーIDを設定
     }
 

@@ -19,7 +19,7 @@ public class InquiryModel {
     private Integer inquiryId;
 
     @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    private String user_id;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
@@ -47,12 +47,12 @@ public class InquiryModel {
         this.inquiryId = inquiryId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getUserId() {
+        return user_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getName() {
@@ -91,7 +91,7 @@ public class InquiryModel {
     public String toString() {
         return "InquiryModel{" +
                 "inquiryId=" + inquiryId +
-                ", userId=" + userId +
+                ", userId=" + user_id +
                 ", name='" + name + '\'' +
                 ", inquiryContent='" + inquiryContent + '\'' +
                 ", inquiryDescription='" + inquiryDescription + '\'' +

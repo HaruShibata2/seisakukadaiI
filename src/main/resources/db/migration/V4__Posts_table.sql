@@ -6,5 +6,5 @@ CREATE TABLE `Posts` (
     `description` TEXT NOT NULL COMMENT '説明',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
     PRIMARY KEY (`post_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `Users`(`userId`)  -- user_id を Users テーブルの userId に関連付け
+    FOREIGN KEY (`user_id`) REFERENCES `Users`(`user_id`)  -- user_id を Users テーブルの userId に関連付け
 ) ENGINE=InnoDB;

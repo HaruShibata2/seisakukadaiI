@@ -23,7 +23,7 @@ public class BushoModel {
  
     @Column(name = "user_id", nullable = false)
 
-    private Integer userId;  // ユーザーの識別子
+    private String user_id;  // ユーザーの識別子
  
     // コンストラクタ
 
@@ -31,13 +31,13 @@ public class BushoModel {
 
     }
  
-    public BushoModel(Integer bushoId, Integer compId, Integer userId) {
+    public BushoModel(Integer bushoId, Integer compId, String userId) {
 
         this.bushoId = bushoId;
 
         this.compId = compId;
 
-        this.userId = userId;
+        this.user_id = userId;
 
     }
  
@@ -67,15 +67,15 @@ public class BushoModel {
 
     }
  
-    public Integer getUserId() {
+    public String getUserId() {
 
-        return userId;
+        return user_id;
 
     }
  
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
 
-        this.userId = userId;
+        this.user_id = userId;
 
     }
  
@@ -89,7 +89,7 @@ public class BushoModel {
 
                 ", compId=" + compId +
 
-                ", userId=" + userId +
+                ", userId=" + user_id +
 
                 '}';
 

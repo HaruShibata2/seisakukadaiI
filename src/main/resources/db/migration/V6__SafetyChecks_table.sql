@@ -4,5 +4,5 @@ CREATE TABLE `SafetyChecks` (
     `status` ENUM('safe', 'injured') NOT NULL COMMENT '安否状態',
     `checked_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '安否確認日時',
     PRIMARY KEY (`safe_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `Users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;

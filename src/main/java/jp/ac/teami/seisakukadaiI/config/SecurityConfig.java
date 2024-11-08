@@ -77,7 +77,7 @@ public class SecurityConfig {
 							.loginProcessingUrl("/login2/") // ログインを実施するページのURI
 							.defaultSuccessUrl("/") // ログイン完了後の遷移先
 							.failureUrl("/login/?error=true") // ログインエラーページのURI
-							.usernameParameter("userId") // ログインユーザのname属性
+							.usernameParameter("user_id") // ログインユーザのname属性
 							.passwordParameter("password"); // ログインパスワードのname属性
 				})
 				.userDetailsService(this.userService)

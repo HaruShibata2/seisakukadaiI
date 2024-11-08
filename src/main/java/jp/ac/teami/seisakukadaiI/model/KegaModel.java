@@ -13,9 +13,8 @@ import jakarta.persistence.Table;
 @Table(name = "Kega")
 public class KegaModel {
  
-    @Id
     @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    private String user_id;
  
     @Id
     @Column(name = "date_of_injury", nullable = false)
@@ -36,12 +35,12 @@ public class KegaModel {
  
     // ゲッターとセッター
  
-    public Integer getUserId() {
-        return userId;
+    public String getUserId() {
+        return user_id;
     }
  
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(String user_id) {
+        this.user_id = user_id;
     }
  
     public Date getDateOfInjury() {

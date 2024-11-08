@@ -87,7 +87,7 @@ public class UserService {
 
         UserModel user = new UserModel();
         user.setUsername(name);
-        user.setUserId(user_id);
+        user.setUser_id(user_id);
         user.setPassword(passwordEncoder.encode(password));
 //        user.setRole(UserModel.UserRole.GENERAL); // デフォルトロールを設定
         user.setEntryDate(new Date(System.currentTimeMillis()));

@@ -22,7 +22,7 @@ public class PostModel {
 
     // ユーザーID（外部キー）
     @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    private String user_id;
 
     // タイトル
     @Column(name = "title", nullable = false, length = 255)
@@ -50,12 +50,12 @@ public class PostModel {
         this.postId = postId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getUserId() {
+        return user_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getTitle() {
@@ -86,7 +86,7 @@ public class PostModel {
     public String toString() {
         return "PostModel{" +
                 "postId=" + postId +
-                ", userId=" + userId +
+                ", userId=" + user_id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", createdAt=" + createdAt +
