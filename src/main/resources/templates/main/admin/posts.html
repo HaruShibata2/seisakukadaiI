@@ -1,0 +1,29 @@
+<!-- main/admin/toukou.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿作成</title>
+</head>
+<body>
+    <h1>新しい投稿を作成</h1>
+
+    <!-- ログインユーザーのuserIdを表示 -->
+    <p>ログイン中のユーザーID: <span th:text="${userId}"></span></p>
+
+    <!-- フォームにCSRFトークンを追加 -->
+    <form action="/posts" method="post">
+        <!-- CSRFトークンの追加 -->
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+        <label for="title">タイトル:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="description">説明:</label><br>
+        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+        <button type="submit">投稿</button>
+    </form>
+</body>
+</html>

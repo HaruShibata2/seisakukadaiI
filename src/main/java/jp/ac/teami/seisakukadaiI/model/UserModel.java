@@ -3,16 +3,19 @@ package jp.ac.teami.seisakukadaiI.model;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -42,6 +45,11 @@ public class UserModel implements UserDetails {
 
     private Date entryDate; // 登録日
     private String department; // 部署
+    
+    
+    // 投稿リスト（OneToMany のリレーション）
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PostModel> posts = new ArrayList<>(); // ユーザーが作成した投稿
 
     // デフォルトコンストラクタでロールを設定（ロール管理を復活したい場合）
     // public UserModel() {
@@ -58,62 +66,7 @@ public class UserModel implements UserDetails {
         return authorityList; // roleがnullの場合は空のリストを返す
     }
 
-    @Override
-    public String getUsername() {
-        return this.username; // ユーザー名としてusernameを返す
-    }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true; // アカウントが期限切れでないことを示す
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true; // アカウントがロックされていないことを示す
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true; // 認証情報が期限切れでないことを示す
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true; // アカウントが有効であることを示す
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password; // パスワードを返す
-    }
-
-    // ユーザーIDを取得
-    // getUseridはUserDetailsインターフェースに存在しないため削除
-    // 必要であれば独自のメソッドとして残すことはできます
-    public String getUser_id() {
-        return this.userId; // ユーザーIDを返す
-    }
-
-    // ユーザーIDを設定
-    public void setUser_id(String userId) {
-        this.userId = userId; // ユーザーIDを設定
-    }
-
-    // 登録日を設定
-    public void setEntryDate(Date entryDate) {
-        this.entryDate = entryDate;
-    }
-
-    // 部署を取得
-    public String getDepartment() {
-        return department;
-    }
-
-    // 部署を設定
-    public void setDepartment(String department) {
-        this.department = department;
-    }
 
     // Enum for Role field（ロールを管理したい場合はここを復活）
     // public enum UserRole {
