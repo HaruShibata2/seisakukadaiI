@@ -3,13 +3,14 @@ package jp.ac.teami.seisakukadaiI.model;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,6 +18,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -49,17 +51,24 @@ public class UserModel implements UserDetails {
     @Enumerated(EnumType.STRING) // データベースに文字列として保存されるように指定
     @Column(nullable = false)
     private UserRole role; // デフォルトは一般ユーザー
-
+    
+    // 投稿リスト（OneToMany のリレーション）
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PostModel> posts = new ArrayList<>(); // ユーザーが作成した投稿
+    
+    
+    
+    
     // Enumでロールを定義
     public enum UserRole {
         ADMIN,     // 管理者
         LEADER,    // リーダー
         GENERAL;   // 一般ユーザー
 
-        public Collection<? extends GrantedAuthority> getAuthorities() {
-            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.name()));
+//        public Collection<? extends GrantedAuthority> getAuthorities() {
+//            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.name()));
         }
-    }
+    
     
     
 
@@ -71,10 +80,6 @@ public class UserModel implements UserDetails {
         return authorities;
     }
 
-    @Override
-    public String getUsername() {
-        return this.username; // ユーザー名としてusernameを返す
-    }
 
     @Override
     public boolean isAccountNonExpired() {

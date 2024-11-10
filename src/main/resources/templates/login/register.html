@@ -69,8 +69,8 @@
         <div class="row">        
             <label for="user_id" class="col-4 col-form-label">userId</label>
             <div class="col-4">
-                <input type="user_id" class="form-control" id="user_id" name="user_id" th:field="*{user_id}" th:classappend="${#fields.hasErrors('user_id')} ? 'is-invalid' : 'is-valid'" />
-                <div th:if="${#fields.hasErrors('user_id')}" class="invalid-feedback" th:errors="*{user_id}">errors!</div>
+                <input type="userId" class="form-control" id="userId" name="userId" th:field="*{userId}" th:classappend="${#fields.hasErrors('userId')} ? 'is-invalid' : 'is-valid'" />
+                <div th:if="${#fields.hasErrors('userId')}" class="invalid-feedback" th:errors="*{userId}">errors!</div>
             </div>    
         </div>
         

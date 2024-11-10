@@ -1,6 +1,5 @@
 package jp.ac.teami.seisakukadaiI.model;
 
-
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -8,9 +7,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "posts")
 public class PostModel {
 
@@ -20,9 +23,9 @@ public class PostModel {
     @Column(name = "post_id")
     private Integer postId;
 
-    // ユーザーID（外部キー）
-    @Column(name = "user_id", nullable = false)
-    private String user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private UserModel user;
 
     // タイトル
     @Column(name = "title", nullable = false, length = 255)
@@ -34,6 +37,8 @@ public class PostModel {
 
     // 投稿日時
     @Column(name = "created_at", nullable = false, updatable = false)
+    
+
     private LocalDateTime createdAt;
 
     // コンストラクタ
@@ -41,52 +46,13 @@ public class PostModel {
         this.createdAt = LocalDateTime.now(); // デフォルトで現在時刻を設定
     }
 
-    // ゲッターとセッター
-    public Integer getPostId() {
-        return postId;
-    }
 
-    public void setPostId(Integer postId) {
-        this.postId = postId;
-    }
-
-    public String getUserId() {
-        return user_id;
-    }
-
-    public void setUserId(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
     @Override
     public String toString() {
         return "PostModel{" +
                 "postId=" + postId +
-                ", userId=" + user_id +
+                ", user=" + user.getUserId() + // UserModelのuserIdを表示
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", createdAt=" + createdAt +
