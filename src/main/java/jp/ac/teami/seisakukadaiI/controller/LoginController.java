@@ -61,23 +61,29 @@ public class LoginController {
 	public String emailadd(Model model) {
 		return "login/sinki";
 	}
-	@GetMapping("/register")
-	public ModelAndView register(UserModel usermodel, ModelAndView model) {
-	      model.addObject("register", usermodel); 
-	      model.setViewName("login/register");
-	      return model;
-	}
-	@PostMapping("/register")
-	public String register(@Validated @ModelAttribute @NonNull UserModel usermodel, RedirectAttributes result,
-		RedirectAttributes redirectAttributes) {
-		try {
-			this.userservice.save(usermodel);
-			System.out.print(12);		
-			redirectAttributes.addFlashAttribute("exception", "");
-			} catch (Exception e) {
-				redirectAttributes.addFlashAttribute("exception", e.getMessage());
-				}
-		return "redirect:/";
-		}
-	
-}
+    // GET メソッド：登録フォームを表示
+    @GetMapping("/register")
+    public ModelAndView register(UserModel usermodel, ModelAndView model) {
+        model.addObject("register", usermodel); 
+        model.setViewName("login/register");
+        return model;
+    }
+
+    // POST メソッド：登録処理
+    @PostMapping("/register")
+    public String register(@Validated @ModelAttribute @NonNull UserModel usermodel, RedirectAttributes redirectAttributes) {
+        try {
+            // ロールを設定
+            if (usermodel.getRole() != null) {
+            	UserModel.UserRole userRole = UserModel.UserRole.valueOf(usermodel.getRole().name().toUpperCase());  // フォームから送信されたロール
+                usermodel.setRole(userRole);  // ユーザーにロールを設定
+            }
+
+            this.userservice.save(usermodel);
+            redirectAttributes.addFlashAttribute("exception", "");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("exception", e.getMessage());
+        }
+        return "redirect:/"; // ホームまたは適切な場所にリダイレクト
+    }
+    }

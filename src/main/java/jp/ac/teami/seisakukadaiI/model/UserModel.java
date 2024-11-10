@@ -3,13 +3,17 @@ package jp.ac.teami.seisakukadaiI.model;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,25 +41,34 @@ public class UserModel implements UserDetails {
     @Basic(optional = false)
     private String password; // パスワード
 
-    // @Enumerated(EnumType.STRING) を使用してロール管理を行いたい場合
-    // private UserRole role; // ユーザーロール
 
     private Date entryDate; // 登録日
     private String department; // 部署
+    
+    // UserRoleを定義して、ユーザーの役割（role）を管理
+    @Enumerated(EnumType.STRING) // データベースに文字列として保存されるように指定
+    @Column(nullable = false)
+    private UserRole role; // デフォルトは一般ユーザー
 
-    // デフォルトコンストラクタでロールを設定（ロール管理を復活したい場合）
-    // public UserModel() {
-    //    this.role = UserRole.GENERAL; // デフォルトロールを設定
-    // }
+    // Enumでロールを定義
+    public enum UserRole {
+        ADMIN,     // 管理者
+        LEADER,    // リーダー
+        GENERAL;   // 一般ユーザー
+
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.name()));
+        }
+    }
+    
+    
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> authorityList = new ArrayList<>();
-        // roleがnullでない場合にロールを権限に追加する
-        // if (role != null) {
-        //     authorityList.add(new SimpleGrantedAuthority("ROLE_" + role.name()));
-        // }
-        return authorityList; // roleがnullの場合は空のリストを返す
+        // ユーザーのロールに基づいて権限を返す
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.role.name())); // ロールを権限に変換
+        return authorities;
     }
 
     @Override
@@ -114,14 +127,10 @@ public class UserModel implements UserDetails {
     public void setDepartment(String department) {
         this.department = department;
     }
+    
 
-    // Enum for Role field（ロールを管理したい場合はここを復活）
-    // public enum UserRole {
-    //    ADMIN,     // 管理者
-    //    LEADER,    // リーダー
-    //    GENERAL;   // 一般ユーザー
-    //    public Collection<? extends GrantedAuthority> getAuthorities() {
-    //        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.name()));
-    //    }
-    // }
+    // ロールを設定
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 }

@@ -89,11 +89,14 @@ public class UserService {
         user.setUsername(name);
         user.setUser_id(user_id);
         user.setPassword(passwordEncoder.encode(password));
-//        user.setRole(UserModel.UserRole.GENERAL); // デフォルトロールを設定
+//        user.setRole(UserModel.UserRole()); // デフォルトロールを設定
         user.setEntryDate(new Date(System.currentTimeMillis()));
         user.setDepartment(department);
         
         return repository.save(user);
     }
+//    public void save(UserModel usermodel) {
+//        userRepository.save(usermodel);  // ユーザーをデータベースに保存
+//    }
 
 }
