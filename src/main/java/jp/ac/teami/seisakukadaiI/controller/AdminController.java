@@ -25,7 +25,7 @@ public class AdminController {
 	
 	@GetMapping("/admin")
 		public String  adminIndex(Model model) {
-		return "main/admin/admin";
+		return "admin";
 	}
     @GetMapping("/bousai")
         public String  bousaiIndex(Model model) {

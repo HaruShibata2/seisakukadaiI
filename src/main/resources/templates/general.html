@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>User Page</title>
+</head>
+<body>
+    <h1>Welcome, User!</h1>
+    <div sec:authorize="hasRole('ROLE_GENERAL')">
+        <p>ユーザー専用のコンテンツです。</p>
+    </div>
+    <div sec:authorize="!hasRole('ROLE_GENERAL')">
+        <p>このページにアクセスする権限がありません。</p>
+    </div>
+    <a href="/logout">Logout</a>
+</body>
+</html>

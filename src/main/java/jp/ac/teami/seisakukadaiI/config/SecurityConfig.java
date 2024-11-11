@@ -56,38 +56,30 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-				.httpBasic(
-						(basic) -> basic.disable())
-				.authorizeHttpRequests(request -> {
-					request
-
-							.requestMatchers("/login").permitAll() // ログインページは全許可
-							.requestMatchers("/login/syokigamen").permitAll()
-							.requestMatchers("/register").permitAll() // 新規登録ページは全許可
-							.requestMatchers("/webjars/**").permitAll() // webjarsのパスは全許可
-							.requestMatchers("/js/**").permitAll() // JSのstaticファイル
-							.requestMatchers("/css/**").permitAll() // CSSのstaticファイル
-							.requestMatchers("/images/**").permitAll() // 画像のstaticファイル
-							.anyRequest().authenticated(); // それ以外は認証必須
-				})
-				.formLogin(form -> {
-					form
-							.loginPage("/login/syokigamen") // ログインページのURI
-							.loginProcessingUrl("/login2/") // ログインを実施するページのURI
-							.defaultSuccessUrl("/") // ログイン完了後の遷移先
-							.failureUrl("/login/?error=true") // ログインエラーページのURI
-							.usernameParameter("user_id") // ログインユーザのname属性
-							.passwordParameter("password"); // ログインパスワードのname属性
-				})
-				.userDetailsService(this.userService)
-				.logout(logout -> {
-					logout
-							.logoutUrl("/logout")
-							.logoutSuccessUrl("/login")
-							.deleteCookies("JSESSIONID")
-							.invalidateHttpSession(true);
-				});
-		return http.build();
+	    http
+	            .httpBasic(basic -> basic.disable())  // Basic 認証を無効化
+	            .authorizeHttpRequests(request -> request
+	                    .requestMatchers("/login", "/login/syokigamen", "/register", "/webjars/**", "/js/**", "/css/**", "/images/**").permitAll()  // パブリックなURLは全て許可
+	                    .requestMatchers("/admin/**").hasRole("ADMIN")  // 管理者専用ページ
+	                    .requestMatchers("/leader/**").hasRole("LEADER")
+	                    .requestMatchers("/general/**").hasRole("GENERAL")    // ユーザー専用ページ
+	                    .anyRequest().authenticated()  // それ以外のページには認証が必要
+	            )
+	            .formLogin(form -> form
+	                    .loginPage("/login/syokigamen")  // ログインページのURI
+	                    .loginProcessingUrl("/login2/")  // ログイン処理のURL
+	                    .defaultSuccessUrl("/")  // ログイン成功後のリダイレクト先
+	                    .failureUrl("/login/?error=true")  // ログイン失敗時のURL
+	                    .usernameParameter("user_id")  // ログインフォームのユーザー名
+	                    .passwordParameter("password")  // ログインフォームのパスワード
+	            )
+	            .userDetailsService(this.userService)  // カスタムのUserDetailsService
+	            .logout(logout -> logout
+	                    .logoutUrl("/logout")
+	                    .logoutSuccessUrl("/login")
+	                    .deleteCookies("JSESSIONID")
+	                    .invalidateHttpSession(true)
+	            );
+	    return http.build();
 	}
 }
