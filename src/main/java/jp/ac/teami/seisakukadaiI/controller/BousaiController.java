@@ -13,12 +13,10 @@ public class BousaiController {
     public String bousaigamen() {
         return "main/bousai/bousaigamen";
     }
-
     @GetMapping("/bousaijouhou")
     public String bousaijouhou() {
         return "main/bousai/bousaijouhou";
     }
-
     @GetMapping("/bousaiMap")
     public String bousaiMap() {
         return "main/bousai/bousaiMap";
@@ -27,5 +25,4 @@ public class BousaiController {
     public String kishoujouhou() {
         return "main/bousai/kishoujouhou";
     }
-    
 }

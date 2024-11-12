@@ -80,6 +80,8 @@ public class SecurityConfig {
 	                    .deleteCookies("JSESSIONID")
 	                    .invalidateHttpSession(true)
 	            );
+	    http.exceptionHandling(exception -> 
+        exception.accessDeniedPage("/error")); // 直接エラーページを設定
 	    return http.build();
 	}
 }

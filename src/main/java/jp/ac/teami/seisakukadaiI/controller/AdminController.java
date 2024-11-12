@@ -24,10 +24,12 @@ public class AdminController {
     private UserRepository userRepository;
 	
 	@GetMapping("/admin")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
 		public String  adminIndex(Model model) {
-		return "admin";
+		return "main/admin/admin";
 	}
     @GetMapping("/bousai")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
         public String  bousaiIndex(Model model) {
         return "main/admin/bousai";
     }
@@ -38,6 +40,11 @@ public class AdminController {
     @GetMapping("/member")
         public String  memberIndex(Model model) {
         return "main/admin/member";
+    }
+
+    @GetMapping("/error")
+        public String  errorIndex(Model model) {
+        return "error";
     }
     @GetMapping("/posts")
     public String toukouIndex(Model model) {
