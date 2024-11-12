@@ -24,8 +24,11 @@ public class PostModel {
     private Integer postId;
 
     @ManyToOne
+    @JoinColumn(name = "username", referencedColumnName = "username")
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private UserModel user;
+    
+
 
     // タイトル
     @Column(name = "title", nullable = false, length = 255)

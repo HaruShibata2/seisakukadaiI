@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホーム画面</title>
+    <title>防災情報アプリ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .member-list {
@@ -30,40 +29,51 @@
     </style>
 </head>
 <body>
- <h1>防災情報アプリ</h1>
-<div class="container">
-    <!-- メンバー情報リスト -->
-    <div class="member-list">
-		<h4>メンバー</h4>
-			<h5>name ケガ状態</h5>
+    <div class="container mt-4">
+        <h1 class="mb-4">防災情報アプリ</h1>
+        
+        <!-- メンバー情報リスト -->
+        <div class="member-list">
+            <h4>メンバー</h4>
+            <h5>name ケガ状態</h5>
+        </div>
+        
+        <!-- 投稿一覧 -->
+        <div class="container mt-4">
+            <h1 class="mb-4">投稿一覧</h1>
+            
+            <!-- 投稿がない場合のメッセージ -->
+            <div th:if="${posts.isEmpty()}" class="alert alert-warning">投稿がありません。</div>
+            
+            <!-- 投稿リストの表示 -->
+            <div th:each="post : ${posts}" class="card mb-3">
+                <div class="card-header">
+                    <h2 th:text="${post.title}" class="card-title"></h2>
+                </div>
+                <div class="card-body">
+                    <p th:text="${post.description}" class="card-text"></p>
+                    <p class="card-text">
+                        <strong>投稿者:</strong> 
+                        <span th:text="${post.user.username}"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
- 
- 
-</div>
- 
-<div class="container">
-	<div class="posts">
-		<h4>投稿閲覧</h4>
-			<h5>投稿タイトル</h5>
-				<h6><br>投稿内容</br>kdajfllsjldfa</h6>
-	</div>
-	
-</div>
- 
-<!-- フッターアイコン -->
-<div class="footer-icons">
-    <button onclick="location.href='/'">ホーム</button>
-    <button onclick="location.href=''">チャット</button>
-    <button onclick="location.href='bousaigamen'">防災画面</button>
-    <button onclick="location.href='membermoto'">メンバー</button>
-    <button onclick="location.href='group'">グループ</button>
-    <button onclick="location.href='setting'">設定画面</button>
-</div>
- <!--チャットはコントローラーを作ってから入れる-->
- 
- 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- フッターアイコン -->
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href=''">チャット</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
+
+    <!-- BootstrapのJavaScriptライブラリ -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

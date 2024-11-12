@@ -11,5 +11,6 @@ CREATE TABLE `Users` (
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'レコード更新日時',
     `department` VARCHAR(64) COMMENT '部署コード',
     PRIMARY KEY (`id`),
-    UNIQUE (`user_id`)  -- userId はユニーク制約を追加
+    UNIQUE (`user_id`),  -- userId はユニーク制約を追加
+    UNIQUE (`username`)  -- userId はユニーク制約を追加
 ) ENGINE=InnoDB;
