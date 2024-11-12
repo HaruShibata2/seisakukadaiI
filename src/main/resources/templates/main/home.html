@@ -56,6 +56,10 @@
                         <strong>投稿者:</strong> 
                         <span th:text="${post.user.username}"></span>
                     </p>
+                    <p class="card-text">
+    					<small class="text-muted" th:text="${post.formattedCreatedAt}"></small>
+					</p>
+
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 package jp.ac.teami.seisakukadaiI.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,12 +24,10 @@ public class PostModel {
     @Column(name = "post_id")
     private Integer postId;
 
+    // UserModelとの関連
     @ManyToOne
-    @JoinColumn(name = "username", referencedColumnName = "username")
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")  // ここでuser_idを使用
     private UserModel user;
-    
-
 
     // タイトル
     @Column(name = "title", nullable = false, length = 255)
@@ -39,16 +38,26 @@ public class PostModel {
     private String description;
 
     // 投稿日時
-    @Column(name = "created_at", nullable = false, updatable = false)
+//    @Column(name = "created_at", nullable = false, updatable = false)
+//    private LocalDateTime createdAt;
     
-
+    // LocalDateTimeを格納するフィールド
+    @Column(name = "creared_at", nullable = false)
     private LocalDateTime createdAt;
 
-    // コンストラクタ
-    public PostModel() {
-        this.createdAt = LocalDateTime.now(); // デフォルトで現在時刻を設定
+    // フォーマットされた作成日時を格納するためのフィールド
+    @Column(name = "formatted_created_at", nullable = false)
+    private String formattedCreatedAt;
+
+    // setterとgetter
+    public String getFormattedCreatedAt() {
+        return formattedCreatedAt;
     }
 
+    public void setFormattedCreatedAt(LocalDateTime createdAt) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.formattedCreatedAt = createdAt.format(formatter);  // フォーマットされた日時をセット
+    }
 
 
     @Override
@@ -58,7 +67,7 @@ public class PostModel {
                 ", user=" + user.getUserId() + // UserModelのuserIdを表示
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", createdAt=" + createdAt +
+                ", createdAt=" + formattedCreatedAt +
                 '}';
     }
 }
