@@ -19,7 +19,7 @@ public class MainController {
 	
     @GetMapping("/")
     public String getPosts(Model model) {
-        List<PostModel> posts = postRepository.findAll();
+        List<PostModel> posts = postRepository.findAllByOrderByCreatedAtDesc();
         model.addAttribute("posts", posts);
         return "main/home";
     }

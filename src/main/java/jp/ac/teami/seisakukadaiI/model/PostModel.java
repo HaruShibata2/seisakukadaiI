@@ -1,7 +1,6 @@
 package jp.ac.teami.seisakukadaiI.model;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +26,7 @@ public class PostModel {
     // UserModelとの関連
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")  // ここでuser_idを使用
+    @JoinColumn(name = "username", referencedColumnName = "username")
     private UserModel user;
 
     // タイトル
@@ -42,22 +42,29 @@ public class PostModel {
 //    private LocalDateTime createdAt;
     
     // LocalDateTimeを格納するフィールド
-    @Column(name = "creared_at", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+    
+    
+//    public String getFormattedCreatedAt() {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        return createdAt.format(formatter);
+//    }
 
+//
     // フォーマットされた作成日時を格納するためのフィールド
-    @Column(name = "formatted_created_at", nullable = false)
-    private String formattedCreatedAt;
+//    @Column(name = "formatted_created_at", nullable = false)
+//    private String formattedCreatedAt;
 
     // setterとgetter
-    public String getFormattedCreatedAt() {
-        return formattedCreatedAt;
-    }
+//    public String getFormattedCreatedAt() {
+//        return formattedCreatedAt;
+//    }
 
-    public void setFormattedCreatedAt(LocalDateTime createdAt) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        this.formattedCreatedAt = createdAt.format(formatter);  // フォーマットされた日時をセット
-    }
+//    public void setFormattedCreatedAt(LocalDateTime createdAt) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        this.formattedCreatedAt = createdAt.format(formatter);  // フォーマットされた日時をセット
+//    }
 
 
     @Override
@@ -67,7 +74,7 @@ public class PostModel {
                 ", user=" + user.getUserId() + // UserModelのuserIdを表示
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", createdAt=" + formattedCreatedAt +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

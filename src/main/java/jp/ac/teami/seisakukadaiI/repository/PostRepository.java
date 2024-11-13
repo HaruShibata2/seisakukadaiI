@@ -12,3 +12,4 @@ public interface PostRepository extends JpaRepository<PostModel, Integer> {
 }
 
 
+

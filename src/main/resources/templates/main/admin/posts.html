@@ -34,7 +34,7 @@
     <h1>新しい投稿を作成</h1>
 
     <!-- ログインユーザーのuserIdを表示 -->
-    <p>ログイン中のユーザーID: <span th:text="${userId}"></span></p>
+    <p>ログイン中のユーザーID: <span th:text="${username}"></span></p>
 
     <!-- フォームにCSRFトークンを追加 -->
     <form action="/posts" method="post">
