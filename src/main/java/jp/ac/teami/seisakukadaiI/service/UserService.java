@@ -3,13 +3,14 @@ package jp.ac.teami.seisakukadaiI.service;
 import java.sql.Date;
 import java.util.List;
 
+import jakarta.annotation.Nonnull;
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import jakarta.annotation.Nonnull;
-import jakarta.transaction.Transactional;
 import jp.ac.teami.seisakukadaiI.model.UserModel;
 import jp.ac.teami.seisakukadaiI.repository.UserRepository;
 
@@ -99,4 +100,15 @@ public class UserService {
 //        userRepository.save(usermodel);  // ユーザーをデータベースに保存
 //    }
 
-}
+
+        @Autowired
+        private UserRepository userRepository;
+
+        public UserModel findByUsername(String username) {
+            return userRepository.findByUsername(username);
+        }
+    }
+
+
+
+

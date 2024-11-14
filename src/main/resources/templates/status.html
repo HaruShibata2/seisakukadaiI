@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安否確認状況</title>
+    
+    <!-- インラインCSSの追加 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card li {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .card .username {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .card .status {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .status.safe {
+            color: green;
+        }
+
+        .status.injured {
+            color: red;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>安否確認状況</h1>
+        <ul>
+            <!-- コントローラーから渡された safetyChecks リストをループして表示 -->
+            <th:block th:each="check : ${check}" class="card mb-3">
+                <li>
+                    <div class="username">ユーザー名: <span th:text="${check.user.username}">ユーザー名</span></div><br> 
+                    <div class="status" th:class="${check.status == 'SAFE' ? 'safe' : 'injured'}">
+                        状況: <span th:text="${check.status}">状況</span>
+                    </div><br>
+                    <!-- 確認日時: <span th:text="${#dates.format(check.checkedAt, 'yyyy/MM/dd HH:mm:ss')}">確認日時</span> -->
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</body>
+</html>

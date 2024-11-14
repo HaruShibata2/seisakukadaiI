@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -20,7 +16,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.Data;
+
 
 @Data
 @Entity
@@ -31,111 +33,89 @@ public class UserModel implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id; // ユーザーID
 
-    @Column
-    private String username; // ユーザー名
-    
-    @Column
+    @Column(unique = true, nullable = false)
+    private String username; // ユーザー名（ユニーク制約追加）
+
+    @Column(unique = true, nullable = false)
     private String email; // メールアドレス
-    
-    @Column(name = "user_id")  // カラム名を明示的に指定
-    private String userId; // ユーザーID（フィールド名を userId に統一）
-    
+
+    @Column(name = "user_id", unique = true, nullable = false) // ユーザーID（ユニークかつNULL不可に設定）
+    private String userId;
+
     @Basic(optional = false)
     private String password; // パスワード
 
-
     private Date entryDate; // 登録日
     private String department; // 部署
-    
-    // UserRoleを定義して、ユーザーの役割（role）を管理
+
     @Enumerated(EnumType.STRING) // データベースに文字列として保存されるように指定
     @Column(nullable = false)
-    private UserRole role; // デフォルトは一般ユーザー
-    
-    // 投稿リスト（OneToMany のリレーション）
+    private UserRole role;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<PostModel> posts = new ArrayList<>(); // ユーザーが作成した投稿
-    
-    
-    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<SafetyCheck> check = new ArrayList<>(); 
     
     // Enumでロールを定義
     public enum UserRole {
-        ADMIN,     // 管理者
-        LEADER,    // リーダー
-        GENERAL;   // 一般ユーザー
-
-//        public Collection<? extends GrantedAuthority> getAuthorities() {
-//            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.name()));
-        }
-    
-    
-    
+        ADMIN, LEADER, GENERAL;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // ユーザーのロールに基づいて権限を返す
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.role.name())); // ロールを権限に変換
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.role.name()));
         return authorities;
     }
 
-
     @Override
     public boolean isAccountNonExpired() {
-        return true; // アカウントが期限切れでないことを示す
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true; // アカウントがロックされていないことを示す
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true; // 認証情報が期限切れでないことを示す
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return true; // アカウントが有効であることを示す
+        return true;
     }
 
     @Override
     public String getPassword() {
-        return this.password; // パスワードを返す
+        return this.password;
     }
 
-    // ユーザーIDを取得
-    // getUseridはUserDetailsインターフェースに存在しないため削除
-    // 必要であれば独自のメソッドとして残すことはできます
-    public String getUser_id() {
-        return this.userId; // ユーザーIDを返す
+    public String getUserId() {
+        return this.userId;
     }
 
-    // ユーザーIDを設定
-    public void setUser_id(String userId) {
-        this.userId = userId; // ユーザーIDを設定
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    // 登録日を設定
     public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
     }
 
-    // 部署を取得
     public String getDepartment() {
         return department;
     }
 
-    // 部署を設定
     public void setDepartment(String department) {
         this.department = department;
     }
-    
 
-    // ロールを設定
     public void setRole(UserRole role) {
         this.role = role;
     }
 }
+
