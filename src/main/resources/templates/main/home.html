@@ -43,13 +43,22 @@
             color: #0056b3;
         }
 
-        .post-details {
-            display: none;
+        /* 投稿の詳細表示部分 */
+        details {
             margin-top: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .post-details {
             padding: 10px;
             border: 1px solid #ddd;
             background-color: #f8f9fa;
         }
+
     </style>
 </head>
 <body>
@@ -76,18 +85,18 @@
                     <p class="card-text">
                         <small class="text-muted" th:text="${post.createdAt}"></small>
                     </p>
-                    <!-- 詳細表示ボタン -->
-                    <button class="btn btn-link" onclick="toggleDetails('details-${post.id}')">詳細を表示</button>
-                </div>
-                <div id="details-${post.id}" class="post-details">
-                    <p th:text="${post.description}" class="card-text"></p>
-                    <p class="card-text">
-                        <strong>投稿者:</strong> 
-                        <span th:text="${post.user.username}"></span>
-                    </p>
-                    <p class="card-text">
-                        <small class="text-muted" th:text="${post.createdAt}"></small>
-                    </p>
+                    <!-- 詳細表示部分 -->
+                    <details class="post-details">
+                        <summary>詳細を表示</summary>
+                        <p th:text="${post.description}" class="card-text"></p>
+                        <p class="card-text">
+                            <strong>投稿者:</strong> 
+                            <span th:text="${post.user.username}"></span>
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted" th:text="${post.createdAt}"></small>
+                        </p>
+                    </details>
                 </div>
             </div>
         </div>
@@ -101,17 +110,5 @@
         <button onclick="location.href='group'">グループ</button>
         <button onclick="location.href='setting'">設定画面</button>
     </div>
-
-    <!-- JavaScriptで詳細表示を切り替える -->
-    <script>
-        function toggleDetails(detailsId) {
-            var detailsElement = document.getElementById(detailsId);
-            if (detailsElement.style.display === "none" || detailsElement.style.display === "") {
-                detailsElement.style.display = "block";
-            } else {
-                detailsElement.style.display = "none";
-            }
-        }
-    </script>
 </body>
 </html>
