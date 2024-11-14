@@ -6,25 +6,49 @@
     <title>防災情報アプリ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        /* 全体の余白調整 */
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        /* メンバー情報リスト */
         .member-list {
             margin: 20px;
         }
+
+        /* フッターアイコンのスタイル */
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background-color: #f8f9fa;
             padding: 10px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #0056b3;
+        }
+
+        .post-details {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
         }
     </style>
 </head>
@@ -35,7 +59,7 @@
         <!-- メンバー情報リスト -->
         <div class="member-list">
             <h4>メンバー</h4>
-            <h5>name ケガ状態</h5>
+            <h5>name 安否状態</h5>
         </div>
         
         <!-- 投稿一覧 -->
@@ -49,17 +73,21 @@
             <div th:each="post : ${posts}" class="card mb-3">
                 <div class="card-header">
                     <h2 th:text="${post.title}" class="card-title"></h2>
+                    <p class="card-text">
+                        <small class="text-muted" th:text="${post.createdAt}"></small>
+                    </p>
+                    <!-- 詳細表示ボタン -->
+                    <button class="btn btn-link" onclick="toggleDetails('details-${post.id}')">詳細を表示</button>
                 </div>
-                <div class="card-body">
+                <div id="details-${post.id}" class="post-details">
                     <p th:text="${post.description}" class="card-text"></p>
                     <p class="card-text">
                         <strong>投稿者:</strong> 
                         <span th:text="${post.user.username}"></span>
                     </p>
                     <p class="card-text">
-    					<small class="text-muted" th:text="${post.createdAt}"></small>
-					</p>
-
+                        <small class="text-muted" th:text="${post.createdAt}"></small>
+                    </p>
                 </div>
             </div>
         </div>
@@ -68,16 +96,22 @@
     <!-- フッターアイコン -->
     <div class="footer-icons">
         <button onclick="location.href='/'">ホーム</button>
-        <button onclick="location.href=''">チャット</button>
         <button onclick="location.href='bousaigamen'">防災画面</button>
         <button onclick="location.href='membermoto'">メンバー</button>
         <button onclick="location.href='group'">グループ</button>
         <button onclick="location.href='setting'">設定画面</button>
     </div>
 
-    <!-- BootstrapのJavaScriptライブラリ -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- JavaScriptで詳細表示を切り替える -->
+    <script>
+        function toggleDetails(detailsId) {
+            var detailsElement = document.getElementById(detailsId);
+            if (detailsElement.style.display === "none" || detailsElement.style.display === "") {
+                detailsElement.style.display = "block";
+            } else {
+                detailsElement.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
