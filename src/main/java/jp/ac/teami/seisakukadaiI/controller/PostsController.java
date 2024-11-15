@@ -35,7 +35,8 @@ public class PostsController {
         // 投稿リストを降順で取得（createdAtフィールドでソート）
         List<PostModel> posts = postRepository.findAllByOrderByCreatedAtDesc();
 
-        // Modelにpostsをセットしてビューに渡す
+        // ModelにuserIdとpostsをセットしてビューに渡す
+        model.addAttribute("userId", userId); // userIdを追加
         model.addAttribute("posts", posts);
 
         return "main/admin/posts";  // ビュー名
@@ -47,7 +48,6 @@ public class PostsController {
         // 現在ログインしているユーザー情報を取得
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserModel userModel = (UserModel) authentication.getPrincipal();
-        String userId = userModel.getUserId();  // UserModelからuserIdを取得
 
         // ユーザーIDを投稿に設定
         postModel.setUser(userModel);  // ユーザーと関連付け

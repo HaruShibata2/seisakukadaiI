@@ -1,60 +1,81 @@
-<!-- main/admin/toukou.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>投稿作成</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
-            margin: 20px;
+        /* 全体の余白調整 */
+        body {
+            margin: 0;
+            padding-bottom: 60px; /* フッターのスペースを確保 */
         }
+
+        /* フォームのスタイル */
+        .container {
+            margin-top: 20px;
+        }
+
+        /* フッターアイコンのスタイル */
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background-color: #f8f9fa;
             padding: 10px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>新しい投稿を作成</h1>
+    <div class="container">
+        <h1 class="mb-4">新しい投稿を作成</h1>
 
-    <!-- ログインユーザーのuserIdを表示 -->
-    <p>ログイン中のユーザーID: <span th:text="${username}"></span></p>
+        <!-- ログインユーザーのusernameを表示 -->
+        <p class="text-right text-muted">ログイン中のユーザーID: <span th:text="${userId}"></span></p>
 
-    <!-- フォームにCSRFトークンを追加 -->
-    <form action="/posts" method="post">
-        <!-- CSRFトークンの追加 -->
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <!-- フォームにCSRFトークンを追加 -->
+        <form action="/posts" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
-        <label for="title">タイトル:</label>
-        <input type="text" id="title" name="title" required><br><br>
+            <div class="form-group">
+                <label for="title">タイトル:</label>
+                <input type="text" id="title" name="title" class="form-control" required>
+            </div>
 
-        <label for="description">説明:</label><br>
-        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+            <div class="form-group">
+                <label for="description">説明:</label>
+                <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
+            </div>
 
-        <button type="submit">投稿</button>
-    </form>
+            <button type="submit" class="btn btn-primary btn-block">投稿</button>
+        </form>
+    </div>
+
+    <!-- フッターアイコン -->
     <div class="footer-icons">
-    <button onclick="location.href='biciku'">備蓄管理</button>
-    <button onclick="location.href='bousai'">防災用品</button>
-    <button onclick="location.href='member'">メンバー管理</button>
-    <button onclick="location.href='toukou'">投稿</button>
-	</div>
-
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
 </body>
 </html>
