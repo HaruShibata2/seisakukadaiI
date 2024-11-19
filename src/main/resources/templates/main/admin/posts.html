@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>投稿作成</title>
+    <title>投稿作成と編集</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* 全体の余白調整 */
@@ -12,7 +12,7 @@
             padding-bottom: 60px; /* フッターのスペースを確保 */
         }
 
-        /* フォームのスタイル */
+        /* コンテナのスタイル */
         .container {
             margin-top: 20px;
         }
@@ -42,6 +42,28 @@
         .footer-icons button:hover {
             color: #0056b3;
         }
+
+        /* 編集フォームのスタイル */
+        .edit-form-container {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .edit-form {
+            background-color: white;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -51,22 +73,64 @@
         <!-- ログインユーザーのusernameを表示 -->
         <p class="text-right text-muted">ログイン中のユーザーID: <span th:text="${userId}"></span></p>
 
-        <!-- フォームにCSRFトークンを追加 -->
+        <!-- 新しい投稿作成フォーム -->
         <form action="/posts" method="post">
             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
-
             <div class="form-group">
                 <label for="title">タイトル:</label>
                 <input type="text" id="title" name="title" class="form-control" required>
             </div>
-
             <div class="form-group">
                 <label for="description">説明:</label>
                 <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
             </div>
-
             <button type="submit" class="btn btn-primary btn-block">投稿</button>
         </form>
+
+        <!-- 投稿一覧 -->
+        <h2 class="mt-5">投稿一覧</h2>
+        <div class="list-group">
+            <div th:each="post : ${posts}" class="list-group-item">
+                <h5 th:text="${post.title}" class="mb-1"></h5>
+                <p class="mb-1" th:text="${post.description}"></p>
+                <small class="text-muted" th:text="${post.createdAt}"></small>
+                <div class="mt-2">
+                    <!-- 編集ボタン -->
+                    <button class="btn btn-secondary btn-sm" th:onclick="editPost(
+                        /* 投稿ID */ '[[${post.postId}]]',
+                        /* タイトル */ [[${post.title}]],
+                        /* 説明 */ [[${post.description}]]
+                    )">編集</button>
+                    <!-- 削除ボタン -->
+                    <form action="/posts/delete" method="post" style="display: inline;">
+                        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                        <input type="hidden" name="postId" th:value="${post.postId}">
+                        <button type="submit" class="btn btn-danger btn-sm">削除</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 編集フォーム（モーダル風に表示） -->
+    <div id="editFormContainer" class="edit-form-container">
+        <div class="edit-form">
+            <h3>投稿を編集</h3>
+            <form th:action="@{/editpost}" method="post" id="editForm">
+               <!-- <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
+                <input type="hidden" id="editPostId" name="postId">
+                <div class="form-group">
+                    <label>タイトル:</label>
+                    <input type="text" id="editTitle" name="title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>説明:</label>
+                    <textarea id="editDescription" name="description" class="form-control" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">更新</button>
+                <button type="button" class="btn btn-secondary btn-block" onclick="hideEditForm()">キャンセル</button>
+            </form>
+        </div>
     </div>
 
     <!-- フッターアイコン -->
@@ -77,5 +141,20 @@
         <button onclick="location.href='group'">グループ</button>
         <button onclick="location.href='setting'">設定画面</button>
     </div>
+
+    <script>
+        // 投稿を編集するためのJavaScript関数
+		function editPost(postId, title, description) {
+		    document.getElementById('editPostId').value = postId;
+		    document.getElementById('editTitle').value = title;
+		    document.getElementById('editDescription').value = description;
+		    document.getElementById('editFormContainer').style.display = 'flex';
+		}
+
+        // 編集フォームを隠す関数
+        function hideEditForm() {
+            document.getElementById('editFormContainer').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

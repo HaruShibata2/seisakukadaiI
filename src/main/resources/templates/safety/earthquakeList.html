@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Earthquake Data</title>
+</head>
+<body>
+    <h1>Recent Earthquakes</h1>
+    <div th:if="${earthquakeResponse.features != null}">
+        <ul>
+            <li th:each="feature : ${earthquakeResponse.features}">
+                <p>Location: <span th:text="${feature.properties.place}"></span></p>
+                <p>Magnitude: <span th:text="${feature.properties.mag}"></span></p>
+            </li>
+        </ul>
+    </div>
+    <div th:if="${earthquakeResponse.features == null}">
+        <p>No earthquake data found.</p>
+    </div>
+</body>
+</html>
