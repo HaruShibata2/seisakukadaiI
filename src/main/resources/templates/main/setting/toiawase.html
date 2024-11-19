@@ -1,18 +1,55 @@
 <!DOCTYPE html>
-<h1>お問い合わせ</h1>
-
-<style type="text/css">
-textarea {
-width: 250px;
-height: 10em;
-}
-
-</style>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防災情報アプリ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        main {
             margin: 20px;
         }
+
+        textarea {
+            width: 80%;
+            height: 10em;
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            resize: none;
+        }
+
+        .example2 {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+            transition: background-color 0.2s;
+        }
+
+        .example2:hover {
+            background-color: #0056b3;
+        }
+
         .footer-icons {
             position: fixed;
             bottom: 0;
@@ -21,34 +58,44 @@ height: 10em;
             justify-content: space-around;
             background-color: #f8f9fa;
             padding: 10px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #0056b3;
         }
     </style>
-
 </head>
 <body>
 
-<form method="post">
-<p><textarea name="msg" cols="30" rows="10"></textarea></p>
+    <header>
+        <h1>防災情報アプリ</h1>
+    </header>
 
-<p><input type="submit" value="送信" class="example2"></p>
+    <main>
+        <h2>お問い合わせ</h2>
+        <form method="post">
+            <p><textarea name="msg" cols="30" rows="10"></textarea></p>
+            <p><input type="submit" value="送信" class="example2"></p>
+        </form>
+    </main>
 
-</form>
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
 
 </body>
-<div class="footer-icons">
-    <button onclick="location.href='/'">ホーム</button>
-    <button onclick="location.href='bousaigamen'">防災画面</button>
-    <button onclick="location.href='membermoto'">メンバー</button>
-    <button onclick="location.href='group'">グループ</button>
-    <button onclick="location.href='setting'">設定画面</button>
-</div>
-
 </html>

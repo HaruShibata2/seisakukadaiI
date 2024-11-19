@@ -6,35 +6,72 @@
     <title>怪我の情報入力フォーム</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
-            margin: 20px;
+        body {
+            margin: 0;
+            padding-bottom: 60px;
         }
+
+        .container {
+            margin-top: 20px;
+        }
+
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background-color: #f8f9fa;
             padding: 10px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #0056b3;
+        }
+
+        /* フォームのボタンスタイル */
+        form button {
+            width: 100%;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* セレクトボックスのスタイル */
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>怪我の情報入力フォーム</h1>
+        <h1 class="text-center">怪我の情報入力フォーム</h1>
         <form id="injuryForm">
             <div class="form-group">
                 <label for="severity">怪我の度合い (1〜5):</label>
-                <select id="severity" name="severity">
+                <select id="severity" name="severity" class="form-control">
                     <option value="1">1 - 軽い</option>
                     <option value="2">2 - やや軽い</option>
                     <option value="3">3 - 中程度</option>
@@ -45,7 +82,7 @@
 
             <div class="form-group">
                 <label for="injuryType">怪我の種類:</label>
-                <select id="injuryType" name="injuryType">
+                <select id="injuryType" name="injuryType" class="form-control">
                     <option value="cut">切り傷</option>
                     <option value="bruise">打撲</option>
                     <option value="sprain">捻挫</option>
@@ -56,13 +93,13 @@
 
             <div class="form-group">
                 <label for="locationSharing">現在位置の情報を共有しますか？</label>
-                <select id="locationSharing" name="locationSharing">
+                <select id="locationSharing" name="locationSharing" class="form-control">
                     <option value="yes">はい</option>
                     <option value="no">いいえ</option>
                 </select>
             </div>
 
-            <button type="submit">送信</button>
+            <button type="submit" class="btn btn-primary">送信</button>
         </form>
     </div>
 

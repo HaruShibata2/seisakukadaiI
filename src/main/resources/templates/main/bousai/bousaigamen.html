@@ -6,47 +6,74 @@
     <title>防災情報アプリ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
-            margin: 20px;
+        /* 全体の余白調整 */
+        body {
+            margin: 0;
+            padding-bottom: 60px;
         }
+
+
+        /* フッターアイコンのスタイル */
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background-color: #f8f9fa;
             padding: 10px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
         }
-        .post-box {
+
+        .footer-icons button:hover {
+            color: #0056b3;
+        }
+
+        /* 防災関連リンクのスタイル */
+        .link-section {
             margin: 20px;
-            font-style: italic;
         }
+
+        .link-section button {
+            margin-bottom: 10px;
+            width: 100%;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .link-section button:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 </head>
 <body>
+    <div class="container mt-4">
+        <h1 class="mb-4">防災情報アプリ</h1>
 
-    <header>
-        <h1>防災情報アプリ</h1>
-    </header>
+        <!-- 防災関連リンク -->
+        <div class="link-section">
+            <button onclick="location.href='https://notice.yahoo.co.jp/emg/sokuho/service/disasterlist.html'">Yahoo防災</button>
+            <button onclick="location.href='https://webmap.city.fukuoka.lg.jp/bousai/'">ハザードマップ</button>
+            <button onclick="location.href='https://weather.yahoo.co.jp/'">Yahoo天気</button>
+        </div>
+    </div>
 
-	<main>
-	    <div>
-	        <button onclick="location.href='https://notice.yahoo.co.jp/emg/sokuho/service/disasterlist.html'">Yahoo防災</button>
-	        <br>
-	        <br>
-	        <button onclick="location.href='https://webmap.city.fukuoka.lg.jp/bousai/'">ハザードマップ</button>
-	        <br>
-	        <br>
-	        <button onclick="location.href='https://weather.yahoo.co.jp/'">Yahoo天気</button>
-	    </div>
-	</main>
-
-
+    <!-- フッターアイコン -->
     <div class="footer-icons">
         <button onclick="location.href='/'">ホーム</button>
         <button onclick="location.href='bousaigamen'">防災画面</button>
@@ -54,7 +81,5 @@
         <button onclick="location.href='group'">グループ</button>
         <button onclick="location.href='setting'">設定画面</button>
     </div>
-
-   
 </body>
 </html>

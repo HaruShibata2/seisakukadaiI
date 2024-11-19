@@ -6,25 +6,59 @@
     <title>防災情報アプリ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        header {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        main {
+            text-align: center;
             margin: 20px;
         }
+
+        .btn-custom {
+            width: 80%;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background-color: #f8f9fa;
             padding: 10px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #0056b3;
         }
     </style>
 </head>
@@ -37,23 +71,21 @@
     <main>
         <div>
             <a href="toiawase">
-            <button onclick="inquiry()">お問い合わせ</button><br><br>
-            </a>
+                <button class="btn-custom">お問い合わせ</button>
+            </a><br>
             <a href="oshirase">
-            <button onclick="notice()">お知らせ</button><br><br>
+                <button class="btn-custom">お知らせ</button>
             </a>
         </div>
     </main>
 
-        <div class="footer-icons">
-            <button onclick="location.href='/'">ホーム</button>
-            <button onclick="location.href='bousaigamen'">防災画面</button>
-            <button onclick="location.href='membermoto'">メンバー</button>
-            <button onclick="location.href='group'">グループ</button>
-            <button onclick="location.href='setting'">設定画面</button>
-        </div>
-
-
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
 
 </body>
 </html>

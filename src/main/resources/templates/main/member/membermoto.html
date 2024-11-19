@@ -4,54 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メンバー画面</title>
-</head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<style>
-    .member-list {
-        margin: 20px;
-    }
-    .footer-icons {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        background-color: #f8f9fa;
-        padding: 10px 0;
-    }
-    .footer-icons img {
-        width: 30px;
-        height: 30px;
-    }
-    .post-box {
-        margin: 20px;
-        font-style: italic;
-    }
-</style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* 全体の余白調整 */
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        /* メンバーリストとリンクボタンのスタイル */
+        .member-list {
+            margin: 20px;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        main .button {
+            width: 100%;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        main .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* フッターアイコンのスタイル */
+        .footer-icons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .footer-icons button:hover {
+            color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <h1>防災情報アプリ</h1>
+        <h1 class="text-center mt-4">防災情報アプリ</h1>
     </header>
 
     <main>
-		<div>
-	        <a href="kega">
-	            <button class="button">安否確認</button>
-	        </a><br><br>
-	        <a href="memberhyouji">
-	            <button class="button">メンバー表示</button>
-	        </a><br><br>
-	        <a href="/">
-	            <button class="button">チャット</button>
-	        </a><br><br>
-	        <a href="/">
-	            <button class="button">位置情報</button>
-	        </a>
-    	</div>
+        <a href="kega">
+            <button class="button">安否確認</button>
+        </a>
+        <a href="memberhyouji">
+            <button class="button">メンバー表示</button>
+        </a>
+        <a href="/">
+            <button class="button">チャット</button>
+        </a>
+        <a href="/">
+            <button class="button">位置情報</button>
+        </a>
     </main>
 
+    <!-- フッターアイコン -->
     <div class="footer-icons">
         <button onclick="location.href='/'">ホーム</button>
         <button onclick="location.href='bousaigamen'">防災画面</button>
@@ -59,8 +93,5 @@
         <button onclick="location.href='group'">グループ</button>
         <button onclick="location.href='setting'">設定画面</button>
     </div>
-</body>
-
-   
 </body>
 </html>

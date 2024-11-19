@@ -2,54 +2,95 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メンバー表示</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
-            margin: 20px;
+        body {
+            margin: 0;
+            padding-bottom: 60px;
         }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .separator {
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        .member-list p {
+            margin: 5px 0;
+        }
+
+        .btn-chat {
+            width: 100%;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .btn-chat:hover {
+            background-color: #0056b3;
+        }
+
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background-color: #f8f9fa;
             padding: 10px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #0056b3;
         }
     </style>
 </head>
-</head>
 <body>
 
-    <h1>メンバー表示</h1>
+    <div class="container">
+        <h1 class="text-center">メンバー表示</h1>
 
-    <!-- 区切り線 -->
-    <div class="separator"></div>
+        <!-- 区切り線 -->
+        <div class="separator"></div>
 
-    <!-- メンバーのリスト -->
-    <div>
-        <p>メンバー表示</p>
-        <p>メンバー表示</p>
-        <p>メンバー表示</p>
-        <p>メンバー表示</p>
-        <p>メンバー表示</p>
-        <p>メンバー表示</p>
+        <!-- メンバーのリスト -->
+        <div class="member-list">
+            <p>メンバー表示</p>
+            <p>メンバー表示</p>
+            <p>メンバー表示</p>
+            <p>メンバー表示</p>
+            <p>メンバー表示</p>
+            <p>メンバー表示</p>
+        </div>
+
+        <!-- 区切り線 -->
+        <div class="separator"></div>
+
+        <!-- チャットボタン -->
+        <button type="button" class="btn-chat">チャット</button>
     </div>
 
-    <!-- 区切り線 -->
-    <div class="separator"></div>
-
-    <!-- チャットボタン -->
-    <button type="button">チャット</button>
+    <!-- フッターアイコン -->
     <div class="footer-icons">
         <button onclick="location.href='/'">ホーム</button>
         <button onclick="location.href='bousaigamen'">防災画面</button>
@@ -57,6 +98,5 @@
         <button onclick="location.href='group'">グループ</button>
         <button onclick="location.href='setting'">設定画面</button>
     </div>
-</body>
 </body>
 </html>

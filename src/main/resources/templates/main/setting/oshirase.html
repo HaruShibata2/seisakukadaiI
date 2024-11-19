@@ -6,25 +6,74 @@
     <title>お知らせ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
-            margin: 20px;
+        body {
+            margin: 0;
+            padding-bottom: 60px;
         }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .notification-list {
+            margin: 20px 0;
+        }
+
+        .notification {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        hr {
+            border-top: 3px double #ddd;
+        }
+
+        button {
+            width: 100%;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
+            align-items: center;
             background-color: #f8f9fa;
             padding: 10px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #0056b3;
         }
     </style>
 </head>
@@ -32,29 +81,29 @@
     <div class="container">
         <h1>お知らせ</h1>
         <div class="notification-list">
-            <hr style="border-top: 3px double ">
+            <hr>
             <div class="notification">
                 <p>これはお知らせの内容です。</p>
             </div>
-            <hr style="border-top: 3px double ">
+            <hr>
             <div class="notification">
                 <p>別のお知らせの内容です。</p>
             </div>
-            <hr style="border-top: 3px double ">
+            <hr>
             <div class="notification">
                 <p>さらに別のお知らせの内容です。</p>
             </div>
-            <hr style="border-top: 3px double ">
+            <hr>
         </div>
         <button onclick="location.href='/setting'">閉じる</button>
     </div>
-</body>
-<div class="footer-icons">
-    <button onclick="location.href='/'">ホーム</button>
-    <button onclick="location.href='bousaigamen'">防災画面</button>
-    <button onclick="location.href='membermoto'">メンバー</button>
-    <button onclick="location.href='group'">グループ</button>
-    <button onclick="location.href='setting'">設定画面</button>
-</div>
 
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
+</body>
 </html>
