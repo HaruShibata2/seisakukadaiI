@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Earthquake Data</title>
+</head>
+<body>
+    <h1>Recent Earthquake Data</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Magnitude</th>
+                <th>Place</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 地震データを繰り返し表示 -->
+            <tr th:each="earthquake : ${earthquakeData}">
+                <td th:text="${earthquake.properties.mag}"></td>
+                <td th:text="${earthquake.properties.place}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/fetch">Refresh Earthquake Data</a>
+</body>
+</html>

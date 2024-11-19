@@ -1,7 +1,5 @@
 package jp.ac.teami.seisakukadaiI.controller;
 
-//import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,44 +30,42 @@ public class SafetyCheckController {
     private UserService userService;
 
     @Autowired
-    private SafetyCheckRepository postRepository;
+    private SafetyCheckRepository safetyCheckRepository;
 
     @GetMapping
     public String showSafetyCheckForm(Model model) {
-        // 認証情報から現在のユーザーのusernameを取得
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         if (principal instanceof UserModel) {
             UserModel user = (UserModel) principal;
-            String username = user.getUserId();  // ユーザーIDを取得
-            List<SafetyCheck> check = postRepository.findAll();
+            List<SafetyCheck> checks = safetyCheckRepository.findAll();
 
-            // モデルにユーザー情報を追加して、ビューに渡す
-            model.addAttribute("check", check);
+            model.addAttribute("checks", checks);
             model.addAttribute("user", user);
         } else {
-            // エラーハンドリング（必要に応じて）
             model.addAttribute("message", "User not found");
             return "error";
         }
-
-        return "check"; // check.html に渡す
+        return "safety/check"; // check.html に渡す
     }
 
     @PostMapping
     public String submitSafetyCheck(@ModelAttribute SafetyCheck status, Model model) {
-        // 認証情報から現在のユーザーのusernameを取得
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         UserModel user = (UserModel) principal;
+
+        // デフォルト値として「安全」に設定（選択されていない場合）
+        if (status.getStatus() == null) {
+            status.setStatus(SafetyCheck.Status.SAFE);
+        }
+
         status.setUser(user);  // ユーザー情報を設定
         status.setCheckedAt(LocalDateTime.now());  // 現在の日時を設定
-        postRepository.save(status);  // 保存
-        List<SafetyCheck> check = postRepository.findAll();
-        model.addAttribute("check", check);
-        return "status"; // 更新された情報を表示
-        }
-        }
-
-    
-
+        safetyCheckRepository.save(status);  // 保存
+        List<SafetyCheck> checks = safetyCheckRepository.findAll();
+        model.addAttribute("checks", checks);
+        return "safety/status"; // 結果表示ページ
+    }
+}
+	

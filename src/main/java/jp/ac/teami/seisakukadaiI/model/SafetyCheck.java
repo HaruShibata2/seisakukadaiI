@@ -39,39 +39,6 @@ public class SafetyCheck {
     @Column(name = "checked_at", updatable = false)
     private LocalDateTime checkedAt; // 安否確認日時
 
-//    @PrePersist
-//    protected void onCreate() {
-//        checkedAt = LocalDateTime.now();
-//    }
-//
-//    // ゲッターとセッター
-//    public Integer getId() {
-//        return safetyId;
-//    }
-//
-//    public void setId(Integer safetyId) {
-//        this.safetyId = safetyId;
-//    }
-//
-//    public UserModel getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(UserModel user) {
-//        this.user = user;
-//    }
-//
-//    public Status getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(Status status) {
-//        this.status = status;
-//    }
-//
-//    public LocalDateTime getCheckedAt() {
-//        return checkedAt;
-//    }
 
     public enum Status {
     	SAFE,   // 状態: 安全

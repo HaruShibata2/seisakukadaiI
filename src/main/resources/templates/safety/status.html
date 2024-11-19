@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安否確認状況</title>
+</head>
+<body>
+    <div class="container">
+        <h1>安否確認状況</h1>
+        <ul>
+            <!-- コントローラーから渡された safetyChecks リストをループして表示 -->
+            <th:block th:each="check : ${check}">
+                <li class="card mb-3">
+                    <div class="username">ユーザー名: <span th:text="${check.user.username}">ユーザー名</span></div><br> 
+                    <div class="status" th:class="${check.status == T(jp.ac.teami.seisakukadaiI.model.SafetyCheck.Status).SAFE ? 'safe' : 'injured'}">
+                        状況: <span th:text="${check.status}">状況</span>
+                    </div><br>
+                    <div class="checkedAt">
+                        確認日時: <span th:text="${#dates.format(check.checkedAt, 'yyyy/MM/dd HH:mm:ss')}">確認日時</span>
+                    </div>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</body>
+</html>
+
+
