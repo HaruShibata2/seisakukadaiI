@@ -25,7 +25,7 @@ public class EarthquakeService {
     }
 
     // 40秒後に地震情報を取得するメソッド
-    @Scheduled(fixedDelay = 10000)  // 40秒後に実行
+    @Scheduled(fixedDelay = 20000)  // 40秒後に実行
     public void triggerEarthquakeDataFetch() {
         try {
             EarthquakeResponse response = getEarthquakeData();

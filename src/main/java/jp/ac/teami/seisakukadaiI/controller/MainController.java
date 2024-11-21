@@ -38,6 +38,10 @@ public class MainController {
         model.addAttribute("check", check);
         return "status";
     }
+    @GetMapping("/role")
+    public String role() {
+		return "role";
+    }
 	
 }
 
