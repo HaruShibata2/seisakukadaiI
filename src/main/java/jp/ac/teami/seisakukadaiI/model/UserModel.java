@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,11 +20,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import lombok.Data;
 
 
@@ -56,6 +55,10 @@ public class UserModel implements UserDetails {
     private List<PostModel> posts = new ArrayList<>(); // ユーザーが作成した投稿
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<SafetyCheck> check = new ArrayList<>(); 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<InquiryModel> inquiry = new ArrayList<>(); 
+    
+    
     
     // Enumでロールを定義
     public enum UserRole {

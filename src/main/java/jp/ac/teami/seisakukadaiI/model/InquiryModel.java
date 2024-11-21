@@ -7,10 +7,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
-@Table(name = "inquiries")
+@Data
+@Table(name = "inquiry")
 public class InquiryModel {
 
     @Id
@@ -18,11 +22,14 @@ public class InquiryModel {
     @Column(name = "inquiry_id")
     private Integer inquiryId;
 
-    @Column(name = "user_id", nullable = false)
-    private String user_id;
+ // UserModelとの関連
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")  // ここでuser_idを使用
+    @JoinColumn(name ="username", referencedColumnName = "username")
+    private UserModel user;
 
-    @Column(name = "name", nullable = false, length = 255)
-    private String name;
+//    @Column(name = "name", nullable = false, length = 255)
+//    private String name;
 
     @Column(name = "inquiry_content", nullable = false, columnDefinition = "TEXT")
     private String inquiryContent;
@@ -30,69 +37,19 @@ public class InquiryModel {
     @Column(name = "inquiry_description", columnDefinition = "TEXT")
     private String inquiryDescription;
 
-    @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    // デフォルトコンストラクタ（createdAtを現在の日時で初期化）
-    public InquiryModel() {
-        this.createdAt = LocalDateTime.now(); // 現在の日時を設定
-    }
-
-    // ゲッターとセッター
-    public Integer getInquiryId() {
-        return inquiryId;
-    }
-
-    public void setInquiryId(Integer inquiryId) {
-        this.inquiryId = inquiryId;
-    }
-
-    public String getUserId() {
-        return user_id;
-    }
-
-    public void setUserId(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getInquiryContent() {
-        return inquiryContent;
-    }
-
-    public void setInquiryContent(String inquiryContent) {
-        this.inquiryContent = inquiryContent;
-    }
-
-    public String getInquiryDescription() {
-        return inquiryDescription;
-    }
-
-    public void setInquiryDescription(String inquiryDescription) {
-        this.inquiryDescription = inquiryDescription;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+    // デフォルトコンストラクタ
+//    public InquiryModel() {
+//        this.createdAt = LocalDateTime.now(); // 現在の日時を設定
+//    }
 
     @Override
     public String toString() {
         return "InquiryModel{" +
                 "inquiryId=" + inquiryId +
-                ", userId=" + user_id +
-                ", name='" + name + '\'' +
+                ", user='" + user.getUserId() + '\'' +
                 ", inquiryContent='" + inquiryContent + '\'' +
                 ", inquiryDescription='" + inquiryDescription + '\'' +
                 ", createdAt=" + createdAt +
