@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>安否確認送信確認</title>
+</head>
+<body>
+    <div class="container">
+        <h1>安否確認送信確認</h1>
+        <p th:text="${message}">ここにメッセージが表示されます。</p>
+
+        <form th:action="@{/safety/confirm/send}" method="post">
+            <button type="submit">送信する</button>
+        </form>
+        <a th:href="@{/safety}">キャンセル</a>
+    </div>
+</body>
+</html>
