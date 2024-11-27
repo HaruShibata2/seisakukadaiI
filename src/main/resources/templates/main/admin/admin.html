@@ -3,50 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin</title>
+    <title>ホーム画面</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
-            margin: 20px;
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+            background-color: #f8f9fa;
         }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
-            background-color: #f8f9fa;
-            padding: 10px 0;
+            align-items: center;
+            background-color: #343a40;
+            padding: 15px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #17a2b8;
         }
     </style>
 </head>
 <body>
- 
 
- 
-	
-</div>
- 
-<!-- フッターアイコン -->
-<div class="footer-icons">
-    <button onclick="location.href='biciku'">備蓄管理</button>
-    <button onclick="location.href='bousai'">防災用品</button>
-    <button onclick="location.href='member'">メンバー管理</button>
-    <button onclick="location.href='posts'">投稿</button>
-</div>
- 
- 
- 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="container">
+        <h1 class="text-center mb-4">管理者ホーム</h1>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        備蓄管理
+                    </div>
+                    <div class="card-body">
+                        <p>備蓄品の管理を行います。</p>
+                        <button class="btn btn-primary btn-block" onclick="location.href='biciku'">備蓄管理ページへ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-danger text-white">
+                        防災用品
+                    </div>
+                    <div class="card-body">
+                        <p>防災用品の管理を行います。</p>
+                        <button class="btn btn-danger btn-block" onclick="location.href='bousai'">防災用品ページへ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        メンバー管理
+                    </div>
+                    <div class="card-body">
+                        <p>メンバーの管理を行います。</p>
+                        <button class="btn btn-success btn-block" onclick="location.href='member'">メンバー管理ページへ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        投稿管理
+                    </div>
+                    <div class="card-body">
+                        <p>投稿の管理を行います。</p>
+                        <button class="btn btn-info btn-block" onclick="location.href='/posts'">投稿ページへ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

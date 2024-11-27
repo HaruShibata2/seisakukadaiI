@@ -6,18 +6,15 @@
     <title>投稿作成と編集</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* 全体の余白調整 */
         body {
             margin: 0;
             padding-bottom: 60px; /* フッターのスペースを確保 */
         }
 
-        /* コンテナのスタイル */
         .container {
             margin-top: 20px;
         }
 
-        /* フッターアイコンのスタイル */
         .footer-icons {
             position: fixed;
             bottom: 0;
@@ -30,39 +27,14 @@
             border-top: 1px solid #ddd;
         }
 
-        .footer-icons button {
-            background: none;
-            border: none;
-            font-size: 16px;
+        .footer-icons .nav-link {
             color: #007bff;
+            font-size: 16px;
             transition: color 0.2s;
-            cursor: pointer;
         }
 
-        .footer-icons button:hover {
+        .footer-icons .nav-link:hover {
             color: #0056b3;
-        }
-
-        /* 編集フォームのスタイル */
-        .edit-form-container {
-            display: none;
-            background-color: rgba(0, 0, 0, 0.5);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .edit-form {
-            background-color: white;
-            padding: 20px;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
         }
     </style>
 </head>
@@ -94,15 +66,13 @@
                 <h5 th:text="${post.title}" class="mb-1"></h5>
                 <p class="mb-1" th:text="${post.description}"></p>
                 <small class="text-muted" th:text="${post.createdAt}"></small>
-                <div class="mt-2">
+                <div class="mt-2 d-flex">
                     <!-- 編集ボタン -->
-                    <button class="btn btn-secondary btn-sm" th:onclick="editPost(
-                        /* 投稿ID */ '[[${post.postId}]]',
-                        /* タイトル */ [[${post.title}]],
-                        /* 説明 */ [[${post.description}]]
+                    <button class="btn btn-secondary btn-sm mr-2" th:onclick="editPost(
+                        '[[${post.postId}]]', [[${post.title}]], [[${post.description}]]
                     )">編集</button>
                     <!-- 削除ボタン -->
-                    <form action="/posts/delete" method="post" style="display: inline;">
+                    <form action="/posts/delete" method="post" class="mb-0">
                         <input type="hidden" name="_csrf" th:value="${_csrf.token}">
                         <input type="hidden" name="postId" th:value="${post.postId}">
                         <button type="submit" class="btn btn-danger btn-sm">削除</button>
@@ -112,48 +82,58 @@
         </div>
     </div>
 
-    <!-- 編集フォーム（モーダル風に表示） -->
-    <div id="editFormContainer" class="edit-form-container">
-        <div class="edit-form">
-            <h3>投稿を編集</h3>
-            <form th:action="@{/editpost}" method="post" id="editForm">
-               <!-- <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
-                <input type="hidden" id="editPostId" name="postId">
-                <div class="form-group">
-                    <label>タイトル:</label>
-                    <input type="text" id="editTitle" name="title" class="form-control" required>
+    <!-- 編集フォーム（モーダル） -->
+    <div class="modal fade" id="editFormModal" tabindex="-1" aria-labelledby="editFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editFormModalLabel">投稿を編集</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label>説明:</label>
-                    <textarea id="editDescription" name="description" class="form-control" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-success btn-block">更新</button>
-                <button type="button" class="btn btn-secondary btn-block" onclick="hideEditForm()">キャンセル</button>
-            </form>
+                <form th:action="@{/editpost}" method="post" id="editForm">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                    <input type="hidden" id="editPostId" name="postId">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>タイトル:</label>
+                            <input type="text" id="editTitle" name="title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>説明:</label>
+                            <textarea id="editDescription" name="description" class="form-control" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">更新</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- フッターアイコン -->
     <div class="footer-icons">
-        <button onclick="location.href='/'">ホーム</button>
-        <button onclick="location.href='bousaigamen'">防災画面</button>
-        <button onclick="location.href='membermoto'">メンバー</button>
-        <button onclick="location.href='group'">グループ</button>
-        <button onclick="location.href='setting'">設定画面</button>
+        <nav class="nav nav-pills justify-content-around">
+            <a class="nav-link" href="/">ホーム</a>
+            <a class="nav-link" href="bousaigamen">防災画面</a>
+            <a class="nav-link" href="membermoto">メンバー</a>
+            <a class="nav-link" href="group">グループ</a>
+            <a class="nav-link" href="setting">設定画面</a>
+        </nav>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // 投稿を編集するためのJavaScript関数
-		function editPost(postId, title, description) {
-		    document.getElementById('editPostId').value = postId;
-		    document.getElementById('editTitle').value = title;
-		    document.getElementById('editDescription').value = description;
-		    document.getElementById('editFormContainer').style.display = 'flex';
-		}
-
-        // 編集フォームを隠す関数
-        function hideEditForm() {
-            document.getElementById('editFormContainer').style.display = 'none';
+        function editPost(postId, title, description) {
+            document.getElementById('editPostId').value = postId;
+            document.getElementById('editTitle').value = title;
+            document.getElementById('editDescription').value = description;
+            $('#editFormModal').modal('show');
         }
     </script>
 </body>

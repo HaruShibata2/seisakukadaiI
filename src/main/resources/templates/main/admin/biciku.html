@@ -4,54 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>備蓄管理ページ</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .member-list {
-            margin: 20px;
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+            background-color: #f8f9fa;
         }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+
         .footer-icons {
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
-            background-color: #f8f9fa;
-            padding: 10px 0;
+            align-items: center;
+            background-color: #343a40;
+            padding: 15px 0;
+            border-top: 1px solid #ddd;
         }
-        .footer-icons img {
-            width: 30px;
-            height: 30px;
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s;
         }
-        .post-box {
-            margin: 20px;
-            font-style: italic;
+
+        .footer-icons button:hover {
+            color: #17a2b8;
         }
     </style>
     <script>
-        // 備蓄を追加する関数
         function addItem() {
             const itemName = document.getElementById('itemName').value;
             const itemQuantity = document.getElementById('itemQuantity').value;
-            
-            if(itemName && itemQuantity) {
+
+            if (itemName && itemQuantity) {
                 const list = document.getElementById('itemList');
-                
-                // 新しいアイテムの行を作成
+
                 const newItem = document.createElement('tr');
                 newItem.innerHTML = `
                     <td>${itemName}</td>
                     <td>
-                        <button onclick="changeQuantity(this, -1)">－</button>
-                        <span>${itemQuantity}</span>
-                        <button onclick="changeQuantity(this, 1)">＋</button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeQuantity(this, -1)">－</button>
+                        <span class="mx-2">${itemQuantity}</span>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeQuantity(this, 1)">＋</button>
                     </td>
                 `;
-                
-                // リストに追加
-                list.appendChild(newItem);
 
-                // 入力欄をリセット
+                list.appendChild(newItem);
                 document.getElementById('itemName').value = '';
                 document.getElementById('itemQuantity').value = 1;
             } else {
@@ -59,44 +71,48 @@
             }
         }
 
-        // 個数を変更する関数
         function changeQuantity(button, change) {
             const quantitySpan = button.parentNode.querySelector('span');
             let quantity = parseInt(quantitySpan.textContent);
-            quantity = Math.max(0, quantity + change); // 0以下にはならないように
+            quantity = Math.max(0, quantity + change);
             quantitySpan.textContent = quantity;
         }
     </script>
 </head>
 <body>
-    <h1>備蓄管理</h1>
+    <div class="container">
+        <h1 class="text-center mb-4">備蓄管理</h1>
 
-    <p>アイテム名と個数を入力して、備蓄を追加してください。</p>
-    
-    <input type="text" id="itemName" placeholder="アイテム名" required>
-    <input type="number" id="itemQuantity" value="1" min="1" required>
-    <button onclick="addItem()">備蓄を追加</button>
+        <p>アイテム名と個数を入力して、備蓄を追加してください。</p>
+        <div class="form-inline">
+            <input type="text" id="itemName" class="form-control mr-2" placeholder="アイテム名" required>
+            <input type="number" id="itemQuantity" class="form-control mr-2" value="1" min="1" required>
+            <button class="btn btn-primary" onclick="addItem()">備蓄を追加</button>
+        </div>
 
-    <h2>備蓄リスト</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>アイテム名</th>
-                <th>個数</th>
-            </tr>
-        </thead>
-        <tbody id="itemList">
-            <!-- ここに追加される -->
-        </tbody>
-    </table>
-    <!-- フッターアイコン -->
-<div class="footer-icons">
-    <button onclick="location.href='biciku'">備蓄管理</button>
-    <button onclick="location.href='bousai'">防災用品</button>
-    <button onclick="location.href='member'">メンバー管理</button>
-    <button onclick="location.href='posts'">投稿</button>
-</div>
+        <h2 class="mt-4">備蓄リスト</h2>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>アイテム名</th>
+                    <th>個数</th>
+                </tr>
+            </thead>
+            <tbody id="itemList">
+                <!-- アイテムがここに追加されます -->
+            </tbody>
+        </table>
+    </div>
 
+    <div class="footer-icons">
+        <button onclick="location.href='biciku'">備蓄管理</button>
+        <button onclick="location.href='bousai'">防災用品</button>
+        <button onclick="location.href='member'">メンバー管理</button>
+        <button onclick="location.href='posts'">投稿</button>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

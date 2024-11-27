@@ -71,10 +71,11 @@ public class SettingController {
 
             // メール送信
             if (mailService != null) {
-                String subject = "新しいお問い合わせが届きました";
-                String body = "名前: " + userModel.getUsername() + "\n" +
-                              "内容: " + inquiry.getInquiryContent() + "\n" +
-                              "説明: " + inquiry.getInquiryDescription();
+            	String subject = "新しいお問い合わせが届きました";
+            	String body = "名前: " + userModel.getUsername() + "\n" +
+            	              "内容: " + inquiry.getInquiryContent() + "\n" +
+            	              "説明: " + inquiry.getInquiryDescription();
+
                 String toEmail = "recipient_outlook_email@example.com";
                 mailService.sendInquiryEmail(toEmail, subject, body);
             } else {
