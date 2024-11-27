@@ -1,97 +1,72 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.3.5'
-	id 'io.spring.dependency-management' version '1.1.6'
-	id 'org.flywaydb.flyway' version '10.18.0' // 最新バージョンを使用
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.flywaydb.flyway' version '10.18.0' // 最新バージョンを使用
 }
 
 group = 'jp.ac.teami'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
-
-repositories {
-	mavenCentral()
-}
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.flywaydb:flyway-core:10.18.0'
-	implementation 'org.flywaydb:flyway-mysql'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	runtimeOnly 'org.hsqldb:hsqldb'
-    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	    implementation 'org.flywaydb:flyway-core:10.7.2'
-    // https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql
-    
-    implementation 'org.flywaydb:flyway-mysql:10.7.2'
-    // https://mvnrepository.com/artifact/org.webjars/bootstrap
-	implementation 'org.webjars:bootstrap:5.3.3'
-	// https://mvnrepository.com/artifact/org.webjars/webjars-locator
-	implementation 'org.webjars:webjars-locator:0.50'
-	
-    implementation 'org.springframework.boot:spring-boot-starter-scheduling' // スケジューリング機能
-	
-	 implementation 'org.springframework.boot:spring-boot-starter-mail'
- 	
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
-}
-
-
-flyway {
-    url = 'jdbc:mysql://127.0.0.1:3306/mysql_teami'
-    user = 'root'
-    password = ''
-}
-
-
-plugins {
-    id 'org.springframework.boot' version '2.7.5'
-    id 'java'
-}
-
-group = 'jp.ac.teami.seisakukadaiI'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    // Spring Boot Starter
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    runtimeOnly 'com.mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-scheduling'
+
+    // Thymeleaf extras
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+    // Flyway
+    implementation 'org.flywaydb:flyway-core:10.18.0'
+    implementation 'org.flywaydb:flyway-mysql'
+
+    // Webjars for Bootstrap
+    implementation 'org.webjars:bootstrap:5.3.3'
+    implementation 'org.webjars:webjars-locator:0.50'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Databases
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly 'org.hsqldb:hsqldb'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
+}
+
+flyway {
+    url = 'jdbc:mysql://localhost:3306/mysql_teami'
+    user = 'root'
+    password = ''
 }

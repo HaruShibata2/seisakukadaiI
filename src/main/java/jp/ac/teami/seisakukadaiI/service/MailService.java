@@ -1,6 +1,5 @@
 package jp.ac.teami.seisakukadaiI.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+
 
 @Service
 public class MailService {
@@ -22,7 +22,7 @@ public class MailService {
 
         helper.setTo(toEmail);
         helper.setSubject(subject);
-        helper.setText(body);
+        helper.setText(body, false); // 第2引数を false に設定し、HTMLではなくテキストとして送信
 
         // 送信者のメールアドレスを設定
         helper.setFrom("fko2347008@stu.o-hara.ac.jp");
