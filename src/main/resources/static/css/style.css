@@ -1,0 +1,185 @@
+/* 全体の余白調整 */
+body {
+    margin: 0;
+    padding-bottom: 60px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* コンテナのスタイル */
+.container {
+    margin-top: 20px;
+}
+
+/* メンバー情報リスト */
+.member-list {
+    margin: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.member-list h4 {
+    margin-bottom: 10px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.member-list h5 {
+    margin-top: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+/* フッターアイコンのスタイル */
+.footer-icons {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-icons button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #007bff;
+    font-weight: 500;
+    transition: color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.footer-icons button:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* 投稿の詳細表示部分 */
+details {
+    margin-top: 15px;
+}
+
+summary {
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    color: #007bff;
+    transition: color 0.2s;
+}
+
+summary:hover {
+    color: #0056b3;
+}
+
+.post-details {
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 投稿リストが縦に並ぶスタイル */
+.post-list {
+    margin-top: 20px;
+}
+
+.post-card {
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card .card-header {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f8f9fa;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.post-card .card-title {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.post-card .card-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.post-card .card-text small {
+    color: #999;
+}
+
+/* ナビゲーションバーのスタイル */
+.navbar {
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #007bff;
+    transition: color 0.2s;
+}
+
+.navbar-brand:hover {
+    color: #0056b3;
+}
+
+.nav-link {
+    font-size: 1rem;
+    color: #333;
+    margin-left: 10px;
+    transition: color 0.2s, border-bottom 0.2s;
+}
+
+.nav-link:hover {
+    color: #007bff;
+    text-decoration: none;
+    border-bottom: 2px solid #007bff;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+/* フッターアイコンのスタイル */
+.footer-icons {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+.footer-icons .nav-link {
+    color: #007bff;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.footer-icons .nav-link:hover {
+    color: #0056b3;
+}

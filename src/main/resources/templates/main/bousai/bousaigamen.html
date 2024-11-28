@@ -61,7 +61,10 @@
 
     </style>
 </head>
+
 <body>
+	    <!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
     <div class="container mt-4">
         <h1 class="mb-4">防災情報アプリ</h1>
 
@@ -79,7 +82,7 @@
         <button onclick="location.href='bousaigamen'">防災画面</button>
         <button onclick="location.href='membermoto'">メンバー</button>
         <button onclick="location.href='group'">グループ</button>
-        <button onclick="location.href='setting'">設定画面</button>
+
     </div>
 </body>
 </html>

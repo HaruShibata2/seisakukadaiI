@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防災情報アプリ</title>
+    <!-- 他のメタタグやスタイルシートのリンク -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css"> <!-- 外部CSSファイル -->
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+        <!-- ブランド名 -->
+        <a class="navbar-brand font-weight-bold text-primary" href="#">防災情報アプリ</a>
+
+        <!-- トグルボタン（モバイル用） -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- ナビゲーションメニュー -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <!-- プロフィール画面リンク -->
+                <li class="nav-item" id="profileLink">
+                    <a class="nav-link" href="/profile">
+                        プロフィール画面
+                    </a>
+                </li>
+                <!-- 設定画面リンク -->
+                <li class="nav-item" id="settingLink">
+                    <a class="nav-link" href="/setting">
+                        設定画面
+                    </a>
+                </li>
+                <!-- ホーム画面リンク -->
+                <li class="nav-item" id="homeLink">
+                    <a class="nav-link" href="/">
+                        ホーム画面
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- 外部JSファイルを読み込む -->
+<script src="/static/js/navbar.js"></script>
+
+</body>
+</html>

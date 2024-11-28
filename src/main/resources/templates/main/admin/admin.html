@@ -47,6 +47,8 @@
     </style>
 </head>
 <body>
+	    <!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
 
     <div class="container">
         <h1 class="text-center mb-4">管理者ホーム</h1>
@@ -109,7 +111,7 @@
         <button onclick="location.href='bousaigamen'">防災画面</button>
         <button onclick="location.href='membermoto'">メンバー</button>
         <button onclick="location.href='group'">グループ</button>
-        <button onclick="location.href='setting'">設定</button>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

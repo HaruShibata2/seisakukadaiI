@@ -3,14 +3,13 @@ package jp.ac.teami.seisakukadaiI.service;
 import java.sql.Date;
 import java.util.List;
 
-import jakarta.annotation.Nonnull;
-import jakarta.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.Nonnull;
+import jakarta.transaction.Transactional;
 import jp.ac.teami.seisakukadaiI.model.UserModel;
 import jp.ac.teami.seisakukadaiI.repository.UserRepository;
 
@@ -79,36 +78,40 @@ public class UserService {
     public UserModel getStudent(Long id) {
         return this.repository.findById(id).orElse(null);
     }
+    
+    public UserModel getUserId(String userId) {
+    	return this.repository.findByUserId(userId);
+    }
 
+    // usernameでユーザー情報を取得
+    public UserModel getByUsername(String username) {
+        return this.repository.findByUsername(username);
+    }
+
+    // ユーザー登録
     public UserModel registerUser(String name, String user_id, String password, String department) {
-        // メールアドレスの重複チェック
-        if (repository.findByUserId	(user_id) != null) {
-            throw new IllegalArgumentException("Email already in use");
+        // ユーザーIDの重複チェック
+        if (repository.findByUserId(user_id) != null) {
+            throw new IllegalArgumentException("User ID already in use");
         }
 
         UserModel user = new UserModel();
         user.setUsername(name);
         user.setUserId(user_id);
         user.setPassword(passwordEncoder.encode(password));
-//        user.setRole(UserModel.UserRole()); // デフォルトロールを設定
         user.setEntryDate(new Date(System.currentTimeMillis()));
         user.setDepartment(department);
-        
+        // デフォルトロールを設定
+        user.setRole(UserModel.UserRole.GENERAL);
+
         return repository.save(user);
     }
-//    public void save(UserModel usermodel) {
-//        userRepository.save(usermodel);  // ユーザーをデータベースに保存
-//    }
 
+    @Autowired
+    private UserRepository userRepository;
 
-        @Autowired
-        private UserRepository userRepository;
-
-        public UserModel findByUsername(String username) {
-            return userRepository.findByUsername(username);
-        }
+    // usernameでユーザーを取得
+    public UserModel findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
-
-
-
-
+}

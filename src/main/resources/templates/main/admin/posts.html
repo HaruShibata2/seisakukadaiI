@@ -5,38 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>投稿作成と編集</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            margin: 0;
-            padding-bottom: 60px; /* フッターのスペースを確保 */
-        }
-
-        .container {
-            margin-top: 20px;
-        }
-
-        .footer-icons {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            border-top: 1px solid #ddd;
-        }
-
-        .footer-icons .nav-link {
-            color: #007bff;
-            font-size: 16px;
-            transition: color 0.2s;
-        }
-
-        .footer-icons .nav-link:hover {
-            color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the external CSS file -->
 </head>
 <body>
     <div class="container">
@@ -121,20 +90,14 @@
             <a class="nav-link" href="bousaigamen">防災画面</a>
             <a class="nav-link" href="membermoto">メンバー</a>
             <a class="nav-link" href="group">グループ</a>
-            <a class="nav-link" href="setting">設定画面</a>
         </nav>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        function editPost(postId, title, description) {
-            document.getElementById('editPostId').value = postId;
-            document.getElementById('editTitle').value = title;
-            document.getElementById('editDescription').value = description;
-            $('#editFormModal').modal('show');
-        }
-    </script>
+
+    <!-- Link to the external JS file -->
+    <script src="posts.js"></script>
 </body>
 </html>
