@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンバー管理ページ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        table {
+            margin-top: 20px;
+        }
+        .footer-icons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #343a40;
+            padding: 15px 0;
+            border-top: 1px solid #ddd;
+        }
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .footer-icons button:hover {
+            color: #17a2b8;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">メンバー管理</h1>
+
+        <!-- エラーメッセージ表示 -->
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <!-- ユーザー追加ボタン -->
+        <a href="/users/add" class="btn btn-success mb-4">ユーザー追加</a>
+
+
+        <!-- 検索フォーム -->
+        <form action="/users/search" method="get" class="form-inline mb-4">
+            <input type="text" name="username" class="form-control mr-2" placeholder="ユーザー名">
+            <input type="text" name="email" class="form-control mr-2" placeholder="メールアドレス">
+            <input type="text" name="department" class="form-control mr-2" placeholder="部署">
+            <button type="submit" class="btn btn-primary">検索</button>
+        </form>
+
+        <!-- ソート切り替えフォーム -->
+        <form action="/users" method="get" class="form-inline mb-2">
+            <input type="hidden" name="sortBy" value="id">
+            <input type="hidden" name="order" value="asc">
+            <button type="submit" class="btn btn-secondary mr-2">ID昇順</button>
+        </form>
+
+        <form action="/users" method="get" class="form-inline mb-4">
+            <input type="hidden" name="sortBy" value="id">
+            <input type="hidden" name="order" value="desc">
+            <button type="submit" class="btn btn-secondary">ID降順</button>
+        </form>
+
+        <!-- メンバー一覧表示 -->
+        <table class="table table-bordered table-responsive-md">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>ユーザー名</th>
+                    <th>メールアドレス</th>
+                    <th>部署</th>
+                    <th>役割</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- メンバー情報を動的に挿入 -->
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.department}"></td>
+                    <td th:text="${user.role}"></td>
+                    <td>
+                        <!-- 編集ボタン -->
+                        <a th:href="@{/users/{id}/edit(id=${user.id})}" class="btn btn-primary">編集</a>
+
+                        <!-- 削除ボタン -->
+                        <form th:action="@{/users/api/{id}(id=${user.id})}" method="post" onsubmit="return confirm('本当に削除しますか？')" style="display: inline;">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="btn btn-danger btn-sm">削除</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- フッター -->
+    <div class="footer-icons">
+        <button onclick="location.href='/biciku'">備蓄管理</button>
+        <button onclick="location.href='/bousai'">防災用品</button>
+        <button onclick="location.href='/users'">メンバー管理</button>
+        <button onclick="location.href='/posts'">投稿</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

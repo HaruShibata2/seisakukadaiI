@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー詳細</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>ユーザー詳細</h2>
+
+        <!-- ユーザー情報表示 -->
+        <div>
+            <strong>ユーザー名:</strong> <span th:text="${user.username}"></span><br>
+            <strong>メールアドレス:</strong> <span th:text="${user.email}"></span><br>
+            <strong>部門:</strong> <span th:text="${user.department}"></span><br>
+            <strong>役職:</strong> <span th:text="${user.role}"></span><br>
+        </div>
+
+        <!-- 編集ボタン -->
+        <a href="#" th:href="@{/users/{id}/edit(id=${user.id})}" class="btn btn-warning mt-3">編集</a>
+
+        <!-- 戻るボタン -->
+        <a href="#" class="btn btn-secondary mt-3" onclick="window.history.back();">戻る</a>
+    </div>
+
+    <!-- BootstrapのJavaScriptライブラリ -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
