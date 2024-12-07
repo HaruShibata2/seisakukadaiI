@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot アプリ</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="header">
+        <h1>アプリケーションのヘッダー</h1>
+        <nav>
+            <ul>
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/about">アバウト</a></li>
+                <li><a href="/contact">コンタクト</a></li>
+                <!-- ヘッダーにユーザー名を表示 -->
+                <li>
+                   <a href="posts">ログイン中のユーザーID:<span th:text="${username}"></a></a>
+				</li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="content">
+        <div class="container mt-4">
+            <h1 class="mb-4">防災情報アプリ</h1>
+            <!-- メンバー情報リスト -->
+            <div class="member-list">
+                <h4>メンバー</h4>
+                <h5>name 安否状態</h5>
+            </div>
+            
+            <!-- 投稿一覧 -->
+            <div class="container mt-4">
+                <h1 class="mb-4">投稿一覧</h1>
+                
+                <!-- 投稿がない場合のメッセージ -->
+                <div th:if="${posts.isEmpty()}" class="alert alert-warning">投稿がありません。</div>
+                
+                <!-- 投稿リストの表示 -->
+                <div th:each="post : ${posts}" class="card mb-3">
+                    <div class="card-header">
+                        <h2 th:text="${post.title}" class="card-title"></h2>
+                        <p class="card-text">
+                            <small class="text-muted" th:text="${post.createdAt}"></small>
+                        </p>
+                        <!-- 詳細表示部分 -->
+                        <details class="post-details">
+                            <summary>詳細を表示</summary>
+                            <p th:text="${post.description}" class="card-text"></p>
+                            <p class="card-text">
+                                <strong>投稿者:</strong> 
+                                <span th:text="${post.user.username}"></span>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted" th:text="${post.createdAt}"></small>
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッターアイコン -->
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='group'">グループ</button>
+        <button onclick="location.href='setting'">設定画面</button>
+    </div>
+</body> 
+</html>

@@ -54,15 +54,20 @@
 
         <!-- ユーザー追加ボタン -->
         <a href="/users/add" class="btn btn-success mb-4">ユーザー追加</a>
+        
+        <!--全体表示-->
+        <a href="/users" class="btn btn-success mb-4">全体表示</a>
 
 
         <!-- 検索フォーム -->
-        <form action="/users/search" method="get" class="form-inline mb-4">
-            <input type="text" name="username" class="form-control mr-2" placeholder="ユーザー名">
-            <input type="text" name="email" class="form-control mr-2" placeholder="メールアドレス">
-            <input type="text" name="department" class="form-control mr-2" placeholder="部署">
-            <button type="submit" class="btn btn-primary">検索</button>
-        </form>
+		<form action="/users/search" method="get" class="form-inline mb-4">
+			<input type="text" name="username" class="form-control mr-2" placeholder="ユーザー名" >
+			<input type="text" name="email" class="form-control mr-2" placeholder="メールアドレス" >
+			<input type="text" name="department" class="form-control mr-2" placeholder="部署" >
+			<button type="submit" class="btn btn-primary">検索</button>
+		</form>
+
+
 
         <!-- ソート切り替えフォーム -->
         <form action="/users" method="get" class="form-inline mb-2">
@@ -123,5 +128,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

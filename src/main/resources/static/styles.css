@@ -1,0 +1,467 @@
+/* 全体の余白調整 */
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        /* メンバー情報リスト */
+        .member-list {
+            margin: 20px;
+        }
+
+        /* フッターアイコンのスタイル */
+        .footer-icons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer-icons button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007bff;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .footer-icons button:hover {
+            color: #0056b3;
+        }
+
+        /* 投稿の詳細表示部分 */
+        details {
+            margin-top: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .post-details {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
+        }
+			/* ヘッダーのスタイル */
+		.header {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    background-color: #333;
+		    color: white;
+		    padding: 10px 20px; /* 横のパディングを加えて少し広げる */
+		    z-index: 1000; /* 他のコンテンツより上に表示されるように */
+		}
+		
+		.header h1 {
+		    margin: 0;
+		    font-size: 18px; /* ヘッダータイトルのフォントサイズ調整 */
+		}
+		
+		.header nav ul {
+		    list-style: none;
+		    margin: 0;
+		    padding: 0;
+		    display: flex; /* 水平方向に並べる */
+		    justify-content: flex-end; /* 右寄せに */
+		}
+		
+		.header nav ul li {
+		    display: inline;
+		    margin-right: 20px;
+		}
+		
+		.header nav ul li a {
+		    color: white;
+		    text-decoration: none;
+		    font-size: 16px; /* ナビゲーションリンクのフォントサイズ調整 */
+		}
+		
+		.header nav ul li a:hover {
+		    text-decoration: underline;
+		}
+		
+		/* ユーザー情報部分 */
+		.text-right {
+		    margin-top: 10px;
+		    font-size: 14px; /* ユーザー名の文字サイズ */
+		    color: #f0f0f0; /* 少し薄い文字色 */
+		    text-align: right;
+		}
+		
+		.text-muted {
+		    font-size: 14px; /* ユーザー名が薄く表示されるように調整 */
+		}
+		
+		/* コンテンツ部分 */
+		.content {
+		    margin-top: 80px; /* ヘッダー分だけ下にスペースを取る */
+		    padding: 20px;
+		}
+		
+		/* ヘッダーを固定するためにページのスクロール時に重ならないように調整 */
+		body {
+		    padding-top: 80px; /* ヘッダーの高さ分だけ余白を追加 */
+		}
+		
+		/* スマホ向けのレスポンシブデザイン */
+		@media (max-width: 767px) {
+		    /* ヘッダーのタイトルサイズとパディングを調整 */
+		    .header h1 {
+		        font-size: 16px; /* スマホ画面では小さくする */
+		    }
+		
+		    /* ナビゲーションメニューを縦並びに変更 */
+		    .header nav ul {
+		        display: block;
+		        text-align: center; /* 中央寄せにする */
+		        padding: 0;
+		        margin: 0;
+		    }
+		
+		    .header nav ul li {
+		        display: block;
+		        margin-bottom: 10px; /* アイテム間のスペースを広げる */
+		    }
+		
+		    /* リンクのフォントサイズを少し小さくする */
+		    .header nav ul li a {
+		        font-size: 14px;
+		    }
+		
+		    /* ユーザー情報を中央寄せ */
+		    .text-right {
+		        text-align: center;
+		        font-size: 12px; /* ユーザー名を少し小さく */
+		        margin-top: 5px;
+		    }
+		
+		    /* コンテンツ部分のパディングを少し小さく */
+		    .content {
+		        margin-top: 100px; /* ヘッダーとコンテンツの間に余裕を持たせる */
+		        padding: 10px; /* スマホでは少し狭くても良い */
+		    }
+		}
+		
+		 /* 全体の余白調整 */
+		        body {
+		            margin: 0;
+		            padding-bottom: 60px;
+		        }
+		
+		        /* メンバー情報リスト */
+		        .member-list {
+		            margin: 20px;
+		        }
+		
+		        /* フッターアイコンのスタイル */
+		        .footer-icons {
+		            position: fixed;
+		            bottom: 0;
+		            width: 100%;
+		            display: flex;
+		            justify-content: space-around;
+		            align-items: center;
+		            background-color: #f8f9fa;
+		            padding: 10px 0;
+		            border-top: 1px solid #ddd;
+		        }
+		
+		        .footer-icons button {
+		            background: none;
+		            border: none;
+		            font-size: 16px;
+		            color: #007bff;
+		            transition: color 0.2s;
+		            cursor: pointer;
+		        }
+		
+		        .footer-icons button:hover {
+		            color: #0056b3;
+		        }
+		
+		        /* 投稿の詳細表示部分 */
+		        details {
+		            margin-top: 10px;
+		        }
+		
+		        summary {
+		            font-weight: bold;
+		            cursor: pointer;
+		        }
+		
+		        .post-details {
+		            padding: 10px;
+		            border: 1px solid #ddd;
+		            background-color: #f8f9fa;
+		        }
+		        /* 全体の余白調整 */
+		        body {
+		            margin: 0;
+		            padding-bottom: 60px;
+		        }
+		
+		        /* メンバー情報リスト */
+		        .member-list {
+		            margin: 20px;
+		        }
+		
+		        /* フッターアイコンのスタイル */
+		        .footer-icons {
+		            position: fixed;
+		            bottom: 0;
+		            width: 100%;
+		            display: flex;
+		            justify-content: space-around;
+		            align-items: center;
+		            background-color: #f8f9fa;
+		            padding: 10px 0;
+		            border-top: 1px solid #ddd;
+		        }
+		
+		        .footer-icons button {
+		            background: none;
+		            border: none;
+		            font-size: 16px;
+		            color: #007bff;
+		            transition: color 0.2s;
+		            cursor: pointer;
+		        }
+		
+		        .footer-icons button:hover {
+		            color: #0056b3;
+		        }
+		
+		        /* 投稿の詳細表示部分 */
+		        details {
+		            margin-top: 10px;
+		        }
+		
+		        summary {
+		            font-weight: bold;
+		            cursor: pointer;
+		        }
+		
+		        .post-details {
+		            padding: 10px;
+		            border: 1px solid #ddd;
+		            background-color: #f8f9fa;
+		        }
+
+			/* ヘッダーのスタイル */
+		.header {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    background-color: #333;
+		    color: white;
+		    padding: 10px 20px; /* 横のパディングを加えて少し広げる */
+		    z-index: 1000; /* 他のコンテンツより上に表示されるように */
+		}
+		
+		.header h1 {
+		    margin: 0;
+		    font-size: 18px; /* ヘッダータイトルのフォントサイズ調整 */
+		}
+		
+		.header nav ul {
+		    list-style: none;
+		    margin: 0;
+		    padding: 0;
+		    display: flex; /* 水平方向に並べる */
+		    justify-content: flex-end; /* 右寄せに */
+		}
+		
+		.header nav ul li {
+		    display: inline;
+		    margin-right: 20px;
+		}
+		
+		.header nav ul li a {
+		    color: white;
+		    text-decoration: none;
+		    font-size: 16px; /* ナビゲーションリンクのフォントサイズ調整 */
+		}
+		
+		.header nav ul li a:hover {
+		    text-decoration: underline;
+		}
+		
+		/* ユーザー情報部分 */
+		.text-right {
+		    margin-top: 10px;
+		    font-size: 14px; /* ユーザー名の文字サイズ */
+		    color: #f0f0f0; /* 少し薄い文字色 */
+		    text-align: right;
+		}
+		
+		.text-muted {
+		    font-size: 14px; /* ユーザー名が薄く表示されるように調整 */
+		}
+		
+		/* コンテンツ部分 */
+		.content {
+		    margin-top: 80px; /* ヘッダー分だけ下にスペースを取る */
+		    padding: 20px;
+		}
+		
+		/* ヘッダーを固定するためにページのスクロール時に重ならないように調整 */
+		body {
+		    padding-top: 80px; /* ヘッダーの高さ分だけ余白を追加 */
+		}
+		
+		/* スマホ向けのレスポンシブデザイン */
+		@media (max-width: 767px) {
+		    /* ヘッダーのタイトルサイズとパディングを調整 */
+		    .header h1 {
+		        font-size: 16px; /* スマホ画面では小さくする */
+		    }
+		
+		    /* ナビゲーションメニューを縦並びに変更 */
+		    .header nav ul {
+		        display: block;
+		        text-align: center; /* 中央寄せにする */
+		        padding: 0;
+		        margin: 0;
+		    }
+		
+		    .header nav ul li {
+		        display: block;
+		        margin-bottom: 10px; /* アイテム間のスペースを広げる */
+		    }
+		
+		    /* リンクのフォントサイズを少し小さくする */
+		    .header nav ul li a {
+		        font-size: 14px;
+		    }
+		
+		    /* ユーザー情報を中央寄せ */
+		    .text-right {
+		        text-align: center;
+		        font-size: 12px; /* ユーザー名を少し小さく */
+		        margin-top: 5px;
+		    }
+		
+		    /* コンテンツ部分のパディングを少し小さく */
+		    .content {
+		        margin-top: 100px; /* ヘッダーとコンテンツの間に余裕を持たせる */
+		        padding: 10px; /* スマホでは少し狭くても良い */
+		    }
+		}
+		
+		 /* 全体の余白調整 */
+		        body {
+		            margin: 0;
+		            padding-bottom: 60px;
+		        }
+		
+		        /* メンバー情報リスト */
+		        .member-list {
+		            margin: 20px;
+		        }
+		
+		        /* フッターアイコンのスタイル */
+		        .footer-icons {
+		            position: fixed;
+		            bottom: 0;
+		            width: 100%;
+		            display: flex;
+		            justify-content: space-around;
+		            align-items: center;
+		            background-color: #f8f9fa;
+		            padding: 10px 0;
+		            border-top: 1px solid #ddd;
+		        }
+		
+		        .footer-icons button {
+		            background: none;
+		            border: none;
+		            font-size: 16px;
+		            color: #007bff;
+		            transition: color 0.2s;
+		            cursor: pointer;
+		        }
+		
+		        .footer-icons button:hover {
+		            color: #0056b3;
+		        }
+		
+		        /* 投稿の詳細表示部分 */
+		        details {
+		            margin-top: 10px;
+		        }
+		
+		        summary {
+		            font-weight: bold;
+		            cursor: pointer;
+		        }
+		
+		        .post-details {
+		            padding: 10px;
+		            border: 1px solid #ddd;
+		            background-color: #f8f9fa;
+		        }
+		        /* 全体の余白調整 */
+		        body {
+		            margin: 0;
+		            padding-bottom: 60px;
+		        }
+		
+		        /* メンバー情報リスト */
+		        .member-list {
+		            margin: 20px;
+		        }
+		
+		        /* フッターアイコンのスタイル */
+		        .footer-icons {
+		            position: fixed;
+		            bottom: 0;
+		            width: 100%;
+		            display: flex;
+		            justify-content: space-around;
+		            align-items: center;
+		            background-color: #f8f9fa;
+		            padding: 10px 0;
+		            border-top: 1px solid #ddd;
+		        }
+		
+		        .footer-icons button {
+		            background: none;
+		            border: none;
+		            font-size: 16px;
+		            color: #007bff;
+		            transition: color 0.2s;
+		            cursor: pointer;
+		        }
+		
+		        .footer-icons button:hover {
+		            color: #0056b3;
+		        }
+		
+		        /* 投稿の詳細表示部分 */
+		        details {
+		            margin-top: 10px;
+		        }
+		
+		        summary {
+		            font-weight: bold;
+		            cursor: pointer;
+		        }
+		
+		        .post-details {
+		            padding: 10px;
+		            border: 1px solid #ddd;
+		            background-color: #f8f9fa;
+		        }
+
+		        

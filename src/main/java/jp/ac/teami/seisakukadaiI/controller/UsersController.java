@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import jp.ac.teami.seisakukadaiI.model.UserModel;
+import jp.ac.teami.seisakukadaiI.repository.UserRepository;
 import jp.ac.teami.seisakukadaiI.service.UserService;
-
 @Controller
 @RequestMapping("/users")
 public class UsersController {
@@ -29,6 +29,9 @@ public class UsersController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+
 
     /**
      * ユーザー一覧表示（HTMLビュー）
@@ -141,5 +144,25 @@ public class UsersController {
         logger.info("ユーザーを削除します - ID: {}", id);
         userService.delete(id);  // ユーザーを削除
         return ResponseEntity.noContent().build();
+    }
+ // ユーザー検索エンドポイント
+    @GetMapping("/search")
+   // @GetMapping("/users")
+    public String getUserList(
+            @RequestParam(value = "username", required = false) String username,
+            @RequestParam(value = "email", required = false) String email,
+            @RequestParam(value = "department", required = false) String department,
+            Model model) {
+
+        // 検索条件が空でない場合のみ検索を実行
+        List<UserModel> users = userService.search(username, email, department);
+
+        model.addAttribute("users", users);
+        model.addAttribute("username", username);
+        model.addAttribute("email", email);
+        model.addAttribute("department", department);
+
+     
+        return "main/admin/user_list"; // Thymeleafのテンプレートに渡す
     }
 }

@@ -2,10 +2,10 @@ package jp.ac.teami.seisakukadaiI.service;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -64,11 +64,23 @@ public class UserService {
      * @param editUser 更新するユーザーモデル
      */
     public void update(@NonNull UserModel editUser) {
+        // 現在のユーザー情報を取得
+        UserModel existingUser = repository.findById(editUser.getId()).orElseThrow(() -> new IllegalArgumentException("ユーザーが見つかりません"));
+
+        // パスワードが空でない場合にのみエンコードを実施
         if (editUser.getPassword() != null && !editUser.getPassword().isEmpty()) {
+            // 新しいパスワードが空でない場合のみエンコード
             editUser.setPassword(encodePassword(editUser.getPassword()));
+        } else {
+            // パスワードが空の場合、既存のパスワードをそのまま使用
+            editUser.setPassword(existingUser.getPassword());
         }
+
+        // ユーザー情報を保存
         repository.save(editUser);
     }
+
+    
 
     /**
      * ユーザーを削除
@@ -133,7 +145,25 @@ public class UserService {
     private String encodePassword(String rawPassword) {
         return passwordEncoder.encode(rawPassword);
     }
+    
+    
+    public class UserSpecification {
 
+        public static Specification<UserModel> usernameContains(String username) {
+            return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("username"), "%" + username + "%");
+        }
+
+        public static Specification<UserModel> emailContains(String email) {
+            return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("email"), "%" + email + "%");
+        }
+
+        public static Specification<UserModel> departmentContains(String department) {
+            return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("department"), "%" + department + "%");
+        }
+    }
+
+    
+    
     /**
      * 任意の条件でユーザーを検索
      *
@@ -144,23 +174,56 @@ public class UserService {
      * @return List<UserModel>
      */
     public List<UserModel> searchUsers(String username, String email, String department, Sort sort) {
-        boolean isAllNullOrEmpty = Stream.of(username, email, department)
-                .allMatch(value -> value == null || value.isBlank());
+        // すべての条件がnullまたは空文字列でないかをチェック
+        boolean isAnyConditionProvided = 
+                (username != null && !username.isBlank()) || 
+                (email != null && !email.isBlank()) || 
+                (department != null && !department.isBlank());
 
-        if (isAllNullOrEmpty) {
-            // 条件がすべて空の場合、全ユーザーを返す
+        if (!isAnyConditionProvided) {
+            // 条件が全て空の場合、全ユーザーを返す
             return repository.findAll(sort);
         }
 
-        // 条件別に検索
-        List<UserModel> resultByName = repository.findByUsernameContaining(username, sort);
-        List<UserModel> resultByEmail = repository.findByEmailContaining(email, sort);
-        List<UserModel> resultByDepartment = repository.findByDepartmentContaining(department, sort);
+        // 検索条件を動的に組み立てて検索を行う
+        Specification<UserModel> specification = Specification.where(null);
 
-        // 結果を統合して重複を除去
-        return Stream.concat(
-                Stream.concat(resultByName.stream(), resultByEmail.stream()),
-                resultByDepartment.stream()
-        ).distinct().toList();
+        if (username != null && !username.isBlank()) {
+            specification = specification.and(UserSpecification.usernameContains(username));
+        }
+
+        if (email != null && !email.isBlank()) {
+            specification = specification.and(UserSpecification.emailContains(email));
+        }
+
+        if (department != null && !department.isBlank()) {
+            specification = specification.and(UserSpecification.departmentContains(department));
+        }
+
+        // 条件を基にデータベースを検索し、結果をソートして返す
+        return repository.findAll(specification, sort);
+    }
+    
+    
+    public List<UserModel> search(String username, String email, String department) {
+        // 検索条件が空の場合はそのフィルタを無視
+        if (username != null && !username.isEmpty() && 
+            email != null && !email.isEmpty() && 
+            department != null && !department.isEmpty()) {
+            // 全ての条件が入力された場合
+            return repository.findByUsernameContainingIgnoreCaseAndEmailContainingIgnoreCaseAndDepartmentContainingIgnoreCase(username, email, department);
+        } else if (username != null && !username.isEmpty()) {
+            return repository.findByUsernameContainingIgnoreCase(username);
+        } else if (email != null && !email.isEmpty()) {
+            return repository.findByEmailContainingIgnoreCase(email);
+        } else if (department != null && !department.isEmpty()) {
+            return repository.findByDepartmentContainingIgnoreCase(department);
+        } else {
+            // 全部空の場合、全ユーザーを返す
+            return repository.findAll();
+        }
+    
+
     }
 }
+
