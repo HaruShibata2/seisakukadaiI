@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import jp.ac.teami.seisakukadaiI.model.UserModel;
-import jp.ac.teami.seisakukadaiI.repository.UserRepository;
 import jp.ac.teami.seisakukadaiI.service.UserService;
 @Controller
 @RequestMapping("/users")
@@ -29,10 +28,6 @@ public class UsersController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
-
-
     /**
      * ユーザー一覧表示（HTMLビュー）
      */

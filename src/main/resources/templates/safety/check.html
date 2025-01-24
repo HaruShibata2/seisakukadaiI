@@ -2,39 +2,22 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>安否確認</title>
+    <title>安否確認状況</title>
 </head>
 <body>
     <div class="container">
-        <h1>安否確認</h1>
-
-        <form th:action="@{/safety}" method="post">
+        <h1>安否確認状況</h1>
+        <!-- 状態のみを送信するフォーム -->
+        <form th:action="@{/safety/status}" method="post">
             <label for="status">安否状態:</label>
             <select id="status" name="status" required>
-                <option value="SAFE">安全</option>
-                <option value="INJURED">怪我</option>
+                <option value="安全">安全</option>
+                <option value="怪我">怪我</option>
             </select>
-
             <button type="submit">送信</button>
         </form>
-
-        <h2>安否確認状況</h2>
-        <ul>
-            <th:block th:each="check : ${checks}">
-                <li>
-                    <div class="username">ユーザー名: <span th:text="${check.user.username}">ユーザー名</span></div><br>
-                    <div class="status" th:class="${check.status == 'SAFE' ? 'safe' : 'injured'}">
-                        状況: <span th:text="${check.status}">状況</span>
-                    </div><br>
-					<div class="checkedAt">
-					    確認日時: <span th:text="${formattedCheckedAt}">確認日時</span>
-					</div>
-
-                </li>
-            </th:block>
-        </ul>
     </div>
 </body>
 </html>
+
 

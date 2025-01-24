@@ -15,8 +15,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository; // ユーザモデルのRepository
 
     /**
-     * ユーザの検索を行う
-     */
+     
+ユーザの検索を行う*/
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        System.out.println("Searching for username: " + username);
@@ -32,12 +32,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //                user.getRole().getAuthorities() // ユーザのロールから権限を取得
 //        );
 //    }
-	@Override
-	    
-	    public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
-	        System.out.println("serach user_id : " + user_id);
-	        UserModel user = this.userRepository.findByUserId(user_id); // emailで検索するので「EmailEquals」としている
-	        //System.out.println(teacher.toString());
-	        return user;
-	    }
+    @Override
+
+        public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
+            System.out.println("serach user_id : " + user_id);
+            UserModel user = this.userRepository.findByUserId(user_id); // emailで検索するので「EmailEquals」としている
+            //System.out.println(teacher.toString());
+            return user;
+        }
 }

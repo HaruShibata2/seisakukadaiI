@@ -1,4 +1,4 @@
-package jp.ac.teami.seisakukadaiI.service;
+	package jp.ac.teami.seisakukadaiI.service;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -24,17 +24,26 @@ public class EarthquakeService {
         this.safetyCheckService = safetyCheckService;
     }
 
-    // 40秒後に地震情報を取得するメソッド
-    @Scheduled(fixedDelay = 20000)  // 40秒後に実行
+    @Scheduled(fixedDelay = 10000) // 10秒ごとに地震データをチェック
     public void triggerEarthquakeDataFetch() {
         try {
             EarthquakeResponse response = getEarthquakeData();
-            // 地震データ取得後に安否確認を送信するなどの処理
-            safetyCheckService.sendAutomaticSafetyCheck(response);
+            response.getFeatures().forEach(feature -> {
+                double magnitude = feature.getProperties().getMag();
+                if (magnitude >= 5.0) {
+                    // 震度5以上の場合、自動で「安否確認を送信しますか？」画面を表示
+                    safetyCheckService.setManualCheckFlag(true); // 手動確認フラグを設定
+                } else if (magnitude >= 3.0) {
+                    // 震度3以上4未満の場合、別の確認処理
+                    safetyCheckService.setManualCheckFlag(true);
+                } else {
+                }
+            });
         } catch (Exception e) {
-            throw new RuntimeException("Failed to fetch earthquake data", e);
+            throw new RuntimeException("地震データの取得に失敗しました", e);
         }
     }
+
 
     public EarthquakeResponse getEarthquakeData() {
         String uri = UriComponentsBuilder.fromHttpUrl(BASE_URL)

@@ -84,4 +84,6 @@ public class SecurityConfig {
         exception.accessDeniedPage("/error")); // 直接エラーページを設定
 	    return http.build();
 	}
+
+
 }

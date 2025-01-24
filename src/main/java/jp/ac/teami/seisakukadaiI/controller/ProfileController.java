@@ -1,5 +1,9 @@
 package jp.ac.teami.seisakukadaiI.controller;
 
+import java.util.Optional;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -7,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jp.ac.teami.seisakukadaiI.model.UserModel;
 import jp.ac.teami.seisakukadaiI.service.UserService;
 
@@ -25,7 +28,7 @@ public class ProfileController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         
         // ユーザー情報を取得
-        UserModel user = userService.getByUsername(username);
+        Optional<UserModel> user = userService.getByUsername(username);
         
         if (user != null) {
             model.addAttribute("user", user);  // ユーザー情報をModelに追加

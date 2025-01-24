@@ -1,6 +1,7 @@
 package jp.ac.teami.seisakukadaiI.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,7 +42,15 @@ public class SafetyCheck {
 
 
     public enum Status {
-    	SAFE,   // 状態: 安全
-    	INJURED // 状態: 怪我
+    	安全,   // 状態: 安全
+    	怪我 // 状態: 怪我
+    }
+    
+    public String getFormattedCheckedAt() {
+        if (this.checkedAt == null) {
+            return "未確認";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return this.checkedAt.format(formatter);
     }
 }

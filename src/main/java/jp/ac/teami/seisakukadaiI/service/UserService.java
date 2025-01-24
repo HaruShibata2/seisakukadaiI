@@ -2,6 +2,9 @@ package jp.ac.teami.seisakukadaiI.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
+
+import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -10,7 +13,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import jakarta.transaction.Transactional;
 import jp.ac.teami.seisakukadaiI.model.UserModel;
 import jp.ac.teami.seisakukadaiI.repository.UserRepository;
 
@@ -97,7 +99,7 @@ public class UserService {
      * @param username ユーザー名
      * @return UserModel
      */
-    public UserModel getByUsername(String username) {
+    public Optional<UserModel> getByUsername(String username) {
         return repository.findByUsername(username);
     }
 
@@ -161,6 +163,9 @@ public class UserService {
             return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("department"), "%" + department + "%");
         }
     }
+    
+
+
 
     
     
@@ -226,4 +231,3 @@ public class UserService {
 
     }
 }
-
