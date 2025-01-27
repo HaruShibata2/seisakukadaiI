@@ -2,22 +2,46 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安否確認状況</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>安否確認状況</h1>
-        <!-- 状態のみを送信するフォーム -->
-        <form th:action="@{/safety/status}" method="post">
-            <label for="status">安否状態:</label>
-            <select id="status" name="status" required>
-                <option value="安全">安全</option>
-                <option value="怪我">怪我</option>
-            </select>
-            <button type="submit">送信</button>
-        </form>
+    <!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
+    
+    <div class="container mt-5">
+        <!-- カード風デザインで表示 -->
+        <div class="card p-4 shadow">
+            <h1 class="text-center mb-4">安否確認状況</h1>
+            <!-- 状態選択フォーム -->
+            <form th:action="@{/safety/status}" method="post">
+                <div class="form-group">
+                    <label for="status" class="font-weight-bold">安否状態:</label>
+                    <select id="status" name="status" class="form-control" required>
+                        <option value="安全">安全</option>
+                        <option value="怪我">怪我</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">送信</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- フッターアイコン -->
+    <div class="footer-icons bg-white border-top shadow-sm fixed-bottom py-2">
+        <div class="container d-flex justify-content-around">
+            <button onclick="location.href='/'" class="btn btn-link text-primary">ホーム</button>
+            <button onclick="location.href='/bousaigamen'" class="btn btn-link text-primary">防災画面</button>
+            <button onclick="location.href='/membermoto'" class="btn btn-link text-primary">メンバー</button>
+            <button onclick="location.href='/group'" class="btn btn-link text-primary">グループ</button>
+        </div>
     </div>
 </body>
 </html>
+
 
 

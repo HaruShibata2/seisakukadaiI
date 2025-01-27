@@ -2,18 +2,41 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安否確認送信確認</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>安否確認送信確認</h1>
-        <p th:text="${message}">ここにメッセージが表示されます。</p>
+    <!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
+    
+    <div class="container mt-5">
+        <div class="card p-4 shadow">
+            <h1 class="text-center mb-4">安否確認送信確認</h1>
+            <p th:text="${message}" class="alert alert-info text-center">
+                ここにメッセージが表示されます。
+            </p>
 
-        <form th:action="@{/safety/check}" method="post">
-            <button type="submit">送信する</button>
-        </form>
-        <a th:href="@{/}">キャンセル</a>
+            <div class="text-center">
+                <form th:action="@{/safety/check}" method="post" class="d-inline-block">
+                    <button type="submit" class="btn btn-primary btn-lg px-4">送信する</button>
+                </form>
+                <a th:href="@{/}" class="btn btn-secondary btn-lg px-4 ml-3">キャンセル</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッターアイコン -->
+    <div class="footer-icons bg-white border-top shadow-sm fixed-bottom py-2">
+        <div class="container d-flex justify-content-around">
+            <button onclick="location.href='/'" class="btn btn-link text-primary">ホーム</button>
+            <button onclick="location.href='/bousaigamen'" class="btn btn-link text-primary">防災画面</button>
+            <button onclick="location.href='/membermoto'" class="btn btn-link text-primary">メンバー</button>
+            <button onclick="location.href='/group'" class="btn btn-link text-primary">グループ</button>
+        </div>
     </div>
 </body>
 </html>
+
 

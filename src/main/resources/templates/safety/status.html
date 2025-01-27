@@ -2,25 +2,46 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安否確認状況</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-        <h2>安否確認</h2>
-        <ul>
-            <th:block th:each="check : ${checks}">
-                <li>
-                    <span>ユーザー名: <span th:text="${check.user.username}">ユーザー名</span></span>
-                    <span>状態: <span th:text="${check.status}">状態</span></span>
-                    <span>確認日時: 
-						<td>
-						    <span th:text="${check.formattedCheckedAt}"></span>
-						</td>
+    <!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
 
-                    </span>
-                </li>
-            </th:block>
-        </ul>
+    <div class="container mt-5">
+        <div class="card p-4 shadow">
+            <h2 class="text-center mb-4">安否確認</h2>
+            <ul class="list-group">
+                <!-- 安否確認リスト -->
+                <th:block th:each="check : ${checks}">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                            <strong>ユーザー名:</strong>
+                            <span th:text="${check.user.username}">ユーザー名</span>
+                        </span>
+                        <span>
+                            <strong>状態:</strong>
+                            <span th:text="${check.status}">状態</span>
+                        </span>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+
+    <!-- フッターアイコン -->
+    <div class="footer-icons bg-white border-top shadow-sm fixed-bottom py-2">
+        <div class="container d-flex justify-content-around">
+            <button onclick="location.href='/'" class="btn btn-link text-primary">ホーム</button>
+            <button onclick="location.href='/bousaigamen'" class="btn btn-link text-primary">防災画面</button>
+            <button onclick="location.href='/membermoto'" class="btn btn-link text-primary">メンバー</button>
+            <button onclick="location.href='/group'" class="btn btn-link text-primary">グループ</button>
+        </div>
     </div>
 </body>
 </html>
+
 
