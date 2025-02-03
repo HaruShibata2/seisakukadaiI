@@ -37,11 +37,13 @@
                     </a>
                 </li>
                 <!-- ホーム画面リンク -->
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <li class="nav-item" id="homeLink">
                     <a class="nav-link" href="/admin">
                         管理者画面
                     </a>
                 </li>
+                </div>
 				<!-- ホーム画面リンク -->
 				<li class="nav-item" id="homeLink">
 				    <a class="nav-link" href="/safety/confirm">

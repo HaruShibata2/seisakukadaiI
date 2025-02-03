@@ -33,14 +33,17 @@
     </div>
 
     <!-- フッターアイコン -->
-    <div class="footer-icons bg-white border-top shadow-sm fixed-bottom py-2">
-        <div class="container d-flex justify-content-around">
-            <button onclick="location.href='/'" class="btn btn-link text-primary">ホーム</button>
-            <button onclick="location.href='/bousaigamen'" class="btn btn-link text-primary">防災画面</button>
-            <button onclick="location.href='/membermoto'" class="btn btn-link text-primary">メンバー</button>
-            <button onclick="location.href='/group'" class="btn btn-link text-primary">グループ</button>
-        </div>
+    <div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='/bousaigamen'">防災画面</button>
+        <button onclick="location.href='/membermoto'">メンバー</button>
+        <button onclick="location.href='/setting'">設定画面</button>
     </div>
+
+    <!-- BootstrapのJS（jQueryとPopperも必要） -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
 

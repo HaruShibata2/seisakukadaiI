@@ -7,26 +7,43 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+		<!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
     <div class="container mt-4">
         <h1>投稿を編集</h1>
-
+ 
         <form th:action="@{/editpost/{postId}(id = *{postId})}" th:object="${post}" method="post">
             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
-
+ 
             <div class="form-group">
                 <label for="title">タイトル:</label>
                 <!-- th:value を使用して投稿のタイトルを表示 -->
                 <input type="text" id="title" name="title" class="form-control" th:value="${post.title}" required>
             </div>
-
+ 
             <div class="form-group">
                 <label for="description">説明:</label>
                 <!-- th:text を使用して投稿の説明を表示 -->
                 <textarea id="description" name="description" class="form-control" rows="4" required th:text="${post.description}"></textarea>
             </div>
-
+ 
             <button type="submit" class="btn btn-success btn-block">更新</button>
         </form>
     </div>
 </body>
+<!-- フッターアイコン -->
+<div class="footer-icons">
+    <button onclick="location.href='biciku'">備蓄管理</button>
+    <button onclick="location.href='bousai'">防災用品</button>
+    <button onclick="location.href='member'">メンバー管理</button>
+    <button onclick="location.href='posts'">投稿</button>
+    <button onclick="location.href='/setting'">設定画面</button>
+</div>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </html>
+ 

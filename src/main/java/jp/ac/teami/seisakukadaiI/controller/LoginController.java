@@ -42,11 +42,6 @@ public class LoginController {
 		return "login/login";
 	}
 	
-//	@GetMapping("/")
-//	public String lngs(Model model) {
-//		return "login/lng";
-//	}
-	
 	@GetMapping("/login/codenyuryoku")
 	public String codeadd(Model model) {
 		return "login/codenyuryoku";

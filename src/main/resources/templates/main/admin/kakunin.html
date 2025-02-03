@@ -1,7 +1,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- ナビゲーションバー -->
+<div th:include="~{fragments/navbar}"></div>
 <title>編集</title>
+</head>
 <form class="form py-4 needs-validation h-adr" method="post" th:action="@{/editpost/{post_id}(id = *{post_id})}" th:object="${post}">
 	    
 	<div class="row mt-3">        
@@ -47,3 +50,17 @@
 　　</div>
 　</div>
 </form> 
+<!-- フッターアイコン -->
+<div class="footer-icons">
+    <button onclick="location.href='biciku'">備蓄管理</button>
+    <button onclick="location.href='bousai'">防災用品</button>
+    <button onclick="location.href='member'">メンバー管理</button>
+    <button onclick="location.href='posts'">投稿</button>
+    <button onclick="location.href='/setting'">設定画面</button>
+</div>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

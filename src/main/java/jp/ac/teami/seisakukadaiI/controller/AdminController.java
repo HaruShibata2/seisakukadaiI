@@ -45,24 +45,4 @@ public class AdminController {
         public String  errorIndex(Model model) {
         return "error";
     }
-//    @GetMapping("/posts")
-//    public String toukouIndex(Model model) {
-//        // 現在ログインしているユーザー情報を取得
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        UserModel userModel = (UserModel) authentication.getPrincipal();
-//        String userId = userModel.getUserId();  // UserModelからuserIdを取得
-//
-//        // 投稿リストの取得（例としてPostRepositoryを使う）
-//        List<PostModel> posts = postRepository.findAll();
-//
-//        // 投稿日時のフォーマットを行う
-//        for (PostModel post : posts) {
-//            post.setCreatedAt(post.getCreatedAt()); // setFormattedCreatedAtでフォーマットを設定
-//        }
-//
-//        // Modelにpostsをセットしてビューに渡す
-//        model.addAttribute("posts", posts);
-//
-//        return "main/admin/posts";  // ビュー名
-//    }
 }

@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+		<!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
 <form action="/users/add" method="post">
     <label for="username">ユーザー名:</label>
     <input type="text" id="username" name="username" required>
@@ -14,3 +18,4 @@
 
     <button type="submit">追加</button>
 </form>
+</html>

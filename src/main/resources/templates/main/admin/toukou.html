@@ -52,6 +52,8 @@
     </script>
 </head>
 <body>
+		<!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
     <h1>投稿</h1>
 
     <textarea id="postContent" placeholder="投稿内容を入力してください" rows="4" cols="50"></textarea><br>
@@ -67,6 +69,7 @@
     <button onclick="location.href='bousai'">防災用品</button>
     <button onclick="location.href='member'">メンバー管理</button>
     <button onclick="location.href='posts'">投稿</button>
+    <button onclick="location.href='/setting'">設定画面</button>
 </div>
 </body>
 </html>
