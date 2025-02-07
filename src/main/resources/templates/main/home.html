@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>防災情報アプリ</title>
+    <title id="pageTitle">防災情報アプリ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -11,56 +11,35 @@
     <!-- ナビゲーションバー -->
     <div th:include="~{fragments/navbar}"></div>
 
-
     <div class="container mt-4">
-        <h1 class="mb-4">防災情報アプリ</h1>  
+        <h1 class="mb-4" id="appTitle">防災情報アプリ</h1>  
         
-    <div class="container mt-5">
-        <div class="card p-4 shadow">
-            <h2 class="text-center mb-4">メンバー</h2>
-            <ul class="list-group">
-                <!-- 安否確認リスト -->
-                <th:block th:each="check : ${checks}">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>
-                            <strong>ユーザー名:</strong>
-                            <span th:text="${check.user.username}">ユーザー名</span>
-                        </span>
-                        <span>
-                            <strong>状態:</strong>
-                            <span th:text="${check.status}">状態</span>
-                        </span>
-                    </li>
-                </th:block>
-            </ul>
+        <div class="container mt-5">
+            <div class="card p-4 shadow">
+                <h2 class="text-center mb-4" id="memberTitle">メンバー</h2>
+                <ul class="list-group">
+                    <th:block th:each="check : ${checks}">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong id="usernameLabel">ユーザー名:</strong> <span th:text="${check.user.username}"></span></span>
+                            <span><strong id="statusLabel">状態:</strong> <span th:text="${check.status}"></span></span>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
         </div>
-    </div>
         
-        <!-- 投稿一覧 -->
         <div class="post-list">
-            <h1 class="mb-4">投稿一覧</h1>
-            
-            <!-- 投稿がない場合のメッセージ -->
-            <div th:if="${posts.isEmpty()}" class="alert alert-warning">投稿がありません。</div>
-            
-            <!-- 投稿リストの表示 -->
+            <h1 class="mb-4" id="postListTitle">投稿一覧</h1>
+            <div th:if="${posts.isEmpty()}" class="alert alert-warning" id="noPostMessage">投稿がありません。</div>
             <div th:each="post : ${posts}" class="card post-card">
                 <div class="card-header">
                     <h2 th:text="${post.title}" class="card-title"></h2>
-                    <p class="card-text">
-                        <small class="text-muted" th:text="${post.createdAt}"></small>
-                    </p>
-                    <!-- 詳細表示部分 -->
+                    <p class="card-text"><small class="text-muted" th:text="${post.createdAt}"></small></p>
                     <details class="post-details">
-                        <summary>詳細を表示</summary>
+                        <summary id="detailsSummary">詳細を表示</summary>
                         <p th:text="${post.description}" class="card-text"></p>
-                        <p class="card-text">
-                            <strong>投稿者:</strong> 
-                            <span th:text="${post.user.username}"></span>
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted" th:text="${post.createdAt}"></small>
-                        </p>
+                        <p class="card-text"><strong id="posterLabel">投稿者:</strong> <span th:text="${post.user.username}"></span></p>
+                        <p class="card-text"><small class="text-muted" th:text="${post.createdAt}"></small></p>
                     </details>
                 </div>
             </div>
@@ -68,18 +47,89 @@
     </div>
 
     <!-- フッターアイコン -->
-<div class="footer-icons">
-        <button onclick="location.href='/'"><i class="fas fa-home"></i> ホーム</button>
-        <button onclick="location.href='/biciku'"><i class="fas fa-box"></i> 備蓄管理</button>
-        <button onclick="location.href='/bousaigamen'"><i class="fas fa-shield-alt"></i> 防災画面</button>
-        <button onclick="location.href='/membermoto'"><i class="fas fa-users"></i> メンバー</button>
-        <button onclick="location.href='/setting'"><i class="fas fa-cogs"></i> 設定画面</button>
+    <div class="footer-icons">
+        <button id="homeButton" onclick="location.href='/'">ホーム</button>
+        <button id="bousaiButton" onclick="location.href='bousaigamen'">防災画面</button>
+        <button id="memberButton" onclick="location.href='membermoto'">メンバー</button>
+        <button id="helpButton" onclick="location.href='/setting'">ヘルプ</button>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> <!-- jQueryの変更 -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-    
+    <script>
+        const languageResources = {
+            ja: {
+                pageTitle: "防災情報アプリ",
+                appTitle: "防災情報アプリ",
+                memberTitle: "メンバー",
+                usernameLabel: "ユーザー名:",
+                statusLabel: "状態:",
+                postListTitle: "投稿一覧",
+                noPostMessage: "投稿がありません。",
+                detailsSummary: "詳細を表示",
+                posterLabel: "投稿者:",
+                homeButton: "ホーム",
+                bousaiButton: "防災画面",
+                memberButton: "メンバー",
+                helpButton: "ヘルプ"
+            },
+            en: {
+                pageTitle: "Disaster Information App",
+                appTitle: "Disaster Information App",
+                memberTitle: "Members",
+                usernameLabel: "Username:",
+                statusLabel: "Status:",
+                postListTitle: "Post List",
+                noPostMessage: "No posts available.",
+                detailsSummary: "Show details",
+                posterLabel: "Posted by:",
+                homeButton: "Home",
+                bousaiButton: "Disaster Screen",
+                memberButton: "Members",
+                helpButton: "Help"
+            },
+            ko: {
+                pageTitle: "재난 정보 앱",
+                appTitle: "재난 정보 앱",
+                memberTitle: "멤버",
+                usernameLabel: "사용자 이름:",
+                statusLabel: "상태:",
+                postListTitle: "게시물 목록",
+                noPostMessage: "게시물이 없습니다.",
+                detailsSummary: "자세히 보기",
+                posterLabel: "게시자:",
+                homeButton: "홈",
+                bousaiButton: "재난 화면",
+                memberButton: "멤버",
+                helpButton: "도움말"
+            },
+            zh: {
+                pageTitle: "防灾信息应用",
+                appTitle: "防灾信息应用",
+                memberTitle: "成员",
+                usernameLabel: "用户名:",
+                statusLabel: "状态:",
+                postListTitle: "帖子列表",
+                noPostMessage: "没有帖子。",
+                detailsSummary: "显示详情",
+                posterLabel: "发布者:",
+                homeButton: "主页",
+                bousaiButton: "防灾页面",
+                memberButton: "成员",
+                helpButton: "帮助"
+            }
+        };
+
+        function applyLanguage() {
+            const lang = localStorage.getItem("selectedLanguage") || "ja";
+            const resource = languageResources[lang];
+            
+            Object.keys(resource).forEach(id => {
+                if (document.getElementById(id)) {
+                    document.getElementById(id).innerText = resource[id];
+                }
+            });
+        }
+
+        window.onload = applyLanguage;
+    </script>
 </body>
 </html>

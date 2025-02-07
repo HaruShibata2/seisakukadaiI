@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>防災情報アプリ</title>
+    <title id="pageTitle">防災情報アプリ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* 全体の余白調整 */
@@ -11,7 +11,6 @@
             margin: 0;
             padding-bottom: 60px;
         }
-
 
         /* フッターアイコンのスタイル */
         .footer-icons {
@@ -58,37 +57,127 @@
         .link-section button:hover {
             background-color: #0056b3;
         }
-
     </style>
 </head>
 
 <body>
-	    <!-- ナビゲーションバー -->
+    <!-- ナビゲーションバー -->
     <div th:include="~{fragments/navbar}"></div>
+
     <div class="container mt-4">
-        <h1 class="mb-4">防災情報アプリ</h1>
+        <h1 class="mb-4" id="appTitle">防災情報アプリ</h1>
 
         <!-- 防災関連リンク -->
         <div class="link-section">
-            <button onclick="location.href='https://notice.yahoo.co.jp/emg/sokuho/service/disasterlist.html'">Yahoo防災</button>
-            <button onclick="location.href='https://webmap.city.fukuoka.lg.jp/bousai/'">ハザードマップ</button>
-            <button onclick="location.href='https://weather.yahoo.co.jp/'">Yahoo天気</button>
+            <button id="yahooBousai" onclick="location.href='https://notice.yahoo.co.jp/emg/sokuho/service/disasterlist.html'">Yahoo防災</button>
+            <button id="hazardMap" onclick="location.href='https://webmap.city.fukuoka.lg.jp/bousai/'">ハザードマップ</button>
+            <button id="yahooWeather" onclick="location.href='https://weather.yahoo.co.jp/'">Yahoo天気</button>
         </div>
     </div>
-    
 
     <!-- フッターアイコン -->
     <div class="footer-icons">
-        <button onclick="location.href='/'">ホーム</button>
-        <button onclick="location.href='bousaigamen'">防災画面</button>
-        <button onclick="location.href='membermoto'">メンバー</button>
-    <button onclick="location.href='/setting'">ヘルプ</button>
-</div>
-    
-</body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <button id="homeButton" onclick="location.href='/'">ホーム</button>
+        <button id="bousaiButton" onclick="location.href='bousaigamen'">防災画面</button>
+        <button id="memberButton" onclick="location.href='membermoto'">メンバー</button>
+        <button id="helpButton" onclick="location.href='/setting'">ヘルプ</button>
+    </div>
 
+    <script>
+        // 言語ごとのテキスト定義
+        const languageResources = {
+            ja: {
+                pageTitle: "防災情報アプリ",
+                appTitle: "防災情報アプリ",
+                yahooBousai: "Yahoo防災",
+                hazardMap: "ハザードマップ",
+                yahooWeather: "Yahoo天気",
+                homeButton: "ホーム",
+                bousaiButton: "防災画面",
+                memberButton: "メンバー",
+                helpButton: "ヘルプ"
+            },
+            en: {
+                pageTitle: "Disaster Information App",
+                appTitle: "Disaster Information App",
+                yahooBousai: "Yahoo Disaster",
+                hazardMap: "Hazard Map",
+                yahooWeather: "Yahoo Weather",
+                homeButton: "Home",
+                bousaiButton: "Disaster Screen",
+                memberButton: "Members",
+                helpButton: "Help"
+            },
+            ko: {
+                pageTitle: "재난 정보 앱",
+                appTitle: "재난 정보 앱",
+                yahooBousai: "야후 재난",
+                hazardMap: "하자드 맵",
+                yahooWeather: "야후 날씨",
+                homeButton: "홈",
+                bousaiButton: "재난 화면",
+                memberButton: "멤버",
+                helpButton: "도움말"
+            },
+            zh: {
+                pageTitle: "防灾信息应用",
+                appTitle: "防灾信息应用",
+                yahooBousai: "Yahoo防灾",
+                hazardMap: "灾害地图",
+                yahooWeather: "Yahoo天气",
+                homeButton: "主页",
+                bousaiButton: "防灾页面",
+                memberButton: "成员",
+                helpButton: "帮助"
+            },
+            vi: {
+                pageTitle: "Ứng dụng Thông tin Thiên tai",
+                appTitle: "Ứng dụng Thông tin Thiên tai",
+                yahooBousai: "Yahoo Thảm họa",
+                hazardMap: "Bản đồ Rủi ro",
+                yahooWeather: "Yahoo Thời tiết",
+                homeButton: "Trang chủ",
+                bousaiButton: "Màn hình thiên tai",
+                memberButton: "Thành viên",
+                helpButton: "Trợ giúp"
+            },
+            tl: {
+                pageTitle: "App ng Impormasyon sa Sakuna",
+                appTitle: "App ng Impormasyon sa Sakuna",
+                yahooBousai: "Yahoo Sakuna",
+                hazardMap: "Mapa ng Panganib",
+                yahooWeather: "Yahoo Panahon",
+                homeButton: "Home",
+                bousaiButton: "Screen ng Sakuna",
+                memberButton: "Mga Miyembro",
+                helpButton: "Tulong"
+            }
+        };
+
+        // 言語を適用する関数
+        function applyLanguage() {
+            // localStorage から選択された言語を取得（デフォルトは日本語）
+            const lang = localStorage.getItem("selectedLanguage") || "ja";
+            const resource = languageResources[lang];
+
+            // 各要素のテキストを変更
+            document.getElementById("pageTitle").innerText = resource.pageTitle;
+            document.getElementById("appTitle").innerText = resource.appTitle;
+            document.getElementById("yahooBousai").innerText = resource.yahooBousai;
+            document.getElementById("hazardMap").innerText = resource.hazardMap;
+            document.getElementById("yahooWeather").innerText = resource.yahooWeather;
+            document.getElementById("homeButton").innerText = resource.homeButton;
+            document.getElementById("bousaiButton").innerText = resource.bousaiButton;
+            document.getElementById("memberButton").innerText = resource.memberButton;
+            document.getElementById("helpButton").innerText = resource.helpButton;
+        }
+
+        // ページ読み込み時に言語を適用
+        window.onload = applyLanguage;
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
