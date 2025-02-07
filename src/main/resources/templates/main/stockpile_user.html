@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>備蓄リスト</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>備蓄リスト</h1>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>アイテム名</th>
+                    <th>個数</th>
+                    <th>保管場所</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="stockpile : ${stockpiles}">
+                    <td th:text="${stockpile.itemName}"></td>
+                    <td th:text="${stockpile.quantity}"></td>
+                    <td th:text="${stockpile.location}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
