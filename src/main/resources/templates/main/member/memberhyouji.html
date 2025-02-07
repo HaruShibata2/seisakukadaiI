@@ -3,42 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>メンバー表示</title>
+    <title>メンバー管理ページ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             margin: 0;
             padding-bottom: 60px;
+            background-color: #f8f9fa;
         }
-
         .container {
             margin-top: 20px;
         }
-
-        .separator {
-            border-top: 1px solid #ddd;
-            margin: 20px 0;
-        }
-
-        .member-list p {
-            margin: 5px 0;
-        }
-
-        .btn-chat {
-            width: 100%;
-            font-size: 18px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
+        table {
             margin-top: 20px;
         }
-
-        .btn-chat:hover {
-            background-color: #0056b3;
-        }
-
         .footer-icons {
             position: fixed;
             bottom: 0;
@@ -46,54 +24,77 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            background-color: #f8f9fa;
-            padding: 10px 0;
+            background-color: #343a40;
+            padding: 15px 0;
             border-top: 1px solid #ddd;
         }
-
         .footer-icons button {
             background: none;
             border: none;
             font-size: 16px;
-            color: #007bff;
-            transition: color 0.2s;
+            color: #fff;
             cursor: pointer;
+            transition: color 0.2s;
         }
-
         .footer-icons button:hover {
-            color: #0056b3;
+            color: #17a2b8;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-	    <!-- ナビゲーションバー -->
+		<!-- ナビゲーションバー -->
     <div th:include="~{fragments/navbar}"></div>
-
     <div class="container">
-        <h1 class="text-center">メンバー表示</h1>
+        <h1 class="text-center mb-4">メンバー</h1>
 
-        <!-- 区切り線 -->
-        <div class="separator"></div>
+        <!-- エラーメッセージ表示 -->
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
-        <!-- メンバーのリスト -->
-        <div class="member-list">
-            <p>メンバー表示</p>
-            <p>メンバー表示</p>
-            <p>メンバー表示</p>
-            <p>メンバー表示</p>
-            <p>メンバー表示</p>
-            <p>メンバー表示</p>
-        </div>
 
-        
+        <!-- メンバー一覧表示 -->
+        <table class="table table-bordered table-responsive-md">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>ユーザー名</th>
+                    <th>メールアドレス</th>
+                    <th>部署</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- メンバー情報を動的に挿入 -->
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.department}"></td>
+
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <!-- フッターアイコン -->
-    <div class="footer-icons">
+    <!-- フッター -->
+<div class="footer-icons">
         <button onclick="location.href='/'">ホーム</button>
         <button onclick="location.href='bousaigamen'">防災画面</button>
         <button onclick="location.href='membermoto'">メンバー</button>
-        <button onclick="location.href='setting'">設定画面</button>
+        <button onclick="location.href='/setting'">ヘルプ</button>
+
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

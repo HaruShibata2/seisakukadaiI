@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import io.micrometer.common.lang.NonNull;
 import jp.ac.teami.seisakukadaiI.model.UserModel;
 import jp.ac.teami.seisakukadaiI.service.UserService;
 @Controller
@@ -59,28 +62,53 @@ public class UsersController {
     /**
      * 新規ユーザー追加フォーム表示
      */
+//    @GetMapping("/add")
+//    public ModelAndView addUserForm(Model model) {
+//        logger.info("新しいユーザー追加フォームを表示します");
+//        model.addAttribute("user", new UserModel());
+//        return new ModelAndView("main/admin/user_add");
+//    }
+//
+//    /**
+//     * ユーザー追加処理
+//     */
+//    @PostMapping("/add")
+//    public ModelAndView addUser(@ModelAttribute UserModel user, Model model) {
+//        try {
+//            logger.info("新しいユーザーを追加します - Username: {}, Email: {}", user.getUsername(), user.getEmail());
+//            userService.save(user);  // ユーザーをDBに保存
+//            // ユーザー追加後、ユーザー一覧画面（/users）へリダイレクト
+//            return new ModelAndView("redirect:/users");
+//        } catch (Exception e) {
+//            logger.error("ユーザー追加エラー: {}", e.getMessage());
+//            model.addAttribute("error", "ユーザーを追加できませんでした: " + e.getMessage());
+//            return new ModelAndView("main/admin/user_add");  // エラー発生時、フォームに戻す
+//        }
+//    }
+    
     @GetMapping("/add")
-    public ModelAndView addUserForm(Model model) {
-        logger.info("新しいユーザー追加フォームを表示します");
-        model.addAttribute("user", new UserModel());
-        return new ModelAndView("main/admin/user_add");
+    public ModelAndView add(UserModel usermodel, ModelAndView model) {
+        model.addObject("user", usermodel); 
+        model.setViewName("main/admin/user_add");
+        return model;
     }
 
-    /**
-     * ユーザー追加処理
-     */
+    // POST メソッド：登録処理
     @PostMapping("/add")
-    public ModelAndView addUser(@ModelAttribute UserModel user, Model model) {
+    public String add(@Validated @ModelAttribute @NonNull UserModel usermodel, RedirectAttributes redirectAttributes) {
         try {
-            logger.info("新しいユーザーを追加します - Username: {}, Email: {}", user.getUsername(), user.getEmail());
-            userService.save(user);  // ユーザーをDBに保存
-            // ユーザー追加後、ユーザー一覧画面（/users）へリダイレクト
-            return new ModelAndView("redirect:/users");
+            // ロールを設定
+            if (usermodel.getRole() != null) {
+            	UserModel.UserRole userRole = UserModel.UserRole.valueOf(usermodel.getRole().name().toUpperCase());  // フォームから送信されたロール
+                usermodel.setRole(userRole);  // ユーザーにロールを設定
+            }
+
+            this.userService.save(usermodel);
+            redirectAttributes.addFlashAttribute("exception", "");
         } catch (Exception e) {
-            logger.error("ユーザー追加エラー: {}", e.getMessage());
-            model.addAttribute("error", "ユーザーを追加できませんでした: " + e.getMessage());
-            return new ModelAndView("main/admin/user_add");  // エラー発生時、フォームに戻す
+            redirectAttributes.addFlashAttribute("exception", e.getMessage());
         }
+        return "main/admin/admin"; // ホームまたは適切な場所にリダイレクト
     }
 
     /**

@@ -1,21 +1,131 @@
 <!DOCTYPE html>
 <html>
-		<!-- ナビゲーションバー -->
-    <div th:include="~{fragments/navbar}"></div>
-<form action="/users/add" method="post">
-    <label for="username">ユーザー名:</label>
-    <input type="text" id="username" name="username" required>
+<head>
+<meta charset="UTF-8">
+<title>Account</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
     
-    <label for="email">メールアドレス:</label>
-    <input type="email" id="email" name="email" required>
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .row {
+        margin-top: 20px;
+    }
+    
+    .col-form-label {
+        text-align: end;
+        padding-right: 10px;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
+    
+    <div class="container">
+        <form class="form py-4 needs-validation h-adr" method="post" th:action="@{/users/add}" th:object="${user}" novalidate>
+            <div class="row">        
+                <label for="username" class="col-4 col-form-label">名前</label>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="username" name="username" th:field="*{username}" th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : 'is-valid'" />
+                    <div th:if="${#fields.hasErrors('username')}" class="invalid-feedback" th:errors="*{username}">errors!</div>
+                </div>    
+            </div>
+            <div class="row">        
+                <label for="userId" class="col-4 col-form-label">userId</label>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="userId" name="userId" th:field="*{userId}" th:classappend="${#fields.hasErrors('userId')} ? 'is-invalid' : 'is-valid'" />
+                    <div th:if="${#fields.hasErrors('userId')}" class="invalid-feedback" th:errors="*{userId}">errors!</div>
+                </div>    
+            </div>
+            
+            <div class="row">        
+                <label for="password" class="col-4 col-form-label">パスワード</label>
+                <div class="col-4">
+                    <input type="password" class="form-control" id="password" name="password" th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : 'is-valid'" />
+                    <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback" th:errors="*{password}">errors!</div>
+                </div>    
+            </div>
+            
+            <div class="row">        
+                <label for="email" class="col-4 col-form-label">email</label>
+                <div class="col-4">
+                    <input type="email" class="form-control" id="email" name="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : 'is-valid'" />
+                    <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback" th:errors="*{email}">errors!</div>
+                </div>    
+            </div>
+            
+            <div class="row">
+                <label for="role" class="col-4 col-form-label">Role</label>
+                <div class="col-4">
+                    <select name="role" id="role" class="form-control">
+                        <option value="ADMIN">Admin</option>
+<!--                        <option value="LEADER">Leader</option>-->
+<!--                        <option value="GENERAL">General</option>-->
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-4">
+                    <input type="submit" value="送信する" class="btn">
+                    <a href="/" class="btn">戻る</a>
+                </div>
+            </div>
+        </form>
+    </div>
+     <!-- フッター -->
+<div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='membermoto'">メンバー</button>
+        <button onclick="location.href='/setting'">ヘルプ</button>
 
-    <label for="role">役割:</label>
-    <select id="role" name="role">
-        <option value="GENERAL">一般</option>
-        <option value="LEADER">リーダー</option>
-        <option value="ADMIN">管理者</option>
-    </select>
+    </div>
 
-    <button type="submit">追加</button>
-</form>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
 </html>

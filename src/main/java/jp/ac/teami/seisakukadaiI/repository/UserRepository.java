@@ -45,6 +45,8 @@ public interface UserRepository extends JpaRepository<UserModel, Long>, JpaSpeci
 
     // 登録日順 (降順)
     List<UserModel> findAllByOrderByEntryDateDesc();
+    List<UserModel> findByDepartment(String department);
+
 }
 
 

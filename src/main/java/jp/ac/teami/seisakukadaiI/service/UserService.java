@@ -1,18 +1,20 @@
 package jp.ac.teami.seisakukadaiI.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import jp.ac.teami.seisakukadaiI.model.UserModel;
 import jp.ac.teami.seisakukadaiI.repository.UserRepository;
 
@@ -164,6 +166,30 @@ public class UserService {
         }
     }
     
+    
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<UserModel> getUsersFromSameDepartment() {
+        String loggedInUserDepartment = getLoggedInUserDepartment();
+
+        if (loggedInUserDepartment != null) {
+            // 同じ部署コードを持つユーザーを取得
+            return userRepository.findByDepartment(loggedInUserDepartment);
+        }
+        return new ArrayList<>();  // 部署コードが取得できない場合は空のリストを返す
+    }
+
+    private String getLoggedInUserDepartment() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (userDetails instanceof UserModel) {
+            UserModel user = (UserModel) userDetails;
+            return user.getDepartment();
+        }
+        return null;  // 認証されていない場合はnullを返す
+    }
+
 
 
 

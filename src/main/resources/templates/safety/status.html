@@ -16,15 +16,15 @@
             <h2 class="text-center mb-4">安否確認</h2>
             <ul class="list-group">
                 <!-- 安否確認リスト -->
-                <th:block th:each="check : ${checks}">
+                <th:block th:each="checks : ${checks}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span>
                             <strong>ユーザー名:</strong>
-                            <span th:text="${check.user.username}">ユーザー名</span>
+                            <span th:text="${checks.user.username}">ユーザー名</span>
                         </span>
                         <span>
                             <strong>状態:</strong>
-                            <span th:text="${check.status}">状態</span>
+                            <span th:text="${checks.status}">状態</span>
                         </span>
                     </li>
                 </th:block>
@@ -33,17 +33,17 @@
     </div>
 
     <!-- フッターアイコン -->
-    <div class="footer-icons">
+<div class="footer-icons">
         <button onclick="location.href='/'">ホーム</button>
-        <button onclick="location.href='/bousaigamen'">防災画面</button>
-        <button onclick="location.href='/membermoto'">メンバー</button>
-        <button onclick="location.href='/setting'">設定画面</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='/users'">メンバー</button>
+        <button onclick="location.href='/setting'">ヘルプ</button>
+
     </div>
 
-    <!-- BootstrapのJS（jQueryとPopperも必要） -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
 

@@ -5,7 +5,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>権限アカウントでログインしてください</h1>
+	 <!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
+
+<h1>間違った操作を行いました</h1>
 <a href="/">ホーム戻る</a>
 </body>
+<div class="footer-icons">
+        <button onclick="location.href='/'">ホーム</button>
+        <button onclick="location.href='bousaigamen'">防災画面</button>
+        <button onclick="location.href='/users'">メンバー</button>
+        <button onclick="location.href='/setting'">ヘルプ</button>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

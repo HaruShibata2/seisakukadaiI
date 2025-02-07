@@ -26,8 +26,8 @@ public class MainController {
     public String getPosts(Model model) {
         List<PostModel> posts = postRepository.findAllByOrderByCreatedAtDesc();
         model.addAttribute("posts", posts);
-//        List<SafetyCheck> check = safetycheckRepository.findAll();
-//        model.addAttribute("check", check);
+        List<SafetyCheck> check = safetycheckRepository.findAll();
+        model.addAttribute("checks", check);
         return "main/home";
     }
     @GetMapping("/status")
@@ -35,7 +35,7 @@ public class MainController {
 //        List<PostModel> posts = postRepository.findAllByOrderByCreatedAtDesc();
 //        model.addAttribute("posts", posts);
         List<SafetyCheck> check = safetycheckRepository.findAll();
-        model.addAttribute("check", check);
+        model.addAttribute("checks", check);
         return "status";
     }
     @GetMapping("/role")
