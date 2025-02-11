@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー情報編集</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* ページ全体の背景色 */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px; /* 上部の余白 */
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* コンテナに影を追加 */
+        }
+
+        h2 {
+            text-align: center; /* 見出しを中央に */
+            color: #007bff; /* 見出しの色 */
+            margin-bottom: 30px; /* 見出しとフォームの間隔 */
+        }
+
+        .form-group label {
+            font-weight: bold; /* ラベル文字を太字 */
+            color: #495057; /* ラベル文字の色 */
+        }
+
+        .form-control {
+            border-radius: 5px; /* フォームコントロールの角を丸く */
+            border: 1px solid #ced4da; /* 入力欄の枠線 */
+            transition: border-color 0.3s; /* 枠線の色を変更時に滑らかに */
+        }
+
+        .form-control:focus {
+            border-color: #007bff; /* フォーカス時に青い枠線 */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 青いシャドウを追加 */
+        }
+
+        .btn {
+            width: 100%; /* ボタンを全幅に */
+            padding: 12px; /* ボタンのパディングを増やしてクリックしやすく */
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            opacity: 0.8; /* ホバー時に透明度を少し落とす */
+        }
+
+        .form-text {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        /* エラーメッセージのカスタマイズ */
+        .alert {
+            margin-top: 20px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="container">
+        <h2>設定</h2>
+ 
+        <!-- エラーメッセージ -->
+        <div th:if="${error}" class="alert alert-danger">
+            <span th:text="${error}"></span>
+        </div>
+ 
+        <!-- 編集フォーム -->
+        <form action="#" th:action="@{/profile/profileupdate}" th:object="${user}" method="post">
+ 
+            <!-- hiddenでuserIdを渡す -->
+            <input type="hidden" name="userId" th:value="${user.userId}" /> <!-- hiddenでuserIdを渡す -->
+            
+            <div class="form-group">
+                <label for="username">ユーザー名:</label>
+                <input type="text" class="form-control" id="username" th:field="*{username}" required>
+            </div>
+ 
+            <div class="form-group">
+                <label for="email">メールアドレス:</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}" required>
+            </div>
+ 
+            <div class="form-group">
+                <label for="department">部門:</label>
+                <input type="text" class="form-control" id="department" th:field="*{department}" required>
+            </div>
+ 
+
+            <div class="form-group">
+                <label for="password">新しいパスワード:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="新しいパスワード（変更する場合のみ入力）">
+                <small class="form-text text-muted">パスワードを変更する場合のみ入力してください。</small>
+            </div>
+ 
+            <button type="submit" class="btn btn-primary">更新</button>
+            <a href="#" class="btn btn-secondary mt-3" onclick="window.history.back();">戻る</a>
+        </form>
+ 
+    </div>
+    
+    
+    <!-- BootstrapのJavaScriptライブラリ -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ 
+</body>
+</html>

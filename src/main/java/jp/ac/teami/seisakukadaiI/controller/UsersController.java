@@ -62,30 +62,6 @@ public class UsersController {
     /**
      * 新規ユーザー追加フォーム表示
      */
-//    @GetMapping("/add")
-//    public ModelAndView addUserForm(Model model) {
-//        logger.info("新しいユーザー追加フォームを表示します");
-//        model.addAttribute("user", new UserModel());
-//        return new ModelAndView("main/admin/user_add");
-//    }
-//
-//    /**
-//     * ユーザー追加処理
-//     */
-//    @PostMapping("/add")
-//    public ModelAndView addUser(@ModelAttribute UserModel user, Model model) {
-//        try {
-//            logger.info("新しいユーザーを追加します - Username: {}, Email: {}", user.getUsername(), user.getEmail());
-//            userService.save(user);  // ユーザーをDBに保存
-//            // ユーザー追加後、ユーザー一覧画面（/users）へリダイレクト
-//            return new ModelAndView("redirect:/users");
-//        } catch (Exception e) {
-//            logger.error("ユーザー追加エラー: {}", e.getMessage());
-//            model.addAttribute("error", "ユーザーを追加できませんでした: " + e.getMessage());
-//            return new ModelAndView("main/admin/user_add");  // エラー発生時、フォームに戻す
-//        }
-//    }
-    
     @GetMapping("/add")
     public ModelAndView add(UserModel usermodel, ModelAndView model) {
         model.addObject("user", usermodel); 
@@ -108,7 +84,7 @@ public class UsersController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("exception", e.getMessage());
         }
-        return "main/admin/admin"; // ホームまたは適切な場所にリダイレクト
+        return "redirect:/"; // ホームまたは適切な場所にリダイレクト
     }
 
     /**

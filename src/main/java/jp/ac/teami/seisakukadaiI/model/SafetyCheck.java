@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 import lombok.Data;
 
 
@@ -39,6 +38,11 @@ public class SafetyCheck {
 
     @Column(name = "checked_at", updatable = false)
     private LocalDateTime checkedAt; // 安否確認日時
+    
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt; // 更新日時
+    
 
 
     public enum Status {
@@ -53,4 +57,13 @@ public class SafetyCheck {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return this.checkedAt.format(formatter);
     }
+    
+    public String getFormattedUpdatedAt() {
+        if (this.updatedAt == null) {
+            return "未更新";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return this.updatedAt.format(formatter);
+    }
+
 }
