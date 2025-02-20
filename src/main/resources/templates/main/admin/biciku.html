@@ -5,39 +5,13 @@
     <title>備蓄管理 </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- アイコン追加 -->
-    <style>
-        body {
-            margin: 0;
-            padding-bottom: 60px; 
-        }
-        .container {
-            margin-top: 20px;
-        }
-        .footer-icons {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            border-top: 1px solid #ddd;
-        }
-        .footer-icons button {
-            background: none;
-            border: none;
-            font-size: 16px;
-            color: #007bff;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
-        .footer-icons button:hover {
-            color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+	 <!-- ナビゲーションバー -->
+    <div th:include="~{fragments/navbar}"></div>
+
     <div class="container">
 		
 		<div sec:authorize="!hasRole('ROLE_ADMIN')">
@@ -90,12 +64,12 @@
         </table>
     </div>
 
+    <!-- フッターアイコン -->
     <div class="footer-icons">
-        <button onclick="location.href='/'"><i class="fas fa-home"></i> ホーム</button>
-        <button onclick="location.href='/biciku'"><i class="fas fa-box"></i> 備蓄管理</button>
-        <button onclick="location.href='/bousaigamen'"><i class="fas fa-shield-alt"></i> 防災画面</button>
-        <button onclick="location.href='/membermoto'"><i class="fas fa-users"></i> メンバー</button>
-        <button onclick="location.href='/setting'"><i class="fas fa-cogs"></i> 設定画面</button>
+        <button id="homeButton" onclick="location.href='/'">ホーム</button>
+        <button id="bousaiButton" onclick="location.href='bousaigamen'">防災画面</button>
+        <button id="memberButton" onclick="location.href='membermoto'">メンバー</button>
+        <button id="helpButton" onclick="location.href='/setting'">ヘルプ</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> <!-- jQueryの変更 -->

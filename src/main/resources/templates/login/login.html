@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login_page</title>
+    <title id="pageTitle">Login Page</title>
     <style>
         .container {
             max-width: 600px;
@@ -58,38 +58,46 @@
             text-decoration: none;
             margin-left: 10px; /* リンク間のスペースを調整 */
         }
+
+        /* 言語選択のスタイル */
+        .language-select {
+            margin-top: 20px;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- login form -->
         <div class="row">
-            <div
-                class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12">
+            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12">
                 <div class="well">
                     <form method="post" th:action="@{/login2/}" th:object="${user}">
                         <fieldset>
-                            <legend> ログイン </legend>
-    
+                            <legend id="loginLegend">ログイン</legend>
+
                             <div class="form-group">
-                                <label for="inputUser_id">user_id</label> <input type="user_id"
-                                    id="user_id" class="form-control" placeholder="user_id"
-                                    name="user_id" >
+                                <label for="user_id" id="userIdLabel">ユーザーID</label>
+                                <input type="text" id="user_id" class="form-control" placeholder="ユーザーID" name="user_id" required>
                             </div>
+
                             <div class="form-group">
-                                <label for="inputPassword">パスワード:</label> <input type="password"
-                                    id="password" class="form-control" placeholder="password"
-                                    name="password" >
+                                <label for="password" id="passwordLabel">パスワード:</label>
+                                <input type="password" id="password" class="form-control" placeholder="パスワード" name="password" required>
                             </div>
+
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">ログイン</button>
+                                <button type="submit" class="btn btn-primary" id="loginButton">ログイン</button>
                             </div>
-                            <div><a href="/register">acout登録</a></div>
+
+                            <div><a href="/register" id="registerLink">アカウント登録</a></div>
                         </fieldset>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+
+
+    
 </body>
 </html>

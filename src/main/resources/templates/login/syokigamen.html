@@ -15,72 +15,10 @@
     <a href="/register" class="btn btn-primary btn-lg mb-3 w-100" id="registerButton">新規登録画面</a>
     <a href="/login" class="btn btn-secondary btn-lg w-100" id="loginButton">ログイン</a>
 
-    <!-- 言語選択部分 -->
-    <div class="mt-4" id="languageSection">
-      <h2 id="languageSelectTitle">言語を選択してください:</h2>
-      <button onclick="selectLanguage('ja')" class="btn btn-outline-secondary">日本語</button>
-      <button onclick="selectLanguage('en')" class="btn btn-outline-secondary">English</button>
-      <button onclick="selectLanguage('ko')" class="btn btn-outline-secondary">한국어</button>
-      <button onclick="selectLanguage('zh')" class="btn btn-outline-secondary">中文</button>
-      <!-- 必要に応じて他の言語も追加できます -->
-    </div>
+    
   </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // 各言語に対応するテキストリソース
-    const languageResources = {
-      ja: {
-        pageTitle: "初期画面",
-        welcomeMessage: "初期画面",
-        registerButton: "新規登録画面",
-        loginButton: "ログイン",
-        languageSelectTitle: "言語を選択してください:"
-      },
-      en: {
-        pageTitle: "Initial Screen",
-        welcomeMessage: "Initial Screen",
-        registerButton: "New Registration",
-        loginButton: "Login",
-        languageSelectTitle: "Please select a language:"
-      },
-      ko: {
-        pageTitle: "초기 화면",
-        welcomeMessage: "초기 화면",
-        registerButton: "새 등록 화면",
-        loginButton: "로그인",
-        languageSelectTitle: "언어를 선택하세요:"
-      },
-      zh: {
-        pageTitle: "初始屏幕",
-        welcomeMessage: "初始屏幕",
-        registerButton: "新注册",
-        loginButton: "登录",
-        languageSelectTitle: "请选择一种语言:"
-      }
-    };
-
-    // 言語を適用する関数
-    function applyLanguage() {
-      const lang = localStorage.getItem("selectedLanguage") || "ja"; // デフォルトは日本語
-      const resource = languageResources[lang];
-      document.getElementById("pageTitle").innerText = resource.pageTitle;
-      document.getElementById("welcomeMessage").innerText = resource.welcomeMessage;
-      document.getElementById("registerButton").innerText = resource.registerButton;
-      document.getElementById("loginButton").innerText = resource.loginButton;
-      document.getElementById("languageSelectTitle").innerText = resource.languageSelectTitle;
-    }
-
-    // 言語選択処理
-    function selectLanguage(lang) {
-      localStorage.setItem("selectedLanguage", lang); // 選択した言語を保存
-      applyLanguage(); // 保存した言語に基づいてテキストを更新
-    }
-
-    // ページ読み込み時に適用
-    window.onload = applyLanguage;
-  </script>
+ 
 </body>
 
 </html>

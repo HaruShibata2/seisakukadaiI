@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ユーザー情報編集</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-		<!-- ナビゲーションバー -->
+    <!-- ナビゲーションバー -->
     <div th:include="~{fragments/navbar}"></div>
     <div class="container">
         <h2>ユーザー情報編集</h2>
@@ -51,30 +53,21 @@
                 <small class="form-text text-muted">パスワードを変更する場合のみ入力してください。</small>
             </div>
 
-            <button type="submit" class="btn btn-primary">更新</button>
-            <a href="admin" class="btn btn-secondary mt-3" onclick="window.history.back();">戻る</a>
+            <button type="submit" class="btn btn-primary">更新</butto>
+            <button href="admin" class="btn btn-secondary mt-3" onclick="window.history.back();">戻る</button>
         </form>
-
     </div>
+
     <!-- フッターアイコン -->
-<div class="footer-icons">
+    <div class="footer-icons">
         <button onclick="location.href='/'">ホーム</button>
         <button onclick="location.href='bousaigamen'">防災画面</button>
-        <button onclick="location.href='/users'">メンバー</button>
+        <button onclick="location.href='/membermoto'">メンバー</button>
         <button onclick="location.href='/setting'">ヘルプ</button>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
 </body>
-
-
-    <!-- BootstrapのJavaScriptライブラリ -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </html>

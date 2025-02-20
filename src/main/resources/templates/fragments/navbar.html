@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>防災情報アプリ</title>
+    <title id="pageTitle">防災情報アプリ</title>
     <!-- 他のメタタグやスタイルシートのリンク -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css"> <!-- 外部CSSファイル -->
@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container-fluid">
         <!-- ブランド名 -->
-        <a class="navbar-brand font-weight-bold text-primary" href="#">防災情報アプリ</a>
+        <a class="navbar-brand font-weight-bold text-primary" href="#" id="appTitle">防災情報アプリ</a>
 
         <!-- トグルボタン（モバイル用） -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -26,37 +26,35 @@
             <ul class="navbar-nav ml-auto">
                 <!-- プロフィール画面リンク -->
                 <li class="nav-item" id="profileLink">
-                    <a class="nav-link" href="/profile">
+                    <a class="nav-link" href="/profile" id="profileText">
                         プロフィール画面
                     </a>
                 </li>
                 <!-- 設定画面リンク -->
                 <li class="nav-item" id="settingLink">
-                    <a class="nav-link" href="/setting">
+                    <a class="nav-link" href="/setting" id="helpText">
                         ヘルプ
                     </a>
                 </li>
-                <!-- ホーム画面リンク -->
+                <!-- 管理者画面リンク（ROLE_ADMIN） -->
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <li class="nav-item" id="adminLink">
+                        <a class="nav-link" href="/admin" id="adminText">
+                            管理者画面
+                        </a>
+                    </li>
+                </div>
+                <!-- 安否確認画面リンク -->
                 <li class="nav-item" id="homeLink">
-                    <a class="nav-link" href="/admin">
-                        管理者画面
+                    <a class="nav-link" href="/safety/confirm" id="safetyCheckText">
+                        安否確認
                     </a>
                 </li>
-                </div>
-				<!-- ホーム画面リンク -->
-				<li class="nav-item" id="homeLink">
-				    <a class="nav-link" href="/safety/confirm">
-				        安否確認
-				    </a>
-				</li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- 外部JSファイルを読み込む -->
-<script src="/static/js/navbar.js"></script>
 
 </body>
 </html>

@@ -22,12 +22,6 @@ public class AdminController {
     public AdminController(StockpileService service) {
         this.service = service;
     }
-	
-//    @Autowired
-//    private PostRepository postRepository;
-//    
-//    @Autowired
-//    private UserRepository userRepository;
     
     @Autowired
     private UserRepository userRepository;
